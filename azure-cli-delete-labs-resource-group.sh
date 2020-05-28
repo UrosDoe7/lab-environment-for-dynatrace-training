@@ -12,7 +12,7 @@ then
                         USER='USER0'$i
                         VM_RESOURCE_GROUP=$DOMAIN_NAME'0'$i
                         ACR_RESOURCE_GROUP='acr'$DOMAIN_NAME'0'$i
-                        AKS_RESOURCE_GROUP='MC_'$ACR_RESOURCE_GROUP'_akscluster_westeurope'
+                        AKS_RESOURCE_GROUP='MC_'$ACR_RESOURCE_GROUP'_akscluster'
                         echo "delete resource group "$VM_RESOURCE_GROUP
                         az group delete --name $VM_RESOURCE_GROUP --y
                         echo "delete resource group "$ACR_RESOURCE_GROUP
