@@ -12,6 +12,7 @@ LOCATION='westeurope'
 #LOCATION='ukwest'
 SIZE='Standard_D1_v2' #1 CPU 3.5 GB
 #SIZE='Standard_B2s'   #2 CPU 4 GB
+X=0 #from X0 to X9
 
 echo "Create several Ubuntu VM with Docker Engine on Azure - from JLL version 1.0"
 echo "How many VM ? 1, 2 ... 8 ? - default : 1"
@@ -28,7 +29,7 @@ then
 fi
 for ((i=0; i<$NBVM; ++i));
 do
-	echo 'hostname : '$DOMAIN_NAME'0'$i'.'$LOCATION'.cloudapp.azure.com with usr = USER0'$i' & Pwd = '$PASSWORD' & Size = '$SIZE''
+	echo 'hostname : '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com with usr = USER'$X$i' & Pwd = '$PASSWORD' & Size = '$SIZE''
 done
 echo ""
 echo "Continue (Y/N) - default : Y"
@@ -42,9 +43,9 @@ then
 	#create VM
 	for ((i=0; i<$NBVM; ++i));
 	do
-		USER='USER0'$i
-		RESOURCE_GROUP=$DOMAIN_NAME'0'$i
-		DOMAIN=$DOMAIN_NAME'0'$i
+		USER='USER'$X$i
+		RESOURCE_GROUP=$DOMAIN_NAME$X$i
+		DOMAIN=$DOMAIN_NAME$X$i
 		echo 'create resource group : '  $RESOURCE_GROUP
 		az group create \
 			--name $RESOURCE_GROUP \
