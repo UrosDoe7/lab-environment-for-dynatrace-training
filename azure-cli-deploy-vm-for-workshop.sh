@@ -6,7 +6,12 @@ TIME=`date +%Y%m%d%H%M%S`
 DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
 PASSWORD='Dynatrace@2020'
 LOCATION='westeurope'
-SIZE='Standard_B2s'
+#LOCATION='northeurope'
+#LOCATION='uksouth'
+#LOCATION='francecentral'
+#LOCATION='ukwest'
+SIZE='Standard_D1_v2' #1 CPU 3.5 GB
+#SIZE='Standard_B2s'   #2 CPU 4 GB
 
 echo "Create several Ubuntu VM with Docker Engine on Azure - from JLL version 1.0"
 echo "How many VM ? 1, 2 ... 8 ? - default : 1"
