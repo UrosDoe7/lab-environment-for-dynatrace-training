@@ -128,6 +128,7 @@ then
 			--parameters  adminUsername="$user" adminPasswordOrKey="$PASSWORD" authenticationType="password" dnsNameForPublicIP="$DOMAIN" vmSize="$SIZE_LINUX";
 			
 		az network nic update -g "$RESOURCE_GROUP" -n myVMNicD --network-security-group MyWinVM-nsg;
+		echo "echo "$RESOURCE_GROUP" >> delete_ressourcegroup_$DOMAIN_NAME.sh
 		echo "az group delete --name "$RESOURCE_GROUP" --y" >> delete_ressourcegroup_$DOMAIN_NAME.sh
 	done
 	chmod +x delete_ressourcegroup_$DOMAIN_NAME.sh
