@@ -25,6 +25,14 @@ echo "Verify if you have enough CPU free for these environments (the quota is 20
 echo "ctrl/c to quit"
 echo ""
 
+echo $LOCATION1"  used   total"    
+az vm list-usage --location $LOCATION1 -o table | grep "Total Regional vCPUs
+echo $LOCATION2"  used   total"    
+az vm list-usage --location $LOCATION2 -o table | grep "Total Regional vCPUs
+echo $LOCATION3"  used   total"    
+az vm list-usage --location $LOCATION3 -o table | grep "Total Regional vCPUs
+
+
 #while [ -z $NBENV ]||[ $NBENV > 12 ]
 while  (($NBENV > 18))||(( $NBENV < 1))
 do
