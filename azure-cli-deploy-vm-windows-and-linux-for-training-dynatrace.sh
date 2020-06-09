@@ -7,16 +7,23 @@ DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
 PASSWORD='Dynatrace@2020'
 SIZE_LINUX='Standard_D1_v2' #1 CPU 3.5 GB
 SIZE_WINDOWS='Standard_B2s'   #2 CPU 4 GB
-#LOCATION='westeurope'
-#LOCATION='northeurope'
+LOCATION1='westeurope'
+LOCATION2='northeurope'
+LOCATION3='francecentral'
 #LOCATION='uksouth'
-#LOCATION='francecentral'
 #LOCATION='ukwest'
 #X='0' #from 00 to 09
 #X='1' #from 10 to 19
 NBENV=0
 
-echo "Create several Ubuntu VM with Docker Engine on Azure - from JLL version 1.0"
+echo "Create several Env with VM Windows and Vm Linux on Azure - from JLL version 2.0"
+echo "PREREQUISITE : "
+echo "For 6 env, you need 18 CPU on "$LOCATION1" - verify ou don't have more than 2 PU use on this environment"
+echo "For 12 env, you need 18 CPU on "$LOCATION1" and 18 CPU "$LOCATION2" - verify ou don't have more than 2 PU use on these environments"
+echo "For 18 env, you need 18 CPU on "$LOCATION1" and 18 CPU "$LOCATION2" and 18 CPU on "$LOCATION3" - verify ou don't have more than 2 PU use on these environments"
+echo "ctrl/c to quit this script"
+echo ""
+
 #while [ -z $NBENV ]||[ $NBENV > 12 ]
 while  (($NBENV > 18))||(( $NBENV < 1))
 do
@@ -34,23 +41,23 @@ for ((i=0; i<$NBENV; ++i));
 do
         if (( $i < 6 ))
         then
-                X='0' #from 00 to 09
-				LOCATION='westeurope'
+                X='0' #from 00 to 05
+				LOCATION=$LOCATION1
                 echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
 				echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
  
         fi
         if (( $i >= 6 ))&&(($i < 10))
         then
-                X='0' #from 00 to 09
-				LOCATION='northeurope'
+                X='0' #from 06 to 09
+				LOCATION=$LOCATION2
                 echo 'Windows=win'$DOMoAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
 				echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
         fi
         if (( $i >= 10 ))&&(($i < 12))
         then
 				X='' #from 10 to 19
-                LOCATION='northeurope'
+                LOCATION=$LOCATION3
                 echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
 				echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
 
