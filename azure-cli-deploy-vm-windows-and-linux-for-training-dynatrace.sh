@@ -7,13 +7,12 @@ DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
 PASSWORD='Dynatrace@2020'
 SIZE_LINUX='Standard_D1_v2' #1 CPU 3.5 GB
 SIZE_WINDOWS='Standard_B2s'   #2 CPU 4 GB
-LOCATION1='westeurope'
+LOCATION1='uksouth'
 LOCATION2='northeurope'
 LOCATION3='francecentral'
-#LOCATION='uksouth'
-#LOCATION='ukwest'
-#X='0' #from 00 to 09
-#X='1' #from 10 to 19
+#LOCATION4='westeurope'
+#LOCATION5='ukwest'
+#LOCATION6='eastus2'
 NBENV=0
 
 echo "Create several Env with VM Windows and Vm Linux on Azure - from JLL version 2.0"
@@ -26,11 +25,11 @@ echo "ctrl/c to quit"
 echo ""
 
 echo $LOCATION1"  used   total"    
-az vm list-usage --location $LOCATION1 -o table | grep "Total Regional vCPUs
+az vm list-usage --location $LOCATION1 -o table | grep "Total Regional vCPUs";
 echo $LOCATION2"  used   total"    
-az vm list-usage --location $LOCATION2 -o table | grep "Total Regional vCPUs
+az vm list-usage --location $LOCATION2 -o table | grep "Total Regional vCPUs";
 echo $LOCATION3"  used   total"    
-az vm list-usage --location $LOCATION3 -o table | grep "Total Regional vCPUs
+az vm list-usage --location $LOCATION3 -o table | grep "Total Regional vCPUs";
 
 
 #while [ -z $NBENV ]||[ $NBENV > 12 ]
