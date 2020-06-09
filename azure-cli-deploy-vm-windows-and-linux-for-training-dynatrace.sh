@@ -19,8 +19,8 @@ NBENV=0
 echo "Create several Env with VM Windows and Vm Linux on Azure - from JLL version 2.0"
 echo "PREREQUISITE : "
 echo "For 6 env, you need 18 CPU on "$LOCATION1
-echo "For 12 env, you need 18 CPU on "$LOCATION1" and 18 CPU "$LOCATION2
-echo "For 18 env, you need 18 CPU on "$LOCATION1" and 18 CPU "$LOCATION2" and 18 CPU on "$LOCATION3
+echo "For 12 env, you need 18 CPU on "$LOCATION1" and 18 CPU on "$LOCATION2
+echo "For 18 env, you need 18 CPU on "$LOCATION1" and 18 CPU on "$LOCATION2" and 18 CPU on "$LOCATION3
 echo "Verify if you have enough CPU free for these environments (the quota is 20 CPU for each of these environments)"
 echo "ctrl/c to quit"
 echo ""
