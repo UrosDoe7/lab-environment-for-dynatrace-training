@@ -19,7 +19,7 @@ VM1 : dynatracelab2019120214002300.westeurope.cloudapp.azure.com & user = USER00
 VM2 : dynatracelab2019120214002301.westeurope.cloudapp.azure.com & user = USER01 & Pwd = Dynatrace@2020  
 VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user = USER02 & Pwd = Dynatrace@2020  
 
-**DEPLOY complete env Windows & Linux for training** : Go to your Azure Cli and apply these commands (about 3 minutes per VM):   
+**DEPLOY complete env Windows & Linux for training** : Go to your Azure Cli and apply these commands (10 minutes per Env):   
 
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
