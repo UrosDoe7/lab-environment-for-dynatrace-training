@@ -43,32 +43,32 @@ do
         if (( $i < 6 ))
         then
                 X='0' #from 00 to 05
-				LOCATION=$LOCATION1
-                echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
-				echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
+		LOCATION=$LOCATION1
+                echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
+		echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
  
         fi
         if (( $i >= 6 ))&&(($i < 10))
         then
                 X='0' #from 06 to 09
-				LOCATION=$LOCATION2
-                echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
-				echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
+		LOCATION=$LOCATION2
+                echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
+		echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
         fi
         if (( $i >= 10 ))&&(($i < 12))
         then
-				X='' #from 10 to 19
+		X='' #from 10 to 19
                 LOCATION=$LOCATION3
-                echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
-				echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
+                echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
+		echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
 
         fi
 		        if (( $i >= 12 ))&&(($i < 18))
         then
-				X='' #from 10 to 17
+		X='' #from 10 to 17
                 LOCATION='francecentral'
-                echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
-				echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
+                echo 'Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD''
+		echo '#Windows=win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443; Linux='$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com; usr=user'$X$i'; pwd='$PASSWORD'' >  delete_ressourcegroup_$DOMAIN_NAME.sh
 
         fi
 
