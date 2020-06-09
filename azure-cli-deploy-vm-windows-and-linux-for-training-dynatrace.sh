@@ -20,16 +20,17 @@ echo "PREREQUISITE : "
 echo "For 6 env, you need 18 CPU on "$LOCATION1
 echo "For 12 env, you need 18 CPU on "$LOCATION1" and 18 CPU on "$LOCATION2
 echo "For 18 env, you need 18 CPU on "$LOCATION1" and 18 CPU on "$LOCATION2" and 18 CPU on "$LOCATION3
-echo "Verify if you have enough CPU free for these environments (the quota is 20 CPU for each of these environments)"
-echo "ctrl/c to quit"
 echo ""
-
 echo $LOCATION1"  used   total"    
 az vm list-usage --location $LOCATION1 -o table | grep "Total Regional vCPUs";
 echo $LOCATION2"  used   total"    
 az vm list-usage --location $LOCATION2 -o table | grep "Total Regional vCPUs";
 echo $LOCATION3"  used   total"    
 az vm list-usage --location $LOCATION3 -o table | grep "Total Regional vCPUs";
+echo ""
+echo "Check that you have enough CPU for these environments (if needed, check the others quota)"
+echo "ctrl/c to quit"
+echo ""
 
 
 #while [ -z $NBENV ]||[ $NBENV > 12 ]
