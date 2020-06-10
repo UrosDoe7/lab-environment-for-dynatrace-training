@@ -29,9 +29,9 @@ VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user = USER02
 You can create several 20 env max with Windows and Linux for dynatrace Training
 Windows = Standard_B2s (2 CPU; 4GB RAM)
 Linux = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
-user00;windynatracelab2020061011320300.uksouth.cloudapp.azure.com:443;dynatracelab2020061011320300.uksouth.cloudapp.azure.com;*****
-user01;windynatracelab2020061011320301.uksouth.cloudapp.azure.com:443;dynatracelab2020061011320301.uksouth.cloudapp.azure.com;*****
-user02;windynatracelab2020061011320302.uksouth.cloudapp.azure.com:443;dynatracelab2020061011320302.uksouth.cloudapp.azure.com;*****
+user00;windynatracelab00.uksouth.cloudapp.azure.com:443;dynatracelab00.uksouth.cloudapp.azure.com;*****
+user01;windynatracelab01.uksouth.cloudapp.azure.com:443;dynatracelab01.uksouth.cloudapp.azure.com;*****
+user02;windynatracelab02.uksouth.cloudapp.azure.com:443;dynatracelab02.uksouth.cloudapp.azure.com;*****
 
 CLIENT => (mstsc port 443) windynatracelab02.westeurope.cloudapp.azure.com => ssh dynatracelab02.westeurope.cloudapp.azure.com (from cmd)
 
