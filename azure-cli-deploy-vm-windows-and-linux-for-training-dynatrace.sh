@@ -176,8 +176,8 @@ then
 			--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-linux.json \
 			--parameters  adminUsername="$user" adminPasswordOrKey="$PASSWORD" authenticationType="password" dnsNameForPublicIP="$DOMAIN" vmSize="$SIZE_LINUX";			
 		az network nic update -g "$RESOURCE_GROUP" -n myVMNicD --network-security-group MyWinVM-nsg;
-		az vm run-command invoke -g $RESOURCE_GROUP" -n $RESOURCE_GROUP" --command-id RunShellScript --scripts "sudo apt-get install shellinabox && sudo sed -i 's/4200/443/g' /etc/default/shellinabox && sudo systemctl daemon-reload	&& sudo service shellinabox restart "
-		az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN"
+		az vm run-command invoke -g $RESOURCE_GROUP" -n $RESOURCE_GROUP" --command-id RunShellScript --scripts "sudo apt-get install shellinabox && sudo sed -i 's/4200/443/g' /etc/default/shellinabox && sudo systemctl daemon-reload	&& sudo service shellinabox restart";
+		az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN";
 		echo "echo "$RESOURCE_GROUP >> delete_ressourcegroup_$DOMAIN_NAME.sh
 		echo "az group delete --name "$RESOURCE_GROUP" --y" >> delete_ressourcegroup_$DOMAIN_NAME.sh
 	done
