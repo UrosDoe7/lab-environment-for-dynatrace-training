@@ -13,7 +13,7 @@ LOCATION3='francecentral'
 LOCATION4='ukwest'
 #LOCATION5='westeurope' #Reserved for the kubernetes lab
 #LOCATION6='eastus2' #Reserved for the kubernetes lab
-log=azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.log
+log=deploy-vm-windows-and-linux-for-training-dynatrace-$TIME.log
 NBENV=0
 n=0
 {
