@@ -14,11 +14,11 @@ Open your azure cli like described here :
     ./azure-cli-deploy-vm-for-workshop.sh
     ls
       
-You can create several ubuntu VM with the size = Standard_B2s (2 CPU; 4GB RAM; 8 GB Disk; 0,04€/hour).  
+You can create several ubuntu VM with the size = Standard_D1_V2 (1 CPU; 3.5GB)
 Here is the example for 3 VM with the default hostnames and credentials:  
-VM1 : dynatracelab2019120214002300.westeurope.cloudapp.azure.com & user=USER00 & Pwd=*****  
-VM2 : dynatracelab2019120214002301.westeurope.cloudapp.azure.com & user=USER01 & Pwd=*****  
-VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user=USER02 & Pwd=*****  
+VM0 : dynatracelab2019120214002300.westeurope.cloudapp.azure.com & user=user00 & Pwd=*****  
+VM1 : dynatracelab2019120214002301.westeurope.cloudapp.azure.com & user=user01 & Pwd=*****  
+VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user=user02 & Pwd=*****  
 
 **TRAINING - DEPLOY env with Windows & Linux Azure VM** : Go to your Azure Cli and apply these commands (slow -> 15 minutes per Env):   
 
