@@ -83,8 +83,8 @@ else
 	n=0
 fi
 
-echo 'User;Env Windows (RDP with port = 443);Env Linux (ssh access directly from the windows env); password (linux and windows)'
-echo '#User;Env Windows (RDP with port = 443);Env Linux (ssh access directly from the windows env); password (linux and windows)' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+echo 'User;Env Linux;Env Windows;password (linux and windows)'
+echo '#User;Env Linux;Env Windows;password (linux and windows)' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
 chmod +x delete_ressourcegroup_$DOMAIN_NAME.sh
 
 for ((i=0+$n; i<$NBENV+$n; ++i));
@@ -93,30 +93,30 @@ do
         then
             X='0' #from 00 to 04
 			LOCATION=$LOCATION1
-			echo 'user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
-			echo '#user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
+			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
 	 
         fi
         if (( $i >= 5 ))&&(($i < 10))
         then
 			X='0' #from 05 to 09
 			LOCATION=$LOCATION2
-			echo 'user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
-			echo '#user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
+			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
 			fi
         if (( $i >= 10 ))&&(($i < 14))
         then
 			X='' #from 10 to 14
             		LOCATION=$LOCATION3
-			echo 'user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
-			echo '#user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
+			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
         fi
 		if (( $i >= 14 ))&&(($i < 20))
         then
 			X='' #from 10 to 20
             		LOCATION=$LOCATION4
-			echo 'user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
-			echo '#user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
+			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
         fi
 
 done
@@ -167,7 +167,7 @@ then
 			--resource-group $RESOURCE_GROUP \
 			--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-windows.json \
 			--parameters  adminUsername="$user" virtualMachines_MyWinVM_name=MyWinVM"$X""$i" adminPasswordOrKey="$PASSWORD" dnsNameForPublicIP=win"$DOMAIN" vmSize="$SIZE_WINDOWS";		
-		az vm run-command invoke  --command-id SetRDPPort --name MyWinVM -g $RESOURCE_GROUP --parameters "RDPPORT=443"; 
+		#az vm run-command invoke  --command-id SetRDPPort --name MyWinVM -g $RESOURCE_GROUP --parameters "RDPPORT=443"; 
 		az vm deallocate -g "$RESOURCE_GROUP" -n MyWinVM;
 		#echo 'user = '$user' & password = '$PASSWORD
 		echo 'create vm : '$DOMAIN'.'$LOCATION'.cloudapp.azure.com'
