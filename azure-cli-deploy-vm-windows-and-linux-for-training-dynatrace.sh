@@ -129,6 +129,7 @@ fi
 if [ $Response = "Y" ] || [ $Response = "y" ]
 then
 	#create VM
+	echo 'START='`date +%Y%m%d%H%M%S`
 	for ((i=0; i<$NBENV; ++i));
 	do
         if (( $i < 5 ))
@@ -178,5 +179,6 @@ then
 		echo "echo "$RESOURCE_GROUP >> delete_ressourcegroup_$DOMAIN_NAME.sh
 		echo "az group delete --name "$RESOURCE_GROUP" --y" >> delete_ressourcegroup_$DOMAIN_NAME.sh
 	done
+	echo 'END='`date +%Y%m%d%H%M%S`
 fi
 } | tee $log
