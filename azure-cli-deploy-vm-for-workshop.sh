@@ -30,7 +30,7 @@ then
 fi
 for ((i=0; i<$NBVM; ++i));
 do
-	echo 'hostname : '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com with usr = USER'$X$i' & Pwd = '$PASSWORD' & Size = '$SIZE''
+	echo 'hostname : '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com with usr = user'$X$i' & Pwd = '$PASSWORD' & Size = '$SIZE''
 done
 echo ""
 echo "Continue (Y/N) - default : Y"
@@ -44,7 +44,7 @@ then
 	#create VM
 	for ((i=0; i<$NBVM; ++i));
 	do
-		USER='USER'$X$i
+		USER='user'$X$i
 		RESOURCE_GROUP=$DOMAIN_NAME$X$i
 		DOMAIN=$DOMAIN_NAME$X$i
 		echo 'create resource group : '  $RESOURCE_GROUP
