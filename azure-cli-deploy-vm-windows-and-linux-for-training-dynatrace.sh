@@ -173,7 +173,7 @@ then
 		echo 'create vm : '$DOMAIN'.'$LOCATION'.cloudapp.azure.com'
 		az deployment group create \
 			--resource-group $RESOURCE_GROUP \
-			--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy.json \
+			--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-linux.json \
 			--parameters  adminUsername="$user" adminPasswordOrKey="$PASSWORD" authenticationType="password" dnsNameForPublicIP="$DOMAIN" vmSize="$SIZE_LINUX";			
 		az network nic update -g "$RESOURCE_GROUP" -n myVMNicD --network-security-group MyWinVM-nsg;
 		az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN"
