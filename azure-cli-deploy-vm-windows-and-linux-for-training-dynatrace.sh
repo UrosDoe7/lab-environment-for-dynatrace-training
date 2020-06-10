@@ -39,7 +39,8 @@ echo $LOCATION4
 az vm list-usage --location $LOCATION4 -o table | grep "Total Regional vCPUs";
 echo ""
 echo "Check that you have enough quota for these environments in https://portal.azure.com - your subscription - Usage + quotas"
-echo "ctrl/c to quit"
+echo "Edit the script to change the region"
+echo "Ctrl/c to quit"
 echo ""
 
 while  (($NBENV > 20))||(( $NBENV < 1))
