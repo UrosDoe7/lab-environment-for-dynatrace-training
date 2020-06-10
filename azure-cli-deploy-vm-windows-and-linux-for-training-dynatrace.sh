@@ -166,7 +166,7 @@ then
 		az deployment group create \
 			--resource-group $RESOURCE_GROUP \
 			--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-windows.json \
-			--parameters  adminUsername="$user" adminPasswordOrKey="$PASSWORD" dnsNameForPublicIP=win"$DOMAIN" vmSize="$SIZE_WINDOWS";		
+			--parameters  adminUsername="$user" virtualMachines_MyWinVM_name=MyWinVM"$X""$i" adminPasswordOrKey="$PASSWORD" dnsNameForPublicIP=win"$DOMAIN" vmSize="$SIZE_WINDOWS";		
 		az vm run-command invoke  --command-id SetRDPPort --name MyWinVM -g $RESOURCE_GROUP --parameters "RDPPORT=443"; 
 		az vm deallocate -g "$RESOURCE_GROUP" -n MyWinVM;
 		#echo 'user = '$user' & password = '$PASSWORD
