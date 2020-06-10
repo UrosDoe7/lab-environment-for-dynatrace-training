@@ -131,25 +131,25 @@ then
 	#create VM
 	for ((i=0; i<$NBENV; ++i));
 	do
-        if (( $i < 6 ))
+        if (( $i < 5 ))
         then
-                X='0' #from 00 to 09
-				LOCATION='westeurope'
+                X='0' #from 00 to 04
+				LOCATION=$LOCATION1
         fi
-        if (( $i >= 6 ))&&(($i < 10))
+        if (( $i >= 5 ))&&(($i < 10))
         then
-                X='0' #from 00 to 09
-				LOCATION='northeurope'
+                X='0' #from 05 to 09
+				LOCATION=$LOCATION2
         fi
-        if (( $i >= 10 ))&&(($i < 12))
+        if (( $i >= 10 ))&&(($i < 15))
         then
-                X='' #from 10 to 19
-				LOCATION='northeurope'
+                X='' #from 10 to 14
+				LOCATION=$LOCATION3
         fi
-		        if (( $i >= 12 ))&&(($i < 18))
+		        if (( $i >= 15 ))&&(($i < 20))
         then
-				X='' #from 10 to 17
-                LOCATION='francecentral'
+				X='' #from 15 to 20
+                LOCATION=$LOCATION4
         fi
 
 		user='user'$X$i
