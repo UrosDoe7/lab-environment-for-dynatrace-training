@@ -12,6 +12,7 @@ Open your azure cli like described here :
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
     cd lab-environment-for-dynatrace-training;chmod +x azure-cli-deploy-vm-for-workshop.sh
     ./azure-cli-deploy-vm-for-workshop.sh
+    ls
       
 You can create several ubuntu VM with the size = Standard_B2s (2 CPU; 4GB RAM; 8 GB Disk; 0,04€/hour).  
 Here is the example for 3 VM with the default hostnames and credentials:  
@@ -25,6 +26,7 @@ VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user=USER02 &
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
     cd lab-environment-for-dynatrace-training;chmod +x ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
+    ls
       
 You can create several 20 env max with Windows and Linux for dynatrace Training
 Windows = Standard_B2s (2 CPU; 4GB RAM)
@@ -67,7 +69,8 @@ Go to the VM with putty and deploy the AKS cluster fith Azure Voting App from ea
     cd;if [ -d "./dynatracelab_azure-voting-app-redis" ];then rm -rf ./dynatracelab_azure-voting-app-redis;fi
     git clone https://github.com/JLLormeau/dynatracelab_azure-voting-app-redis.git
     cd dynatracelab_azure-voting-app-redis;chmod +x deploy-aks-cluster-with-azure-voting-app.sh
-    ./deploy-aks-cluster-with-azure-voting-app.sh    
+    ./deploy-aks-cluster-with-azure-voting-app.sh
+    ls
 
 at the end of the workshop, delete the labs resource groups (VM, ACR et AKS).
 
@@ -75,4 +78,5 @@ at the end of the workshop, delete the labs resource groups (VM, ACR et AKS).
 
     cd;cd azure-cli-deploy-vm-for-workshop;chmod +x azure-cli-delete-labs-resource-group.sh
     ./azure-cli-delete-labs-resource-group.sh
+    ls
     
