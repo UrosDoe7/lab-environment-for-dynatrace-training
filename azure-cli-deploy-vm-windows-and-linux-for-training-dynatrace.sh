@@ -107,14 +107,14 @@ do
         if (( $i >= 10 ))&&(($i < 14))
         then
 			X='' #from 10 to 14
-            LOCATION=$LOCATION3
+            		LOCATION=$LOCATION3
 			echo 'user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
 			echo '#user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
         fi
 		if (( $i >= 15 ))&&(($i < 20))
         then
 			X='' #from 10 to 20
-            LOCATION=$LOCATION34
+            		LOCATION=$LOCATION4
 			echo 'user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
 			echo '#user'$X$i';win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com:443;ssh '$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
         fi
