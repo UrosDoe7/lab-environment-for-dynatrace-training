@@ -35,7 +35,7 @@ user02;windynatracelab02.uksouth.cloudapp.azure.com:443;dynatracelab02.uksouth.c
 
 CLIENT => (mstsc port 443) windynatracelab02.westeurope.cloudapp.azure.com => ssh dynatracelab02.westeurope.cloudapp.azure.com (from cmd)
 
-**INSTALL Docker EASYTRAVEL LAB** : 
+**EASYTRAVEL LAB** : 
 Prerequisite : Ubuntu VM installed
 Go to the VM with putty and deploy easytravel on each VM with these commands (installation = about 2 minutes):   
    
@@ -59,7 +59,7 @@ to restart easytravel use these commands on each VM :
 at the end of the workshop, delete the labs resource groups (VM).  
   
   
-**INSTALL KUBERNETES LAB** : 
+**KUBERNETES LAB** : 
 Prerequisite : Ubuntu VM installed
 Go to the VM with putty and deploy the AKS cluster fith Azure Voting App from each VM with this command - skip the warning (installation = about 20 minutes - if you lose your session, you can run the script again):
     
