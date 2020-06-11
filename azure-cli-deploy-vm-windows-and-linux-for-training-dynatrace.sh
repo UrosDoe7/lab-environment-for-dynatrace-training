@@ -125,11 +125,11 @@ do
 
 done
 echo ""
-echo "Install easytravel docker (Y/N) - default : N"
+echo "Install easytravel docker (Y/N) - default : Y"
 read EasyTravel
 if [[ -z $EasyTravel ]]
 then
-        EasyTravel="N"
+        EasyTravel="Y"
 fi
 
 	#create VM
@@ -180,9 +180,9 @@ fi
 			--parameters  adminUsername="$user" adminPasswordOrKey="$PASSWORD" authenticationType="password" dnsNameForPublicIP="$DOMAIN" vmSize="$SIZE_LINUX";			
 		az network nic update -g "$RESOURCE_GROUP" -n myVMNicD --network-security-group MyWinVM-nsg;
 		az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "apt-get install shellinabox && sed -i 's/4200/443/g' /etc/default/shellinabox && systemctl daemon-reload && service shellinabox restart";
-		if [[ $EasyTravel = [xX] ]]
+		if [[ $EasyTravel = [Yy] ]]
 		then
-			az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults && ./start-stop-easytravel.sh start";
+			az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
 		fi
 		az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN";
 		echo "echo "$RESOURCE_GROUP >> delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
