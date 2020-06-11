@@ -25,17 +25,19 @@ VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user=user02 &
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
     cd lab-environment-for-dynatrace-training;chmod +x ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
-    ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh &
+    ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
     ls
       
 You can create several 20 env max with Windows and Linux for dynatrace Training
 Windows = Standard_B2s (2 CPU; 4GB RAM)
 Linux = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
-user00;windynatracelab00.uksouth.cloudapp.azure.com:443;dynatracelab00.uksouth.cloudapp.azure.com;*****
-user01;windynatracelab01.uksouth.cloudapp.azure.com:443;dynatracelab01.uksouth.cloudapp.azure.com;*****
-user02;windynatracelab02.uksouth.cloudapp.azure.com:443;dynatracelab02.uksouth.cloudapp.azure.com;*****
+user00;windynatracelab00.uksouth.cloudapp.azure.com;dynatracelab00.uksouth.cloudapp.azure.com;*****
+user01;windynatracelab01.uksouth.cloudapp.azure.com;dynatracelab01.uksouth.cloudapp.azure.com;*****
+user02;windynatracelab02.uksouth.cloudapp.azure.com;dynatracelab02.uksouth.cloudapp.azure.com;*****
 
-CLIENT => (mstsc port 443) windynatracelab02.westeurope.cloudapp.azure.com => ssh dynatracelab02.westeurope.cloudapp.azure.com (from cmd)
+Linux access from the web (443) : https://dynatracelab00.uksouth.cloudapp.azure.com
+Easytravel access (80) : http://dynatracelab00.uksouth.cloudapp.azure.com
+Windows access from the mstsc (3389) : dynatracelab00.uksouth.cloudapp.azure.com
 
 **EASYTRAVEL LAB** : 
 Prerequisite : Ubuntu VM installed
