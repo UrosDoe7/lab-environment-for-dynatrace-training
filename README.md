@@ -5,22 +5,10 @@ Open your azure subscription, https://portal.azure.com/
 Open your azure cli like described here :  
 ![cli-azure](cli-azure.png)
 
-  
-**WORKSHOP - DEPLOY Ubuntu Azure VM** : Go to your Azure Cli and apply these commands (quick -> about 3 minutes per VM):   
 
-    cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
-    git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
-    cd lab-environment-for-dynatrace-training;chmod +x azure-cli-deploy-vm-for-workshop.sh
-    ./azure-cli-deploy-vm-for-workshop.sh
-    ls
-      
-You can create several ubuntu VM with the size = Standard_D1_V2 (1 CPU; 3.5GB)
-Here is the example for 3 VM with the default hostnames and credentials:  
-VM0 : dynatracelab2019120214002300.westeurope.cloudapp.azure.com & user=user00 & Pwd=*****  
-VM1 : dynatracelab2019120214002301.westeurope.cloudapp.azure.com & user=user01 & Pwd=*****  
-VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user=user02 & Pwd=*****  
-
-**TRAINING - DEPLOY env with Windows & Linux Azure VM** : Go to your Azure Cli and apply these commands (slow -> 15 minutes per Env):   
+**TRAINING - DEPLOY env with Windows & Linux Azure VM** : Go to your Azure Cli and apply these commands
+- linux -> 5 m per VM
+- linux + windows -> 15 minutes per Env   
 
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
@@ -81,4 +69,17 @@ at the end of the workshop, delete the labs resource groups (VM, ACR et AKS).
     cd;cd azure-cli-deploy-vm-for-workshop;chmod +x azure-cli-delete-labs-resource-group.sh
     ./azure-cli-delete-labs-resource-group.sh
     ls
-    
+
+**DEPECATED - WORKSHOP - DEPLOY Ubuntu Azure VM** : Go to your Azure Cli and apply these commands (quick -> about 3 minutes per VM):   
+
+    cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
+    git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
+    cd lab-environment-for-dynatrace-training;chmod +x azure-cli-deploy-vm-for-workshop.sh
+    ./azure-cli-deploy-vm-for-workshop.sh
+    ls
+      
+You can create several ubuntu VM with the size = Standard_D1_V2 (1 CPU; 3.5GB)
+Here is the example for 3 VM with the default hostnames and credentials:  
+VM0 : dynatracelab2019120214002300.westeurope.cloudapp.azure.com & user=user00 & Pwd=*****  
+VM1 : dynatracelab2019120214002301.westeurope.cloudapp.azure.com & user=user01 & Pwd=*****  
+VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user=user02 & Pwd=*****  
