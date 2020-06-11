@@ -15,16 +15,20 @@ Open your azure cli like described here :
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
     ls
       
-You can create several 20 env max with Windows and Linux for dynatrace Training
+You can create 20 env max with Windows and Linux for dynatrace training (15 min per environment)
+Or yo can create 20 Linux VM max for dynatrace workshop (5 min per VM)
 Windows = Standard_B2s (2 CPU; 4GB RAM)
 Linux = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
 user00;windynatracelab00.uksouth.cloudapp.azure.com;dynatracelab00.uksouth.cloudapp.azure.com;*****
 user01;windynatracelab01.uksouth.cloudapp.azure.com;dynatracelab01.uksouth.cloudapp.azure.com;*****
 user02;windynatracelab02.uksouth.cloudapp.azure.com;dynatracelab02.uksouth.cloudapp.azure.com;*****
 
-Linux access from the web (443) : https://dynatracelab00.uksouth.cloudapp.azure.com
-Easytravel access (80) : http://dynatracelab00.uksouth.cloudapp.azure.com
-Windows access from the mstsc (3389) : dynatracelab00.uksouth.cloudapp.azure.com
+Linux,  direct access from a bowser (443)       : https://dynatracelab00.uksouth.cloudapp.azure.com
+EasytravelDocker,  installed and started  (80)  : http://dynatracelab00.uksouth.cloudapp.azure.com
+(optional) Windows,  access with mstsc (3389)   : dynatracelab00.uksouth.cloudapp.azure.com
+
+The VM are installed and stopped.  Start the VM when you are readey on your Azure portals :
+https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines
 
 **EASYTRAVEL LAB** : 
 Prerequisite : Ubuntu VM installed
