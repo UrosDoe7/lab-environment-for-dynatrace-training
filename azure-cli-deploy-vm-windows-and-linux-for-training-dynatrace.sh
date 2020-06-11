@@ -172,6 +172,7 @@ do
 	fi
 done
 	
+echo ""
 echo "Install easytravel docker (Y/N) - default : Y"
 read EasyTravel
 if [[ -z $EasyTravel ]]
