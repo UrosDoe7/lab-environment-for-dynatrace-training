@@ -60,7 +60,8 @@ then
 		Projetc="N"
 fi
 
-echo "VM Linux is installed by default, do you want also a windows ? (Y/N) - default : N"
+echo $NBENV" Linux VM will be created for your training environement." 
+echo "Do you want a Windows VM associated to each of these VM Linux  ? (Y/N) - default : N"
 read InstallWindows
 	
 if [[ -z $InstallWindows ]]
