@@ -83,11 +83,6 @@ if [[ -z $ResponseStart ]]
 then
 	ResponseStart="Y"
 fi
-while [[ $ResponseStart != [Yy] ]]||[[ $ResponseStart != [Nn] ]]
-do 
-	echo "Start by default to \"00\" (Y/N) - default : Y "
-	read ResponseStart
-done
 
 if [[ $ResponseStart = [Nn] ]]
 then
@@ -175,7 +170,6 @@ do
 	fi
 done
 	
-echo ""
 echo "Install easytravel docker (Y/N) - default : Y"
 read EasyTravel
 if [[ -z $EasyTravel ]]
