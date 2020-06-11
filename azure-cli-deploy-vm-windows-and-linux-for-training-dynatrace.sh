@@ -180,13 +180,13 @@ then
 fi
 
 echo ""
-echo "################################################################################################################################"
-echo "####Once the VM have been created, you have to start them from your Azure subscription : 					 #####"
-echo "####	https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines####"
-echo "####															  ####"
-echo "####At the end of the training, you have to delete all the Azure resource groups :					  ####"
-echo "####	a special script has been generated on your cli bash environement - ./delete_ressourcegroup_"$TIME".sh     ####"    															  ####"
-echo "################################################################################################################################"
+echo "#################################################################################################################################"
+echo "#### Once the VMs created, you have to start them from your Azure subscription :	 				     ####"
+echo "####	https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines  ####"
+echo "####															    ####"
+echo "#### At the end of the training, delete all the Azure resource groups :							    ####"
+echo "####	a script has been generated localy on your cli bash environement -> ./delete_ressourcegroup_"$TIME".sh       ####"    															  ####"
+echo "#################################################################################################################################"
 echo ""
 
 
