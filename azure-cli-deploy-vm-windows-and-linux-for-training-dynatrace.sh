@@ -134,7 +134,7 @@ fi
 
 	#create VM
 	echo 'START='`date +%Y%m%d%H%M%S`
-	for ((i=0; i<$NBENV; ++i));
+	for ((i=0+$n; i<$NBENV+$n; ++i));
 	do
         if (( $i < 5 ))
         then
