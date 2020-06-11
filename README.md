@@ -8,9 +8,7 @@ Open your azure cli like described here :
 
 **TRAINING - DEPLOY env with Windows & Linux Azure VM** : Go to your Azure Cli and apply these commands
 
-- linux -> 5 minutes per VM
-- linux + windows -> 15 minutes per Env   
-
+   
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
     cd lab-environment-for-dynatrace-training;chmod +x ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
