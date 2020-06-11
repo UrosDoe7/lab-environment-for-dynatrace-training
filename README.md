@@ -74,8 +74,8 @@ at the end of the workshop, delete the labs resource groups (VM, ACR et AKS).
 
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
-    cd lab-environment-for-dynatrace-training;chmod +x azure-cli-deploy-vm-for-workshop.sh
-    ./azure-cli-deploy-vm-for-workshop.sh
+    cd lab-environment-for-dynatrace-training;chmod +x old-azure-cli-deploy-vm-for-workshop.sh
+    ./old-azure-cli-deploy-vm-for-workshop.sh
     ls
       
 You can create several ubuntu VM with the size = Standard_D1_V2 (1 CPU; 3.5GB)
