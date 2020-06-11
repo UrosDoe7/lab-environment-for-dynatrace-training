@@ -108,14 +108,14 @@ do
 			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
 			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 			fi
-        if (( $i >= 10 ))&&(($i < 14))
+        if (( $i >= 10 ))&&(($i < 15))
         then
 			X='' #from 10 to 14
             		LOCATION=$LOCATION3
 			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
 			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
         fi
-		if (( $i >= 14 ))&&(($i < 20))
+		if (( $i >= 15 ))&&(($i < 20))
         then
 			X='' #from 10 to 20
             		LOCATION=$LOCATION4
@@ -151,7 +151,7 @@ fi
                 X='' #from 10 to 14
 				LOCATION=$LOCATION3
         fi
-		        if (( $i >= 15 ))&&(($i < 20))
+	if (( $i >= 15 ))&&(($i < 20))
         then
 				X='' #from 15 to 20
                 LOCATION=$LOCATION4
