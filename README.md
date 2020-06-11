@@ -25,7 +25,7 @@ VM2 : dynatracelab2019120214002302.westeurope.cloudapp.azure.com & user=user02 &
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
     cd lab-environment-for-dynatrace-training;chmod +x ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
-    ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
+    ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh &
     ls
       
 You can create several 20 env max with Windows and Linux for dynatrace Training
