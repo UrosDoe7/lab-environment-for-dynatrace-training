@@ -99,14 +99,15 @@ then
 	fi
 fi
 
-echo 'User;Env Linux;Env Windows;password (linux and windows)'
 
 ##Create the delete_resourcegroup file and add comment and executable privilege 
 echo "##Training : "$DOMAIN_NAME > delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 if [[ $InstallWindows = [Yy] ]]
 then
+	echo 'User;Env Linux;Env Windows;Password (linux and windows)'
 	echo '#User;Env Linux;Env Windows;Password (linux and windows)' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 else
+	echo 'User;Env Linux;Password'
 	echo '#User;Env Linux;Password' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 fi
 
@@ -177,8 +178,19 @@ then
 	EasyTravel="Y"
 fi
 
+echo ""
+echo "################################################################################################################################"
+echo "####Once the VM have been created, you have to start them from your Azure subscription : 					 #####"
+echo "####	https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines####"
+echo "####															  ####"
+echo "####At the end of the training, you have to delete all the Azure resource groups :					  ####"
+echo "####	a special script has been generated on your cli bash environement - ./delete_ressourcegroup_"$TIME".sh     ####"    															  ####"
+echo "################################################################################################################################"
+echo ""
+
+
 ###create VM
-echo 'START='`date +%Y%m%d%H%M%S`
+echo 'START installation='`date +%Y%m%d%H%M%S`
 for ((i=0+$n; i<$NBENV+$n; ++i));
 do
 	if (( $i < 5 ))
@@ -253,5 +265,5 @@ do
 	echo "az group delete --name "$RESOURCE_GROUP" --y" >> delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 done
 
-echo 'END='`date +%Y%m%d%H%M%S`
+echo 'END installation='`date +%Y%m%d%H%M%S`
 } | tee $log
