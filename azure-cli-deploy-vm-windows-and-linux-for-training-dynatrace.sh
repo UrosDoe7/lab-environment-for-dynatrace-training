@@ -61,7 +61,7 @@ then
 fi
 echo "##Training : "$DOMAIN_NAME > delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 
-echo "Start by default to \"00\" ? (Y/N) "
+echo "Start by default to \"00\" (Y/N) - default : Y "
 read ResponseStart
 	
 if [[ -z $ResponseStart ]]
