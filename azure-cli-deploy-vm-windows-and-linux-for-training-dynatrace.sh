@@ -59,15 +59,18 @@ then
         DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
 		Projetc="N"
 fi
-while [[ -z $Projetc ]]||[[ $Projetc != [XxNn] ]]
-do 
-	echo "Is it an existing project? X=eXisting project, N=new project - (X/N)"
-	read Projetc
-done
-delete_ressourcegroup=delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 echo "##Training : "$DOMAIN_NAME > delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 
-if [[ $Projetc = [xX] ]]
+echo "Start by default to \"00\" ? (Y/N) "
+read ResponseStart
+	
+if [[ -z $ResponseStart ]]
+then
+        ResponseStart="Y"
+fi
+done
+
+if [[ $ResponseStart = [Nn] ]]
 then
 	if (($NBENV < 20))
 	then
