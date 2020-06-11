@@ -68,7 +68,7 @@ if [[ -z $ResponseStart ]]
 then
         ResponseStart="Y"
 fi
-done
+
 
 if [[ $ResponseStart = [Nn] ]]
 then
