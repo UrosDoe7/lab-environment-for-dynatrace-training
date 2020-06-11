@@ -64,9 +64,11 @@ do
 	echo "Is it an existing project? X=eXisting project, N=new project - (X/N)"
 	read Projetc
 done
+delete_ressourcegroup=delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
+echo "##Training : "$DOMAIN_NAME > delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
+
 if [[ $Projetc = [xX] ]]
 then
-	echo "##Training : "$DOMAIN_NAME >> delete_ressourcegroup_$DOMAIN_NAME.sh
 	if (($NBENV < 20))
 	then
 		reste=$((20-$NBENV))
@@ -79,13 +81,12 @@ then
 		done
 	fi
 else
-	echo "##Training : "$DOMAIN_NAME > delete_ressourcegroup_$DOMAIN_NAME.sh
 	n=0
 fi
 
 echo 'User;Env Linux;Env Windows;password (linux and windows)'
-echo '#User;Env Linux;Env Windows;password (linux and windows)' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
-chmod +x delete_ressourcegroup_$DOMAIN_NAME.sh
+echo '#User;Env Linux;Env Windows;password (linux and windows)' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
+chmod +x delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 
 for ((i=0+$n; i<$NBENV+$n; ++i));
 do
@@ -94,7 +95,7 @@ do
             X='0' #from 00 to 04
 			LOCATION=$LOCATION1
 			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
-			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 	 
         fi
         if (( $i >= 5 ))&&(($i < 10))
@@ -102,33 +103,32 @@ do
 			X='0' #from 05 to 09
 			LOCATION=$LOCATION2
 			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
-			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 			fi
         if (( $i >= 10 ))&&(($i < 14))
         then
 			X='' #from 10 to 14
             		LOCATION=$LOCATION3
 			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
-			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
         fi
 		if (( $i >= 14 ))&&(($i < 20))
         then
 			X='' #from 10 to 20
             		LOCATION=$LOCATION4
 			echo 'user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD''
-			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME.sh
+			echo '#user'$X$i';'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;win'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com;'$PASSWORD'' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
         fi
 
 done
 echo ""
-echo "Continue (Y/N) - default : Y"
-read Response
-if [[ -z $Response ]]
+echo "Install easytravel docker (Y/N) - default : N"
+read EasyTravel
+if [[ -z $EasyTravel ]]
 then
-        Response="Y"
+        EasyTravel="N"
 fi
-if [ $Response = "Y" ] || [ $Response = "y" ]
-then
+
 	#create VM
 	echo 'START='`date +%Y%m%d%H%M%S`
 	for ((i=0; i<$NBENV; ++i));
@@ -176,11 +176,14 @@ then
 			--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-linux.json \
 			--parameters  adminUsername="$user" adminPasswordOrKey="$PASSWORD" authenticationType="password" dnsNameForPublicIP="$DOMAIN" vmSize="$SIZE_LINUX";			
 		az network nic update -g "$RESOURCE_GROUP" -n myVMNicD --network-security-group MyWinVM-nsg;
-		az vm run-command invoke -g $RESOURCE_GROUP" -n $RESOURCE_GROUP" --command-id RunShellScript --scripts "sudo apt-get install shellinabox && sudo sed -i 's/4200/443/g' /etc/default/shellinabox && sudo systemctl daemon-reload	&& sudo service shellinabox restart";
+		az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "apt-get install shellinabox && sed -i 's/4200/443/g' /etc/default/shellinabox && systemctl daemon-reload && service shellinabox restart";
+		if [[ $EasyTravel = [xX] ]]
+		then
+			az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults && ./start-stop-easytravel.sh start";
+		fi
 		az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN";
-		echo "echo "$RESOURCE_GROUP >> delete_ressourcegroup_$DOMAIN_NAME.sh
-		echo "az group delete --name "$RESOURCE_GROUP" --y" >> delete_ressourcegroup_$DOMAIN_NAME.sh
+		echo "echo "$RESOURCE_GROUP >> delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
+		echo "az group delete --name "$RESOURCE_GROUP" --y" >> delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 	done
 	echo 'END='`date +%Y%m%d%H%M%S`
-fi
 } | tee $log
