@@ -61,12 +61,12 @@ then
 fi
 
 echo $NBENV" Linux VM will be created for your training environement." 
-echo "Do you want a Windows VM associated to each of these VM Linux  ? (Y/N) - default : N"
+echo "Do you want a Windows VM associated to each of these VM Linux  ? (Y/N) - default : Y"
 read InstallWindows
 	
 if [[ -z $InstallWindows ]]
 then
-        InstallWindows="N"
+        InstallWindows="Y"
 fi
 if [[ $InstallWindows = [Yy] ]]
 then
