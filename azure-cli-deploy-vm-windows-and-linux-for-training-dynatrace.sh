@@ -225,32 +225,13 @@ do
 		--location $LOCATION \
 		--tags $DOMAIN
 			
-	###Create VM Windows
-	if [[ $InstallWindows = [Yy] ]]
-	then
-		echo 'create vm : win'$DOMAIN'.'$LOCATION'.cloudapp.azure.com'
-		az deployment group create \
-			--resource-group $RESOURCE_GROUP \
-			--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-windows.json \
-			--parameters  adminUsername="$user" virtualMachines_MyWinVM_name=MyWinVM"$X""$i" adminPasswordOrKey="$PASSWORD" dnsNameForPublicIP=win"$DOMAIN" vmSize="$SIZE_WINDOWS";		
-		###Change the RDP default port to 443 (not in the script for the moment)
-		#az vm run-command invoke  --command-id SetRDPPort --name MyWinVM"$X""$i" -g $RESOURCE_GROUP --parameters "RDPPORT=443"; 
-		###Stop VM Windows
-		az vm deallocate -g "$RESOURCE_GROUP" -n MyWinVM"$X""$i";
-		###VM Windows is created and stopped - start the VM windows from the azure portal
-	fi
-			
 	###Create VM Linux
 	echo 'create vm : '$DOMAIN'.'$LOCATION'.cloudapp.azure.com'
 	az deployment group create \
 		--resource-group $RESOURCE_GROUP \
 		--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-linux.json \
 		--parameters  adminUsername="$user" adminPasswordOrKey="$PASSWORD" authenticationType="password" dnsNameForPublicIP="$DOMAIN" vmSize="$SIZE_LINUX";			
-	###add linux to the NSG Windows (for TCP POrt 22, 443, 80, 27017 mongodb) only with windows VM
-	if [[ $InstallWindows = [Yy] ]]
-	then
-		az network nic update -g "$RESOURCE_GROUP" -n myVMNicD --network-security-group MyWinVM-nsg;
-	fi
+
 	###install shellinabox to go to the linux env from a browser (port 443)
 	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "apt-get install shellinabox && sed -i 's/4200/443/g' /etc/default/shellinabox";
 	###Install EasyTravel
@@ -261,7 +242,23 @@ do
 	###stop VM Linux
 	az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN";
 	###VM Linux is created and stopped - start the VM Linux from the azure portal
-	
+	###Create VM Windows
+	if [[ $InstallWindows = [Yy] ]]
+	then
+		echo 'create vm : win'$DOMAIN'.'$LOCATION'.cloudapp.azure.com'
+		az deployment group create \
+			--resource-group $RESOURCE_GROUP \
+			--template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-windows.json \
+			--parameters  adminUsername="$user" virtualMachines_MyWinVM_name=MyWinVM"$X""$i" adminPasswordOrKey="$PASSWORD" dnsNameForPublicIP=win"$DOMAIN" vmSize="$SIZE_WINDOWS";		
+		###add linux to the NSG Windows (for TCP POrt 22, 443, 80, 27017 mongodb) only with windows VM
+		az network nic update -g "$RESOURCE_GROUP" -n myVMNicD --network-security-group MyWinVM-nsg;
+		###Change the RDP default port to 443 (not in the script for the moment)
+		#az vm run-command invoke  --command-id SetRDPPort --name MyWinVM"$X""$i" -g $RESOURCE_GROUP --parameters "RDPPORT=443"; 
+		###Stop VM Windows
+		az vm deallocate -g "$RESOURCE_GROUP" -n MyWinVM"$X""$i";
+		###VM Windows is created and stopped - start the VM windows from the azure portal
+	fi			
+
 	###write the az cli in the delete script for deleting all thiese resource group at the end of the training
 	echo "echo "$RESOURCE_GROUP >> delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 	echo "az group delete --name "$RESOURCE_GROUP" --y" >> delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
