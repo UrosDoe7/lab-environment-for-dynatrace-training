@@ -67,13 +67,13 @@ Go to the VM with putty and deploy the AKS cluster fith Azure Voting App from ea
 
 at the end of the workshop, delete the labs resource groups (VM, ACR et AKS).
 
-**DELETE LABS RESOURCE GROUP** : Go to your Azure Cli and apply these commands (follow the instruction) you will only delete your labs resource groups.
+**DEPRECATED - DELETE LABS RESOURCE GROUP** : Go to your Azure Cli and apply these commands (follow the instruction) you will only delete your labs resource groups.
 
-    cd;cd azure-cli-deploy-vm-for-workshop;chmod +x azure-cli-delete-labs-resource-group.sh
-    ./azure-cli-delete-labs-resource-group.sh
+    cd;cd azure-cli-deploy-vm-for-workshop;chmod +x old-azure-cli-delete-labs-resource-group.sh
+    ./old-azure-cli-delete-labs-resource-group.sh
     ls
 
-**DEPECATED - WORKSHOP - DEPLOY Ubuntu Azure VM** : Go to your Azure Cli and apply these commands (quick -> about 3 minutes per VM):   
+**DEPRECATED - WORKSHOP - DEPLOY Ubuntu Azure VM** : Go to your Azure Cli and apply these commands (quick -> about 3 minutes per VM):   
 
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
