@@ -6,8 +6,7 @@ Open your azure cli like described here :
 ![cli-azure](cli-azure.png)
 
 
-**TRAINING - DEPLOY env with Windows & Linux Azure VM** : Go to your Azure Cli and apply these commands
-
+**TRAINING - DEPLOY training environment for Dynatrace Lab** : Go to your Azure Cli and apply these commands
    
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
@@ -30,7 +29,7 @@ EasytravelDocker,  installed and started  (80)  : http://dynatracelab00.uksouth.
 The VM are installed and stopped.  Start the VM when you are readey on your Azure portals :
 https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines
 
-**EASYTRAVEL LAB** : 
+**DEPRECATED - EASYTRAVEL LAB** : 
 Prerequisite : Ubuntu VM installed
 Go to the VM with putty and deploy easytravel on each VM with these commands (installation = about 2 minutes):   
    
@@ -59,9 +58,9 @@ Prerequisite : Ubuntu VM installed
 Go to the VM with putty and deploy the AKS cluster fith Azure Voting App from each VM with this command - skip the warning (installation = about 20 minutes - if you lose your session, you can run the script again):
     
     sudo apt-get install git -y
-    cd;if [ -d "./dynatracelab_azure-voting-app-redis" ];then rm -rf ./dynatracelab_azure-voting-app-redis;fi
-    git clone https://github.com/JLLormeau/dynatracelab_azure-voting-app-redis.git
-    cd dynatracelab_azure-voting-app-redis;chmod +x deploy-aks-cluster-with-azure-voting-app.sh
+    cd;if [ -d "./dynatracelab_kubernetesaks" ];then rm -rf ./dynatracelab_kubernetesaks;fi
+    git clone https://github.com/JLLormeau/dynatracelab_kubernetesaks.git
+    cd dynatracelab_kubernetesaks;chmod +x deploy-aks-cluster-with-azure-voting-app.sh
     ./deploy-aks-cluster-with-azure-voting-app.sh
     ls
 
