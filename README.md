@@ -29,10 +29,10 @@ EasytravelDocker,  installed and started  (80)  : http://dynatracelab00.uksouth.
 The VM are installed and stopped.  Start the VM when you are readey on your Azure portals :
 https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines
 
-If you install Easytravel, dy default, the mongodb is shutdown every 4 hours during 20 minutes.  
-You can verify the con with this command : sudo crontab -l  
-You can edit  the con with this command : sudo crontab -e  
-And erase the cron with this command : sudo crontab -r  
+If you install Easytravel, by default, the mongodb is shutdown every 4 hours during 20 minutes.  
+To show the cron, use this command :   sudo crontab -l  
+To edit the cron, this command :       sudo crontab -e  
+And to erase the cron, this one :      sudo crontab -r  
 
 **DEPRECATED - EASYTRAVEL LAB** : 
 Prerequisite : Ubuntu VM installed
