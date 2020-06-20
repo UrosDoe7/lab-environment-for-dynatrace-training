@@ -240,7 +240,8 @@ do
 		az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
 		az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 */4 * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"15 */4 * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
 	fi
-	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_kubernetesaks.git && sudo chmod 777 dynatracelab_kubernetesaks && cd dynatracelab_kubernetesaks && chmod +x deploy-aks-cluster-voting-app-with-service-principal.sh";
+	#az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_kubernetesaks.git && sudo chmod 777 dynatracelab_kubernetesaks && cd dynatracelab_kubernetesaks && chmod +x deploy-aks-cluster-voting-app-with-service-principal.sh";
+	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_kubernetesaks.git && cd dynatracelab_kubernetesaks && chmod +x deploy-aks-cluster-voting-app-with-service-principal.sh";
 	###stop VM Linux
 	az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN";
 	###VM Linux is created and stopped - start the VM Linux from the azure portal
