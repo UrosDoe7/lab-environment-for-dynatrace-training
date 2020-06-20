@@ -238,7 +238,7 @@ do
 	if [[ $EasyTravel = [Yy] ]]
 	then
 		az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
-		az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "sudo service cron start && (crontab -l 2>/dev/null; echo \"*/10 * * * * /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> $HOME/cron.log 2>&1 && date >> $HOME/cron.log\") | crontab  - && (crontab -l 2>/dev/null; echo \"*/30 * * * * /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> $HOME/cron.log 2>&1 && date >> $HOME/cron.log\") | crontab -";
+		az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"45 10 * * * date >> $HOME/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1 &&\") | crontab  - && (crontab -l 2>/dev/null; echo \"*0 11 * * * date >> $HOME/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1 &&\") | crontab -";
 	fi
 	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_kubernetesaks.git && cd dynatracelab_kubernetesaks && chmod +x deploy-aks-cluster-voting-app-with-service-principal.sh";
 	###stop VM Linux
