@@ -30,9 +30,9 @@ The VM are installed and stopped.  Start the VM when you are readey on your Azur
 https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines
 
 If you install Easytravel, dy default, the mongodb is shutdown every 4 hours during 20 minutes. 
-You can verify the con with this command : sudo crontab -l
-You can edit  the con with this command : sudo crontab -e
-And erase the cron with this command : sudo crontab -r 
+You can verify the con with this command : sudo crontab -l 
+You can edit  the con with this command : sudo crontab -e 
+And erase the cron with this command : sudo crontab -r  
 
 **DEPRECATED - EASYTRAVEL LAB** : 
 Prerequisite : Ubuntu VM installed
