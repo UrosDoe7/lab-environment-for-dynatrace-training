@@ -183,13 +183,13 @@ sleep 1
 read  -p "Press any key to continue " pressanycase
 
 echo ""
-echo "################################################################################################################################"
-echo "#### Once the VMs created, you have to start them from your Azure subscription :                                      ####"
+echo "##################################################################################################################################"
+echo "#### Once the VMs created, you have to start them from your Azure subscription :                                              ####"
 echo "####      https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines  ####"
 echo "####                                                                                                                          ####"
 echo "#### At the end of the training, delete all the Azure resource groups :                                                       ####"
-echo "####      a script has been generated localy on your cli bash environment -> ./delete_ressourcegroup_"$TIME".sh        ####"                           ####"
-echo "################################################################################################################################"
+echo "####      a script has been generated localy on your cli bash environment -> ./delete_ressourcegroup_"$TIME".sh        ####"
+echo "##################################################################################################################################"
 echo ""
 
 
