@@ -34,7 +34,7 @@ echo "For 10 env, you need all the quota of "$LOCATION1" and "$LOCATION2
 echo "For 15 env, you need all the quota of "$LOCATION1", "$LOCATION2" and "$LOCATION3
 echo "For 20 env, you need all the quota of "$LOCATION1", "$LOCATION2", "$LOCATION3" and "$LOCATION4
 echo ""
-echo $LOCATION1"                       used            total"
+echo $LOCATION1"                      used            total"
 az vm list-usage --location $LOCATION1 -o table | grep "Total Regional vCPUs";
 echo $LOCATION2
 az vm list-usage --location $LOCATION2 -o table | grep "Total Regional vCPUs";
