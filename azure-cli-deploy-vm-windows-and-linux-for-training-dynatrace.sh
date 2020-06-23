@@ -49,7 +49,7 @@ read  -p "Press any key to continue " pressanycase
 while [ "$APPLY" !=  "Y" ]
 do
         clear
-        echo "Dynatrace Training configuration :"
+        echo "CONFIGURATION : "
         echo ""
         echo "Total Env (max 20) ="$NBENV
         if [ $(($START_ENV+$NBENV)) -lt 10 ]; then END_ENV2="0""$(($START_ENV+$NBENV-1))"; else END_ENV2="$(($START_ENV+$NBENV-1))";fi
@@ -108,13 +108,15 @@ do
         esac
 done
 ##Create the delete_resourcegroup file and add comment and executable privilege
+echo ""
+echo ""
 echo "##Training : "$DOMAIN_NAME > delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 if [[ $WINDOWS_ENV = [Y] ]]
 then
-        echo 'Environment : Linux & Windows (same credentials)'
+        echo 'ENVIRONMENT : Linux & Windows (same credentials)'
         echo '#User;Env Linux;Env Windows;Password (linux and windows)' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 else
-        echo 'Environment : Linux'
+        echo 'ENVIRONMENT : Linux'
         echo '#User;Env Linux;Password' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 fi
 
@@ -122,7 +124,6 @@ chmod +x delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
 
 ###
 ##Write information abouth configuration for validation before creating the VM
-echo ""
 for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
 do
         if (( $i < 5 ))
