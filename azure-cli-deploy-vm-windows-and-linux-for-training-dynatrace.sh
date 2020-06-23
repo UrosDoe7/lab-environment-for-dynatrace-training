@@ -177,6 +177,7 @@ do
         fi
 done
 echo ""
+sleep 1
 read  -p "Press any key to continue " pressanycase
 
 echo ""
