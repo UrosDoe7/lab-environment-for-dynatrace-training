@@ -243,7 +243,7 @@ do
                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
                         if [[ $MONGO_STOP = [Y] ]]
                         then
-                                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 */4 * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"15 */4 * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
+                                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 */4 * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"20 */4 * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
                         fi
         fi
         ###Add script to deploi kubernetes AKS with your Azure Service Principal
