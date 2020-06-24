@@ -1,4 +1,5 @@
 #!/bin/bash
+#design by JLLormeau Dynatrace
 
 TIME=`date +%Y%m%d%H%M%S`
 DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
@@ -247,7 +248,7 @@ do
                         fi
         fi
         ###Add script to deploi kubernetes AKS with your Azure Service Principal
-        if [[ $MONGO_STOP = [Y] ]]
+        if [[ $KUBE_SCRIPT = [Y] ]]
         then
                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_kubernetesaks.git && sudo chmod 777 dynatracelab_kubernetesaks && cd dynatracelab_kubernetesaks && chmod +x deploy-aks-cluster-voting-app-with-service-principal.sh";
         fi
@@ -258,7 +259,7 @@ do
         fi
         ###VM Linux is created and stopped - start the VM Linux from the azure portal
         ###Create VM Windows
-        if [[ $KUBE_SCRIPT = [Y] ]]
+        if [[ $WINDOWS_ENV = [Y] ]]
         then
                 echo 'create vm : win'$DOMAIN'.'$LOCATION'.cloudapp.azure.com'
                 az deployment group create \
