@@ -21,6 +21,7 @@ EASYTRAVEL_ENV="Y"
 MONGO_STOP="Y"
 KUBE_SCRIPT="Y"
 VM_STOPPED="Y"
+HOUR_MONGO_STOP="15"
 log=deploy-vm-windows-and-linux-for-training-dynatrace-$TIME.log
 n=0
 {
@@ -67,10 +68,11 @@ do
         echo "7) add env : cron to stop Mongo every 4hours      ="$MONGO_STOP
         echo "8) add env : kubernetes installation script       ="$KUBE_SCRIPT
         echo "9) start env : VM stopped after installation      ="$VM_STOPPED
+		if [ "$MONGO_STOP" =  "Y" ];then  echo "10) stop mongo : hour (GMT) of mongo shutdown    ="$HOUR_MONGO_STOP;fi
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
         echo ""
         sleep 1
-        read  -p "Input Selection (1, 2, 3, 4, 5, 6, 7, 8 or A): " reponse
+        read  -p "Input Selection (1, 2, ..., 9, 10  or A): " reponse
 
         case "$reponse" in
                 "1") verif="ko"
@@ -103,6 +105,9 @@ do
                 "8") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N"; else KUBE_SCRIPT="Y"; fi
                 ;;
                 "9") if [ "$VM_STOPPED" = "Y" ]; then VM_STOPPED="N"; else VM_STOPPED="Y"; fi
+                ;;
+                "10") value=-1; until [ $value -ge 0 -a  $value -lt 24 ]; do read  -p "10) stop mongo : hour (GMT) of mongo shutdown (restart auto 20 minutes after) =" value; done
+					HOUR_MONGO_STOP=$value
                 ;;
                 "A") APPLY="Y"
                                 DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
@@ -244,7 +249,7 @@ do
                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
                         if [[ $MONGO_STOP = [Y] ]]
                         then
-                                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 */4 * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"20 */4 * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
+                                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"20 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
                         fi
         fi
         ###Add script to deploi kubernetes AKS with your Azure Service Principal
