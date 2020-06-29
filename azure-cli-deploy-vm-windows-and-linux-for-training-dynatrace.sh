@@ -45,7 +45,7 @@ az vm list-usage --location $LOCATION3 -o table | grep "Total Regional vCPUs";
 echo $LOCATION4
 az vm list-usage --location $LOCATION4 -o table | grep "Total Regional vCPUs";
 echo ""
-sleep 1
+sleep 0.1
 read  -p "Press any key to continue " pressanycase
 
 while [ "$APPLY" !=  "Y" ]
@@ -59,19 +59,19 @@ do
         echo "  * Fisrt VM linux name (min 00)          ="$DOMAIN_NAME_DEFAULT$START_ENV2
         echo "  * Last VM linux name (max 19)           ="$DOMAIN_NAME_DEFAULT$END_ENV2
         echo ""
-        echo "0) config env : training name                     ="$DOMAIN_NAME_DEFAULT
-        echo "1) config env : password                          ="$PASSWORD
-        echo "2) config env : value fisrt env                   ="$START_ENV2
-        echo "3) config env : nbr total env                     ="$NBENV
-        echo "4) add env : window VM to env                     ="$WINDOWS_ENV
-        echo "5) add env : easytravel installed                 ="$EASYTRAVEL_ENV
-        echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT ="$MONGO_STOP
-        echo "7) stop mongo : hour (GMT) of mongo shutdown    ="$HOUR_MONGO_STOP
-		echo "8) add env : kubernetes installation script       ="$KUBE_SCRIPT
-        echo "9) start env : VM stopped after installation      ="$VM_STOPPED
+        echo "0) config env : training name                          ="$DOMAIN_NAME_DEFAULT
+        echo "1) config env : password                               ="$PASSWORD
+        echo "2) config env : value fisrt env                        ="$START_ENV2
+        echo "3) config env : nbr total env                          ="$NBENV
+        echo "4) add env : window VM to env                          ="$WINDOWS_ENV
+        echo "5) add env : easytravel installed                      ="$EASYTRAVEL_ENV
+        echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT            ="$MONGO_STOP
+        if [[ $MONGO_STOP = [Y] ]]; then echo "7) stop Mongo : hour (GMT) of Mongo shutdown           ="$HOUR_MONGO_STOP; fi
+        echo "8) kubernetes : script to deploy Azure Vote App on AKS ="$KUBE_SCRIPT
+        echo "9) start env : VM stopped after installation           ="$VM_STOPPED
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
         echo ""
-        sleep 1
+        sleep 0.1
         read  -p "Input Selection (0, 1, 2, ..., 8, 9  or A): " reponse
 
         case "$reponse" in
@@ -83,36 +83,36 @@ do
                      fi;done
                 ;;
                 "1") verif="ko"
-                      until [ $verif = "ok" ]; do read  -p "1) conf env : password with 12 characters mini and 1 lower case, 1 upper case, 1 number, and @ or & " PASSWORD
+                      until [ $verif = "ok" ]; do read  -p "1) conf env : password with 12 characters mini and 1 lower case, 1 upper case, 1 number, and @ or &   " PASSWORD
                       if [[ ${#PASSWORD} -ge 12 && "$PASSWORD" ==  *[[:lower:]]*  && "$PASSWORD" ==  *[[:upper:]]*  && "$PASSWORD" == *[0-9]* && "$PASSWORD" == *[\&\@]* ]];then
                         verif="ok"
                         else verif="ko";fi;done
                 ;;
                 "2") value=-1
-                     until [ $value -ge 0 -a  $value -le $((20-$NBENV)) ]; do read -p "2) config env : start value (between 0 & "$((20-$NBENV))") " value;  done
+                     until [ $value -ge 0 -a  $value -le $((20-$NBENV)) ]; do read -p "2) config env : start value (between 0 & "$((20-$NBENV))")   " value;  done
                    START_ENV=$value
                 ;;
                 "3") value=-1
-                     until [ $value -gt 0 -a  $value -le $((20-$START_ENV)) ];do read -p "3) config env : nbr total env (maxi "$((20-$START_ENV))") " value;  done
+                     until [ $value -gt 0 -a  $value -le $((20-$START_ENV)) ];do read -p "3) config env : nbr total env (maxi "$((20-$START_ENV))")   " value;  done
                    NBENV=$value
                 ;;
-                "4") if [ "$WINDOWS_ENV" = "Y" ]; then WINDOWS_ENV="N"; echo "4) add env : window VM to env =N" ; else WINDOWS_ENV="Y"; echo "4) add env : window VM to env =Y"; fi
-					read  -p "Press any key to continue " pressanycase
+                "4") if [ "$WINDOWS_ENV" = "Y" ]; then WINDOWS_ENV="N"; echo "4) add env : window VM to env   =N" ; else WINDOWS_ENV="Y"; echo "4) add env : window VM to env   =Y"; fi
+					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
-                "5") if [ "$EASYTRAVEL_ENV" = "Y" ]; then EASYTRAVEL_ENV="N";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT =N"; else EASYTRAVEL_ENV="Y";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT =Y"; fi
-					read  -p "Press any key to continue " pressanycase
+                "5") if [ "$EASYTRAVEL_ENV" = "Y" ]; then EASYTRAVEL_ENV="N";echo "5) add env : easytravel installed   =N"; else EASYTRAVEL_ENV="Y";echo "5) add env : easytravel installed   =Y"; fi
+					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
-                "6") if [ "$MONGO_STOP" = "Y" ]; then MONGO_STOP="N";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT =N"; else MONGO_STOP="Y";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT =Y"; fi
-					read  -p "Press any key to continue " pressanycase
+                "6") if [ "$MONGO_STOP" = "Y" ]; then MONGO_STOP="N";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT   =N"; else MONGO_STOP="Y";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT   =Y"; fi
+					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
-                "7") value=-1; until [ $value -ge 0 -a  $value -lt 24 ]; do read  -p "7) stop mongo : hour (GMT) of mongo shutdown (restart auto 20 minutes after) =" value; done
+                "7") value=-1; until [ $value -ge 0 -a  $value -lt 24 ]; do read  -p "7) stop Mongo : hour (GMT) of Mongo shutdown (restart auto 20 minutes after)   =" value; done
 					HOUR_MONGO_STOP=$value
                 ;;
-                "8") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N";echo "8) add env : kubernetes installation script =N"; else KUBE_SCRIPT="Y";echo "8) add env : kubernetes installation script =Y"; fi
-					read  -p "Press any key to continue " pressanycase
+                "8") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =N"; else KUBE_SCRIPT="Y";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =Y"; fi
+					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
-                "9") if [ "$VM_STOPPED" = "Y" ]; then VM_STOPPED="N";echo "9) start env : VM stopped after installation =N"; else VM_STOPPED="Y";echo "9) start env : VM stopped after installation =Y"; fi
-					read  -p "Press any key to continue " pressanycase
+                "9") if [ "$VM_STOPPED" = "Y" ]; then VM_STOPPED="N";echo "9) start env : VM stopped after installation   =N"; else VM_STOPPED="Y";echo "9) start env : VM stopped after installation   =Y"; fi
+					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
                 "A") APPLY="Y"
                                 DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
@@ -191,7 +191,7 @@ do
         fi
 done
 echo ""
-sleep 1
+sleep 0.1
 read  -p "Press any key to continue " pressanycase
 
 echo ""
@@ -254,7 +254,7 @@ do
                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
                         if [[ $MONGO_STOP = [Y] ]]
                         then
-                                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"20 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
+                                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartMongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"20 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
                         fi
         fi
         ###Add script to deploi kubernetes AKS with your Azure Service Principal
@@ -276,7 +276,7 @@ do
                         --resource-group $RESOURCE_GROUP \
                         --template-uri https://raw.githubusercontent.com/JLLormeau/lab-environment-for-dynatrace-training/master/azuredeploy-windows.json \
                         --parameters  adminUsername="$user" virtualMachines_MyWinVM_name=MyWinVM"$X""$i" adminPasswordOrKey="$PASSWORD" dnsNameForPublicIP=win"$DOMAIN" vmSize="$SIZE_WINDOWS";
-                ###add linux to the NSG Windows (for TCP POrt 22, 443, 80, 27017 mongodb) only with windows VM
+                ###add linux to the NSG Windows (for TCP POrt 22, 443, 80, 27017 Mongodb) only with windows VM
                 az network nic update -g "$RESOURCE_GROUP" -n myVMNicD --network-security-group MyWinVM-nsg;
                 ###Change the RDP default port to 443 (not in the script for the moment)
                 #az vm run-command invoke  --command-id SetRDPPort --name MyWinVM"$X""$i" -g $RESOURCE_GROUP --parameters "RDPPORT=443";
