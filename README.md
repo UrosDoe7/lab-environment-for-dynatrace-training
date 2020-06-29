@@ -16,7 +16,7 @@ Open your azure cli like described here :
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
     ls
       
-Max env = 20
+Max env = 20  
 For each env : 
    - 1 VM Linux UBUNTU = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
    - Option on the Linux VM 
