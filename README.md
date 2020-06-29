@@ -7,7 +7,7 @@ Open your azure cli like described here :
 
 
 
-**TRAINING DYNATRACE**
+**TRAINING DYNATRACE**  
 **DEPLOY training environment for Dynatrace Lab** : Go to your Azure Cli and apply these commands
    
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
