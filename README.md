@@ -16,7 +16,7 @@ Open your azure cli like described here :
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
     ls
       
-Max training environment = 20 (for that you need all your quota on the region ; france central, west europe, north europe and uk south)  
+Max training environment = 20  
 For each environment : 
    - 1 VM Linux UBUNTU = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
    - Option on the Linux VM 
