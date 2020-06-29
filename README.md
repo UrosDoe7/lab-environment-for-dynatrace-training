@@ -7,7 +7,8 @@ Open your azure cli like described here :
 
 
 
-**TRAINING - DEPLOY training environment for Dynatrace Lab** : Go to your Azure Cli and apply these commands
+**TRAINING DYNATRACE**
+**DEPLOY training environment for Dynatrace Lab** : Go to your Azure Cli and apply these commands
    
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
@@ -44,7 +45,7 @@ And to erase the cron, this one :      sudo crontab -r
 At the end of the workshop, delete the labs resource groups a script is automaticaly generate locally on your Azure Cli bash /home/azureuser/lab-environment-for-dynatrace-training
 
 
-**KUBERNETES LAB** : 
+**INSTALL the Kubernetes environment** : 
 Deploy a VM Ubuntu with the option "Kubernetes : script to deploy Azure Vote App on AKS "= Enabled
 To deploy the Azure Vote App on your Azure subscription use this script with these 3 parameters : 
     
@@ -61,6 +62,8 @@ more information on Auze Vote App : https://docs.microsoft.com/en-us/azure/aks/t
 
 At the end of the workshop, delete the labs resource groups (VM, ACR et AKS) a script is automaticaly generate locally on the VM on /home/dynatracelab_kubernetesaks/
 
+  
+  
 ######################################################################################  
 **DEPRECATED - EASYTRAVEL LAB** : 
 Prerequisite : Ubuntu VM installed
