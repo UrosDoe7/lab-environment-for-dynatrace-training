@@ -38,9 +38,9 @@ By default, the VM are installed and stopped.  Start the VM when you are readey 
 https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines
 
 By default, the crontab is configured to stop mongodb for 20 minutes at 15 H GMT:  
-To show the cron, use this command :   sudo crontab -l  
-To edit the cron, this command :       sudo crontab -e  
-And to erase the cron, this one :      sudo crontab -r  
+ - To show the cron, use this command :   sudo crontab -l  
+ - To edit the cron, this command :       sudo crontab -e  
+ - And to erase the cron, this one :      sudo crontab -r  
 
 At the end of the workshop, to delete the labs resource groups, execute the script which has been automaticaly generated locally on your Azure Cli bash /home/azureuser/lab-environment-for-dynatrace-training
 
