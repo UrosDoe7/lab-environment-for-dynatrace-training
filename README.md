@@ -26,7 +26,7 @@ For each env :
    - Option on the training environment
       * 1 VM Windows 10 = Standard_B2s (2 CPU; 4GB RAM) for these workshop : LoadGen, Android and Plugin Python 
 
-With default configuration the script will deploy 2 environments for the training : 
+With default configuration the script will deploy 2 environments with all options enabled : 
 user00;dynatracelab00.francecentral.cloudapp.azure.com;windynatracelab00.francecentral.cloudapp.azure.com;*****  
 user01;dynatracelab01.francecentral.cloudapp.azure.com;windynatracelab01.francecentral.cloudapp.azure.com;*****  
 
