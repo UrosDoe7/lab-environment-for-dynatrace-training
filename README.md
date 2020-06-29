@@ -45,22 +45,21 @@ And to erase the cron, this one :      sudo crontab -r
 At the end of the workshop, delete the labs resource groups a script is automaticaly generate locally on your Azure Cli bash /home/azureuser/lab-environment-for-dynatrace-training
 
 
-**INSTALL the Kubernetes environment** : 
-Deploy a VM Ubuntu with the option "Kubernetes : script to deploy Azure Vote App on AKS "= Enabled
-To deploy the Azure Vote App on your Azure subscription use this script with these 3 parameters : 
-    
+**INSTALL the Kubernetes environment**  : Go to your Linux VM with the option "Kubernetes : script to deploy Azure Vote App on AKS "= Enabled (see above) 
+To deploy the Azure Vote App on your Azure subscription use this script with these 3 parameters :  
+     
     /home/dynatracelab_kubernetesaks/deploy-aks-cluster-with-azure-voting-app.sh $APPID $PASSWORD $TENANT
 
-Prerequisiste you need a Service Principal to have $APPID $PASSWORD and $TENANT of yoyr Azure Subscription.
-You can use the same Service Principal for all the Azure Vote App deployment. 
-Go to your Azure Cli Bash and use this az command (more details here):  
+Prerequisiste you need a Service Principal to have $APPID $PASSWORD and $TENANT for your Azure Subscription.  
+You can use the same Service Principal for all the Azure Vote App deployments.  
+Go to your Azure Cli Bash and use this az command (more details here) to create your Service Principal:   
 
     az ad sp create-for-rbac --name MyServicePrincipalNameforLabKube
 
-more détail about Azure Service Principal : https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli
-more information on Auze Vote App : https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app 
+more détail about Azure Service Principal : https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli  
+more information on Auze Vote App : https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app  
 
-At the end of the workshop, delete the labs resource groups (VM, ACR et AKS) a script is automaticaly generate locally on the VM on /home/dynatracelab_kubernetesaks/
+At the end of the workshop, delete the labs resource groups (VM, ACR et AKS) a script is automaticaly generate locally on the VM on /home/dynatracelab_kubernetesaks/  
 
   
   
