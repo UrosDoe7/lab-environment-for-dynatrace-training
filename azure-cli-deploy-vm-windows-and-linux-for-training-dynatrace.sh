@@ -59,56 +59,61 @@ do
         echo "  * Fisrt VM linux name (min 00)          ="$DOMAIN_NAME_DEFAULT$START_ENV2
         echo "  * Last VM linux name (max 19)           ="$DOMAIN_NAME_DEFAULT$END_ENV2
         echo ""
-        echo "1) config env : training name                     ="$DOMAIN_NAME_DEFAULT
-        echo "2) config env : password                          ="$PASSWORD
-        echo "3) config env : value fisrt env                   ="$START_ENV2
-        echo "4) config env : nbr total env                     ="$NBENV
-        echo "5) add env : window VM to env                     ="$WINDOWS_ENV
-        echo "6) add env : easytravel installed                 ="$EASYTRAVEL_ENV
-        echo "7) add env : cron to stop Mongo every 4hours      ="$MONGO_STOP
-        echo "8) add env : kubernetes installation script       ="$KUBE_SCRIPT
+        echo "0) config env : training name                     ="$DOMAIN_NAME_DEFAULT
+        echo "1) config env : password                          ="$PASSWORD
+        echo "2) config env : value fisrt env                   ="$START_ENV2
+        echo "3) config env : nbr total env                     ="$NBENV
+        echo "4) add env : window VM to env                     ="$WINDOWS_ENV
+        echo "5) add env : easytravel installed                 ="$EASYTRAVEL_ENV
+        echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT ="$MONGO_STOP
+        echo "7) stop mongo : hour (GMT) of mongo shutdown    ="$HOUR_MONGO_STOP
+		echo "8) add env : kubernetes installation script       ="$KUBE_SCRIPT
         echo "9) start env : VM stopped after installation      ="$VM_STOPPED
-		if [ "$MONGO_STOP" =  "Y" ];then  echo "10) stop mongo : hour (GMT) of mongo shutdown    ="$HOUR_MONGO_STOP;fi
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
         echo ""
         sleep 1
-        read  -p "Input Selection (1, 2, ..., 9, 10  or A): " reponse
+        read  -p "Input Selection (0, 1, 2, ..., 8, 9  or A): " reponse
 
         case "$reponse" in
-                "1") verif="ko"
-                      until [ $verif = "ok" ]; do read  -p "1) config env : training name with rule [a-z][a-z][a-z][a-z][a-z][a-z0-9]+$   " DOMAIN_NAME_DEFAULT
+                "0") verif="ko"
+                      until [ $verif = "ok" ]; do read  -p "0) config env : training name with rule [a-z][a-z][a-z][a-z][a-z][a-z0-9]+$   " DOMAIN_NAME_DEFAULT
                        if [[ $DOMAIN_NAME_DEFAULT =~ ^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$ ]] &&  [[ `echo $DOMAIN_NAME_DEFAULT|cut -c -5` != "azure"  ]];then
                         verif="ok"
                         else verif="ko";if  [[ `echo $DOMAIN_NAME_DEFAULT|cut -c -5` = "azure"  ]]; then echo "the VM name can't start with \"azure\" pattern" ; value="ko";read pressanycase;fi
                      fi;done
                 ;;
-                "2") verif="ko"
-                      until [ $verif = "ok" ]; do read  -p "2) conf env : password with 12 characters mini and 1 lower case, 1 upper case, 1 number, and @ or & " PASSWORD
+                "1") verif="ko"
+                      until [ $verif = "ok" ]; do read  -p "1) conf env : password with 12 characters mini and 1 lower case, 1 upper case, 1 number, and @ or & " PASSWORD
                       if [[ ${#PASSWORD} -ge 12 && "$PASSWORD" ==  *[[:lower:]]*  && "$PASSWORD" ==  *[[:upper:]]*  && "$PASSWORD" == *[0-9]* && "$PASSWORD" == *[\&\@]* ]];then
                         verif="ok"
                         else verif="ko";fi;done
                 ;;
-                "3") value=-1
-                     until [ $value -ge 0 -a  $value -le $((20-$NBENV)) ]; do read -p "3) config env : start value (between 0 & "$((20-$NBENV))") " value;  done
+                "2") value=-1
+                     until [ $value -ge 0 -a  $value -le $((20-$NBENV)) ]; do read -p "2) config env : start value (between 0 & "$((20-$NBENV))") " value;  done
                    START_ENV=$value
                 ;;
-                "4") value=-1
-                     until [ $value -gt 0 -a  $value -le $((20-$START_ENV)) ];do read -p "4) config env : nbr total env (maxi "$((20-$START_ENV))") " value;  done
+                "3") value=-1
+                     until [ $value -gt 0 -a  $value -le $((20-$START_ENV)) ];do read -p "3) config env : nbr total env (maxi "$((20-$START_ENV))") " value;  done
                    NBENV=$value
                 ;;
-                "5") if [ "$WINDOWS_ENV" = "Y" ]; then WINDOWS_ENV="N"; else WINDOWS_ENV="Y"; fi
-                ;;
-                "6") if [ "$EASYTRAVEL_ENV" = "Y" ]; then EASYTRAVEL_ENV="N"; else EASYTRAVEL_ENV="Y"; fi
-                ;;
-                "7") if [ "$MONGO_STOP" = "Y" ]; then MONGO_STOP="N"; else MONGO_STOP="Y"; fi
-                ;;
-                "8") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N"; else KUBE_SCRIPT="Y"; fi
-                ;;
-                "9") if [ "$VM_STOPPED" = "Y" ]; then VM_STOPPED="N"; else VM_STOPPED="Y"; fi
-                ;;
-                "10") value=-1; until [ $value -ge 0 -a  $value -lt 24 ]; do read  -p "10) stop mongo : hour (GMT) of mongo shutdown (restart auto 20 minutes after) =" value; done
+                "4") if [ "$WINDOWS_ENV" = "Y" ]; then WINDOWS_ENV="N"; echo "4) add env : window VM to env =N" ; else WINDOWS_ENV="Y"; echo "4) add env : window VM to env =Y"; fi
+					read  -p "Press any key to continue " pressanycase
+				;;
+                "5") if [ "$EASYTRAVEL_ENV" = "Y" ]; then EASYTRAVEL_ENV="N";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT =N"; else EASYTRAVEL_ENV="Y";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT =Y"; fi
+					read  -p "Press any key to continue " pressanycase
+				;;
+                "6") if [ "$MONGO_STOP" = "Y" ]; then MONGO_STOP="N";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT =N"; else MONGO_STOP="Y";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT =Y"; fi
+					read  -p "Press any key to continue " pressanycase
+				;;
+                "7") value=-1; until [ $value -ge 0 -a  $value -lt 24 ]; do read  -p "7) stop mongo : hour (GMT) of mongo shutdown (restart auto 20 minutes after) =" value; done
 					HOUR_MONGO_STOP=$value
                 ;;
+                "8") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N";echo "8) add env : kubernetes installation script =N"; else KUBE_SCRIPT="Y";echo "8) add env : kubernetes installation script =Y"; fi
+					read  -p "Press any key to continue " pressanycase
+				;;
+                "9") if [ "$VM_STOPPED" = "Y" ]; then VM_STOPPED="N";echo "9) start env : VM stopped after installation =N"; else VM_STOPPED="Y";echo "9) start env : VM stopped after installation =Y"; fi
+					read  -p "Press any key to continue " pressanycase
+				;;
                 "A") APPLY="Y"
                                 DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
         esac
