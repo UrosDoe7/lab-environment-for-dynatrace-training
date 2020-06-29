@@ -1,7 +1,7 @@
 # Lab environment for dynatrace training
-This script permits to deploy quickly several Ubuntu VM with Docker Engine on an Azure subscription. It's usefull for a workshop. It's compatible with easytravel on docker. Usefull to deploy quickly a Dynatrace training environment.
+This script permits to deploy quickly several Ubuntu VM with Docker Engine on an Azure subscription. It's usefull for a workshop and Dynatrace Training. Several options are available to deploy and start automatically easytravel or to do the workshop on Kubernetes with Azure Vote App. 
 
-Open your azure subscription, https://portal.azure.com/  
+Open your azure subscription, https://portal.azure.com/ 
 Open your azure cli like described here :  
 ![cli-azure](cli-azure.png)
 
