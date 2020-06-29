@@ -16,8 +16,8 @@ Open your azure cli like described here :
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
     ls
       
-Max env = 20  
-For each env : 
+Max training environment = 20 (for that you need all your quota on the region ; france central, west europe, north europe and uk south)  
+For each environment : 
    - 1 VM Linux UBUNTU = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
    - Option on the Linux VM 
       * easytravel docker insalled and started  
@@ -42,7 +42,7 @@ To show the cron, use this command :   sudo crontab -l
 To edit the cron, this command :       sudo crontab -e  
 And to erase the cron, this one :      sudo crontab -r  
 
-At the end of the workshop, delete the labs resource groups a script is automaticaly generate locally on your Azure Cli bash /home/azureuser/lab-environment-for-dynatrace-training
+At the end of the workshop, to delete the labs resource groups, execute the script which has been automaticaly generated locally on your Azure Cli bash /home/azureuser/lab-environment-for-dynatrace-training
 
 
 **INSTALL the Kubernetes environment**  : Go to your Linux VM with the option "Kubernetes : script to deploy Azure Vote App on AKS "= Enabled (see above) 
@@ -50,16 +50,18 @@ To deploy the Azure Vote App on your Azure subscription use this script with the
      
     /home/dynatracelab_kubernetesaks/deploy-aks-cluster-with-azure-voting-app.sh $APPID $PASSWORD $TENANT
 
-Prerequisiste you need a Service Principal to have $APPID $PASSWORD and $TENANT for your Azure Subscription.  
+Prerequisiste : 
+   - you need quota on eastus and eastus2  
+   - you need a Service Principal with $APPID $PASSWORD and $TENANT to connect to your Azure Subscription and create the AKS for Azure Vote App.    
 You can use the same Service Principal for all the Azure Vote App deployments.  
-Go to your Azure Cli Bash and use this az command (more details here) to create your Service Principal:   
+Go to your Azure Cli Bash and use this az command to create your Service Principal:   
 
     az ad sp create-for-rbac --name MyServicePrincipalNameforLabKube
 
-more détail about Azure Service Principal : https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli  
+more detail about Azure Service Principal : https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli  
 more information on Auze Vote App : https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app  
 
-At the end of the workshop, delete the labs resource groups (VM, ACR et AKS) a script is automaticaly generate locally on the VM on /home/dynatracelab_kubernetesaks/  
+At the end of the workshop, to delete the labs resource groups on each AKS, execute the script which has been automaticaly generated locally on each VM on /home/dynatracelab_kubernetesaks/  
 
   
   
