@@ -14,22 +14,28 @@ Open your azure cli like described here :
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
     ls
       
-You can create 20 env max with Windows and Linux for dynatrace training (15 min per environment)
-Or yo can create 20 Linux VM max for dynatrace workshop (5 min per VM)
-Windows = Standard_B2s (2 CPU; 4GB RAM)
-Linux = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
-user00;windynatracelab00.uksouth.cloudapp.azure.com;dynatracelab00.uksouth.cloudapp.azure.com;*****
-user01;windynatracelab01.uksouth.cloudapp.azure.com;dynatracelab01.uksouth.cloudapp.azure.com;*****
-user02;windynatracelab02.uksouth.cloudapp.azure.com;dynatracelab02.uksouth.cloudapp.azure.com;*****
+Max env = 20
+For each env : 
+   - 1 VM Linux UBUNTU = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
+   - Option on the Linux VM 
+      * easytravel docker insalled and started  
+      * crontab to stop mongodb 20 minutes every day and generated problems  
+      * kubernetes : script to deploy from this vm the Azure Vote App on AKS for the workshop Kubernetes (need a Service Principal for the authentication)   
+   - Option on the training environment
+      * 1 VM Windows 10 = Standard_B2s (2 CPU; 4GB RAM) for these workshop : LoadGen, Android and Plugin Python 
 
-Linux,  direct access from a bowser (443)       : https://dynatracelab00.uksouth.cloudapp.azure.com
-EasytravelDocker,  installed and started  (80)  : http://dynatracelab00.uksouth.cloudapp.azure.com
-(optional) Windows,  access with mstsc (3389)   : dynatracelab00.uksouth.cloudapp.azure.com
+With default configuration the script will deploy 2 environments for the training : 
+user00;dynatracelab00.francecentral.cloudapp.azure.com;windynatracelab00.francecentral.cloudapp.azure.com;*****  
+user01;dynatracelab01.francecentral.cloudapp.azure.com;windynatracelab01.francecentral.cloudapp.azure.com;*****  
 
-The VM are installed and stopped.  Start the VM when you are readey on your Azure portals :
+Linux,  direct access from a bowser (443)       : https://dynatracelab00.francecentral.cloudapp.azure.com
+EasytravelDocker,  installed and started  (80)  : http://dynatracelab00.francecentral.cloudapp.azure.com
+(optional) Windows,  access with mstsc (3389)   : windynatracelab00.francecentral.cloudapp.azure.com
+
+By default, the VM are installed and stopped.  Start the VM when you are readey on your Azure portals :
 https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines
 
-If you install Easytravel, by default, the mongodb is shutdown every 4 hours during 20 minutes.  
+By default, the crontab is configured to stop mongodb for 20 minutes at 15 H GMT:
 To show the cron, use this command :   sudo crontab -l  
 To edit the cron, this command :       sudo crontab -e  
 And to erase the cron, this one :      sudo crontab -r  
