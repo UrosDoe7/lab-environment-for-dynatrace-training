@@ -26,18 +26,18 @@ For each environment :
    - Option on the training environment
       * 1 VM Windows 10 = Standard_B2s (2 CPU; 4GB RAM) for these workshop : LoadGen, Android and Plugin Python 
 
-With default configuration the script will deploy 2 environments with all options enabled : 
+With default configuration the script will deploy 2 environments with all options enabled:  
 user00;dynatracelab00.francecentral.cloudapp.azure.com;windynatracelab00.francecentral.cloudapp.azure.com;*****  
 user01;dynatracelab01.francecentral.cloudapp.azure.com;windynatracelab01.francecentral.cloudapp.azure.com;*****  
 
-Linux,  direct access from a bowser (443)       : https://dynatracelab00.francecentral.cloudapp.azure.com
-EasytravelDocker,  installed and started  (80)  : http://dynatracelab00.francecentral.cloudapp.azure.com
-(optional) Windows,  access with mstsc (3389)   : windynatracelab00.francecentral.cloudapp.azure.com
+- Linux,  direct access from a bowser (443)       : https://dynatracelab00.francecentral.cloudapp.azure.com  
+- EasytravelDocker,  installed and started  (80)  : http://dynatracelab00.francecentral.cloudapp.azure.com  
+- (optional) Windows,  access with mstsc (3389)   : windynatracelab00.francecentral.cloudapp.azure.com  
 
 By default, the VM are installed and stopped.  Start the VM when you are readey on your Azure portals :
 https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines
 
-By default, the crontab is configured to stop mongodb for 20 minutes at 15 H GMT:
+By default, the crontab is configured to stop mongodb for 20 minutes at 15 H GMT:  
 To show the cron, use this command :   sudo crontab -l  
 To edit the cron, this command :       sudo crontab -e  
 And to erase the cron, this one :      sudo crontab -r  
