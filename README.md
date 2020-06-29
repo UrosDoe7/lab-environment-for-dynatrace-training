@@ -45,14 +45,15 @@ And to erase the cron, this one :      sudo crontab -r
 At the end of the workshop, to delete the labs resource groups, execute the script which has been automaticaly generated locally on your Azure Cli bash /home/azureuser/lab-environment-for-dynatrace-training
 
 
-**INSTALL the Kubernetes environment**  : Go to your Linux VM with the option "Kubernetes : script to deploy Azure Vote App on AKS "= Enabled (see above) 
-To deploy the Azure Vote App on your Azure subscription use this script with these 3 parameters :  
-     
+**INSTALL the Kubernetes environment**  : 
+To automatically deploy Azure Vote App on your Azure Subscription, use the training VM Ubuntu and run this script with these 3 parameters :  
+
     /home/dynatracelab_kubernetesaks/deploy-aks-cluster-with-azure-voting-app.sh $APPID $PASSWORD $TENANT
 
 Prerequisiste : 
-   - you need quota on eastus and eastus2  
-   - you need a Service Principal with $APPID $PASSWORD and $TENANT to connect to your Azure Subscription and create the AKS for Azure Vote App.    
+   - Deploy the training VM Ubuntu with the option "Kubernetes : script to deploy Azure Vote App on AKS "= Enabled (see below) 
+   - Azure quota on the regions eastus and eastus2  
+   - Azure Service Principal with $APPID $PASSWORD and $TENANT to connect to your Azure Subscription and create the AKS for Azure Vote App.    
 You can use the same Service Principal for all the Azure Vote App deployments.  
 Go to your Azure Cli Bash and use this az command to create your Service Principal:   
 
