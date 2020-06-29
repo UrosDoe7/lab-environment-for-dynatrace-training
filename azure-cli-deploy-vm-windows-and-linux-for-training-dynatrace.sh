@@ -65,8 +65,8 @@ do
         echo "3) config env : nbr total env                          ="$NBENV
         echo "4) add env : window VM to env                          ="$WINDOWS_ENV
         echo "5) add env : easytravel installed                      ="$EASYTRAVEL_ENV
-        echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT            ="$MONGO_STOP
-        if [[ $MONGO_STOP = [Y] ]]; then echo "7) stop Mongo : hour (GMT) of Mongo shutdown           ="$HOUR_MONGO_STOP; fi
+        if [[ $EASYTRAVEL_ENV = [Y] ]]; then echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT            ="$MONGO_STOP;fi
+        if [[ $MONGO_STOP = [Y] && $EASYTRAVEL_ENV = [Y] ]]; then echo "7) stop Mongo : hour (GMT) of Mongo shutdown           ="$HOUR_MONGO_STOP; fi
         echo "8) kubernetes : script to deploy Azure Vote App on AKS ="$KUBE_SCRIPT
         echo "9) start env : VM stopped after installation           ="$VM_STOPPED
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
@@ -99,7 +99,7 @@ do
                 "4") if [ "$WINDOWS_ENV" = "Y" ]; then WINDOWS_ENV="N"; echo "4) add env : window VM to env   =N" ; else WINDOWS_ENV="Y"; echo "4) add env : window VM to env   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
-                "5") if [ "$EASYTRAVEL_ENV" = "Y" ]; then EASYTRAVEL_ENV="N";echo "5) add env : easytravel installed   =N"; else EASYTRAVEL_ENV="Y";echo "5) add env : easytravel installed   =Y"; fi
+                "5") if [ "$EASYTRAVEL_ENV" = "Y" ]; then EASYTRAVEL_ENV="N"; echo "5) add env : easytravel installed   =N"; else EASYTRAVEL_ENV="Y";echo "5) add env : easytravel installed   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
                 "6") if [ "$MONGO_STOP" = "Y" ]; then MONGO_STOP="N";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT   =N"; else MONGO_STOP="Y";echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT   =Y"; fi
