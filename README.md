@@ -61,7 +61,7 @@ more information on Auze Vote App : https://docs.microsoft.com/en-us/azure/aks/t
 
 At the end of the workshop, delete the labs resource groups (VM, ACR et AKS) a script is automaticaly generate locally on the VM on /home/dynatracelab_kubernetesaks/
 
-##############################################################################################################################################################################
+######################################################################################  
 **DEPRECATED - EASYTRAVEL LAB** : 
 Prerequisite : Ubuntu VM installed
 Go to the VM with putty and deploy easytravel on each VM with these commands (installation = about 2 minutes):   
