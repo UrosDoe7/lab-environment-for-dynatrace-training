@@ -266,8 +266,8 @@ do
         if [[ $VM_STOPPED = [Y] ]]
         then
                 az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN";
-	#else
-                #az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "sudo init 6";		
+	else
+                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service shellinabox restart;/home/dynatracelab_easytraveld/start-stop-easytravel.sh start";		
         fi
         ###VM Linux is created and stopped - start the VM Linux from the azure portal
         ###Create VM Windows
