@@ -267,8 +267,13 @@ do
         then
                 az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN";
 	else
-                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service shellinabox restart;/home/dynatracelab_easytraveld/start-stop-easytravel.sh start";		
-        fi
+                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service shellinabox restart";		
+	        if [[ $EASYTRAVEL_ENV = [Y] ]]
+        	then
+			az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "/home/dynatracelab_easytraveld/start-stop-easytravel.sh start";		
+	       fi 
+
+	fi
         ###VM Linux is created and stopped - start the VM Linux from the azure portal
         ###Create VM Windows
         if [[ $WINDOWS_ENV = [Y] ]]
