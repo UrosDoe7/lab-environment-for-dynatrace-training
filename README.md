@@ -19,7 +19,7 @@ Open your azure cli like described here :
 And define your configuration :
 
 0. config env : training name =dynatracelab2020
-1. config env : password =password
+1. config env : password =Dynatrace@2020
 2. config env : value fisrt env =00
 3. config env : nbr total env =2
 4. add env : window VM to env =Y
