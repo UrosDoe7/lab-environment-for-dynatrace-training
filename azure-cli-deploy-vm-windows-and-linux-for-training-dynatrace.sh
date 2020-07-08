@@ -63,7 +63,7 @@ do
         echo "1) config env : password                               ="$PASSWORD
         echo "2) config env : value fisrt env                        ="$START_ENV2
         echo "3) config env : nbr total env                          ="$NBENV
-        echo "4) add env : window VM to env                          ="$WINDOWS_ENV
+        echo "4) add env : windows VM to env                         ="$WINDOWS_ENV
         echo "5) add env : easytravel installed                      ="$EASYTRAVEL_ENV
         if [[ $EASYTRAVEL_ENV = [Y] ]]; then echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT            ="$MONGO_STOP;fi
         if [[ $MONGO_STOP = [Y] && $EASYTRAVEL_ENV = [Y] ]]; then echo "7) stop Mongo : hour (GMT) of Mongo shutdown           ="$HOUR_MONGO_STOP; fi
