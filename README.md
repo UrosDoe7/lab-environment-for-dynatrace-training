@@ -22,7 +22,7 @@ And define your configuration :
 1. config env : password =Dynatrace@2020
 2. config env : value fisrt env =00
 3. config env : nbr total env =2
-4. add env : window VM to env =Y
+4. add env : windows VM to env =Y
 5. add env : easytravel installed =Y
 6. add env : cron to stop Mongo at 15 H GMT =Y
 7. stop Mongo : hour (GMT) of Mongo shutdown =15
