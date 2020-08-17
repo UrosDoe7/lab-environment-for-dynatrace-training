@@ -21,7 +21,7 @@ EASYTRAVEL_ENV="Y"
 MONGO_STOP="Y"
 KUBE_SCRIPT="Y"
 VM_STOPPED="Y"
-HOUR_MONGO_STOP="15"
+HOUR_MONGO_STOP="11"
 log=deploy-vm-windows-and-linux-for-training-dynatrace-$TIME.log
 n=0
 {
