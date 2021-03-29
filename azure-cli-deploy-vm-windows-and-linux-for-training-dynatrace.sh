@@ -28,7 +28,7 @@ n=0
 clear
 echo "PREREQUISITE : "
 echo "Each training environment can contain 2 Public IP with : "
-echo "  - 1 Linux Ubuntu with Doker     - Size Linux :  "$SIZE_LINUX
+echo "  - 1 Linux Ubuntu with Docker     - Size Linux :  "$SIZE_LINUX
 echo "  - 1 Windows 10                  - Size Windows: "$SIZE_WINDOWS
 echo ""
 echo "For 5 env, you need all the quota of "$LOCATION1
@@ -251,7 +251,7 @@ do
         ###Install EasyTravel
         if [[ $EASYTRAVEL_ENV = [Y] ]]
         then
-                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
+                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && sed -i 's/-www/-www-00/g' docker-compose.yml && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
                         if [[ $MONGO_STOP = [Y] ]]
                         then
                                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"20 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
