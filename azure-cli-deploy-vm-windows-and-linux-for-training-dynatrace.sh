@@ -20,7 +20,7 @@ WINDOWS_ENV="N"
 EASYTRAVEL_ENV="Y"
 MONGO_STOP="Y"
 KUBE_SCRIPT="Y"
-VM_STOPPED="Y"
+VM_STARTED="N"
 HOUR_MONGO_STOP="11"
 log=deploy-vm-windows-and-linux-for-training-dynatrace-$TIME.log
 n=0
@@ -68,7 +68,7 @@ do
         if [[ $EASYTRAVEL_ENV = [Y] ]]; then echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT            ="$MONGO_STOP;fi
         if [[ $MONGO_STOP = [Y] && $EASYTRAVEL_ENV = [Y] ]]; then echo "7) stop Mongo : hour (GMT) of Mongo shutdown           ="$HOUR_MONGO_STOP; fi
         echo "8) kubernetes : script to deploy Azure Vote App on AKS ="$KUBE_SCRIPT
-        echo "9) start env : VM stopped after installation           ="$VM_STOPPED
+        echo "9) start env : VM started after installation           ="$VM_STARTED
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
         echo ""
         sleep 0.1
@@ -111,7 +111,7 @@ do
                 "8") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =N"; else KUBE_SCRIPT="Y";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
-                "9") if [ "$VM_STOPPED" = "Y" ]; then VM_STOPPED="N";echo "9) start env : VM stopped after installation   =N"; else VM_STOPPED="Y";echo "9) start env : VM stopped after installation   =Y"; fi
+                "9") if [ "$VM_STARTED" = "Y" ]; then VM_STARTED="N";echo "9) start env : VM started after installation   =N"; else VM_STARTED="Y";echo "9) start env : VM started after installation   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
                 "A") APPLY="Y"
@@ -263,7 +263,7 @@ do
                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_kubernetesaks.git && sudo chmod 777 dynatracelab_kubernetesaks && cd dynatracelab_kubernetesaks && chmod +x deploy-aks-cluster-voting-app-with-service-principal.sh";
         fi
         ###stop VM Linux
-        if [[ $VM_STOPPED = [Y] ]]
+        if [[ $VM_STARTED = [N] ]]
         then
                 az vm deallocate -g "$RESOURCE_GROUP" -n "$DOMAIN";
 	else
@@ -288,7 +288,7 @@ do
                 ###Change the RDP default port to 443 (not in the script for the moment)
                 #az vm run-command invoke  --command-id SetRDPPort --name MyWinVM"$X""$i" -g $RESOURCE_GROUP --parameters "RDPPORT=443";
                 ###Stop VM Windows
-                if [[ $VM_STOPPED = [Y] ]]
+                if [[ $VM_STARTED = [N] ]]
                 then
                         az vm deallocate -g "$RESOURCE_GROUP" -n MyWinVM"$X""$i";
                 fi
