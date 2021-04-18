@@ -58,6 +58,9 @@ By default, the crontab is configured to stop mongodb for 20 minutes at 15 H GMT
 At the end of the workshop, to delete the labs resource groups, execute the script which has been automaticaly generated locally on your Azure Cli bash /home/azureuser/lab-environment-for-dynatrace-training
 
 
+**To automatically deploy easytravel configuration on your tenant**
+Go to this lab with monaco for easytravel : https://github.com/JLLormeau/monaco-lab
+
 **INSTALL the Kubernetes environment**  : 
 To automatically deploy Azure Vote App on your Azure Subscription, use the training VM Ubuntu and run this script with these 3 parameters :  
 
