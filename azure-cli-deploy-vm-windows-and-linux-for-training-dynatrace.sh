@@ -30,7 +30,7 @@ clear
 echo "PREREQUISITE : "
 echo "Each training environment can contain 2 Public IP with : "
 echo "  - 1 Linux Ubuntu with Docker     - Size Linux :  "$SIZE_LINUX
-echo "  - 1 Windows 10                  - Size Windows: "$SIZE_WINDOWS
+echo "  - (optional) 1 Windows 10         - Size Windows: "$SIZE_WINDOWS
 echo ""
 echo "For 5 env, you need all the quota of "$LOCATION1
 echo "For 10 env, you need all the quota of "$LOCATION1" and "$LOCATION2
