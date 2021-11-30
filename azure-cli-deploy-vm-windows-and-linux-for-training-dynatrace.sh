@@ -4,7 +4,8 @@
 TIME=`date +%Y%m%d%H%M%S`
 DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
 PASSWORD='Dynatrace@2021'
-SIZE_LINUX='Standard_D1_v2' #1 CPU 3.5 GB
+#SIZE_LINUX='Standard_D1_v2' #1 CPU 3.5 GB
+SIZE_LINUX='Standard_B2s' #2 CPU 4 GB
 SIZE_WINDOWS='Standard_B2s'   #2 CPU 4 GB
 LOCATION1='francecentral'
 LOCATION2='westeurope'
