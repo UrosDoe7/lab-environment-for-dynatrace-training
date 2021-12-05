@@ -33,6 +33,6 @@ You will import :
 3) deploy the configuration 
 
        cd;cd lab-environment-for-dynatrace-training
-       ./monaco deploy -e=environments.yaml template-monaco-for-easytrave/Deploy
-       ./monaco deploy -e=environments.yaml template-monaco-for-easytrave/Slo
+       ./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
+       ./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
 	  
