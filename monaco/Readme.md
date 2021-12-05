@@ -1,4 +1,4 @@
-# full-deploy
+# Monaco
 
 You will import :  
 - application-web 
@@ -32,6 +32,7 @@ You will import :
 
 3) deploy the configuration 
 
-       cd;cd dynatrace-lab/lab-onboarding;
-       ./monaco deploy -e=environments.yaml Deploy
-	   ./monaco deploy -e=environments.yaml Slo
+       cd;
+       ./monaco deploy -e=environments.yaml lab-environment-for-dynatrace-training/monaco/Deploy
+       ./monaco deploy -e=environments.yaml lab-environment-for-dynatrace-training/monaco/Slo
+	  
