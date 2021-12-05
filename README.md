@@ -6,13 +6,14 @@ Open your azure cli like described here :
 ![cli-azure](cli-azure.png)
 
 
-
 **TRAINING DYNATRACE**  
 **DEPLOY training environment for Dynatrace Lab** : Go to your Azure Cli and apply these commands
    
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
     cd lab-environment-for-dynatrace-training;chmod +x ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
+    wget https://github.com/dynatrace-oss/dynatrace-monitoring-as-code/releases/latest/download/monaco-linux-amd64;
+    mv monaco-linux-amd64 monaco;chmod +x monaco
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
     ls
       
@@ -26,8 +27,7 @@ And define your configuration :
 5. add env : easytravel installed =Y
 6. add env : cron to stop Mongo at 15 H GMT =Y
 7. stop Mongo : hour (GMT) of Mongo shutdown =15
-8. kubernetes : script to deploy Azure Vote App on AKS =Y
-9. start env : VM stared after installation =N
+8 start env : VM stared after installation =N
 
 Max training environment = 20  
 For each environment : 
@@ -60,22 +60,5 @@ At the end of the workshop, to delete the labs resource groups, execute the scri
 
 **To automatically deploy easytravel configuration on your tenant** :   
 Go to this lab with monaco for easytravel : https://github.com/JLLormeau/monaco-lab
-
-**INSTALL the Kubernetes environment**  : 
-To automatically deploy Azure Vote App on your Azure Subscription, use the training VM Ubuntu and run this script with these 3 parameters :  
-
-    /home/dynatracelab_kubernetesaks/deploy-aks-cluster-with-azure-voting-app.sh $APPID $PASSWORD $TENANT
-
-Prerequisiste : 
-   - Deploy the training VM Ubuntu with the option "Kubernetes : script to deploy Azure Vote App on AKS "= Enabled (see below) 
-   - Azure quota on the regions eastus and eastus2  
-   - Azure Service Principal with $APPID $PASSWORD and $TENANT to connect to your Azure Subscription and create the AKS for Azure Vote App.    
-You can use the same Service Principal for all the Azure Vote App deployments.  
-Go to your Azure Cli Bash and use this az command to create your Service Principal:   
-
-    az ad sp create-for-rbac --name MyServicePrincipalNameforLabKube
-
-more detail about Azure Service Principal : https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli  
-more information on Auze Vote App : https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app  
 
 At the end of the workshop, to delete the labs resource groups on each AKS, execute the script which has been automaticaly generated locally on each VM on /home/dynatracelab_kubernetesaks/  
