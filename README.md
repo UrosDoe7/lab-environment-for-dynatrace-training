@@ -1,5 +1,5 @@
 # Lab environment for dynatrace training
-For the beta version which deploy full environment easytravel with OneAgent installation + configuration with Monaco go [here](https://github.com/JLLormeau/lab_beta)
+For the **beta version** which deploy full environment easytravel with OneAgent installation + configuration with Monaco go **[here](https://github.com/JLLormeau/lab_beta)**
 
 For the stable version stay here : 
 
