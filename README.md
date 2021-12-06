@@ -1,5 +1,5 @@
 # Lab environment for dynatrace training
-For the beta version with auto installation OneAgent + Monaco for configuration go here : https://github.com/JLLormeau/lab_beta
+For the beta version which can deply full environmnt Easytravel with OneAgent installatiion + Monaco for configuration go here : https://github.com/JLLormeau/lab_beta
 
 This script permits to deploy quickly several Ubuntu VM with Docker Engine on an Azure subscription. It's usefull for a workshop and Dynatrace Training. Several options are available to deploy and start automatically easytravel or to do the workshop on Kubernetes with Azure Vote App. 
 
