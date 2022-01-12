@@ -1,13 +1,13 @@
 # Lab environment for dynatrace training
-This script permits to deploy quickly several Ubuntu VM with Docker Engine on an Azure subscription. It's usefull for a workshop and Dynatrace Training. Several options are available to deploy and start automatically easytravel or to do the workshop on Kubernetes with Azure Vote App. 
+This script permits to deploy quickly several Ubuntu VM with Docker Engine on an Azure subscription. It's usefull for a workshop and Dynatrace Training. Several options are available to deploy and start automatically easytravel with OneAgent installation and configuration deploy with Monaco. 
 
 Open your azure subscription, https://portal.azure.com/ 
 Open your azure cli like described here :  
 ![cli-azure](cli-azure.png)
 
-
-**TRAINING DYNATRACE**  
-**DEPLOY training environment for Dynatrace Lab** : Go to your Azure Cli and apply these commands
+  
+# Deploy training environment : 
+Go to your Azure Cli and apply these commands
    
     cd;if [ -d "./lab-environment-for-dynatrace-training" ];then rm -rf ./lab-environment-for-dynatrace-training;fi
     git clone https://github.com/JLLormeau/lab-environment-for-dynatrace-training.git
@@ -58,7 +58,7 @@ easytravel classic  => http://mydemoenvironment01.francecentral.cloudapp.azure.c
 easytravel angular  => http://mydemoenvironment01.francecentral.cloudapp.azure.com:9079/  (no VPN !! - only with a direct access)  
 
 
-## Clean the environment 
+## Last step - Clean the environment 
 At the end, use the script delete_ressourcegroup to clean your Azure environement. 
 ![image](https://user-images.githubusercontent.com/40337213/149200383-cca7dd1a-d18e-43d5-b64b-9559d6f07b04.png)
 
