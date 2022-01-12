@@ -45,9 +45,8 @@ PARAMETER :
 3) List of emails                               =user1@user1.com user2@user2.com
 A) apply and deploy the VM - (Ctrl/c to quit)
 
-Selet A for starting : 
-![image](https://user-images.githubusercontent.com/40337213/149199948-72af6ca3-02c9-44c0-9a3e-072d158be674.png)
-
+Selet A for starting the installation (env 5 minutes / VM): 
+![image](https://user-images.githubusercontent.com/40337213/149200827-f44df686-ce63-427f-bfa6-aa7e227c1e66.png)
 
 
 # Clean the environment 
