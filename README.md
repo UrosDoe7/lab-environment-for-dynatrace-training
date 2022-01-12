@@ -16,22 +16,32 @@ Open your azure cli like described here :
     mv monaco-linux-amd64 monaco;chmod +x monaco
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
       
+Max 20 environments.
 
-0) config env : training name                          =dynatracelab<customer>  # Must be unique for the training and without special character  
-1) config env : password                               =xxxxxxxx  
+0) config env : training name                          =dynatracelab<customer>  # Must be unique for the training and without special character 
+1) config env : password                               =xxxxxxxx 
 2) config env : value fisrt env                        =00 
 3) config env : nbr total env                          =2
 4) add env : windows VM to env                         =N  
 5) add env : easytravel installed                      =Y  
 6) add env : cron to stop Mongo at 11 H GMT            =Y  #optionnal, generate a problem at 11 GMT  
 7) stop Mongo : hour (GMT) of Mongo shutdown           =11 
-8) full configuration : OneAgent + run Monaco          =N  #to deploy the full the OneAgent and the full monaco configuration. 
+8) full configuration : OneAgent + run Monaco          =Y  #to deploy the full the OneAgent and the full monaco configuration. 
    
 9) start env : VM started after installation           =N
 A) apply and deploy the VM - (Ctrl/c to quit)
 
 Input Selection (0, 1, 2, ..., 8, 9  or A):
 
-Max 20 environments.
+In case you select 8)full configuration, you will have this menu: 
 
+0) Tenant                               =yyyy.jzq02463.live.dynatrace.com
+1) API Token                            =dt0c01.abcdefghij.abcdefghijklmn
+2) PaaS Token                           =dt0c01.abcdefghij.abcdefghijklmn
+3) List of emails                               =user1@user1.com user2@user2.com
+A) apply and deploy the VM - (Ctrl/c to quit)
+   
+
+
+   
 
