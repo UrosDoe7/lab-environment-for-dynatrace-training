@@ -48,7 +48,7 @@ A) apply and deploy the VM - (Ctrl/c to quit)
 Selet A for starting the installation (env 5 minutes / VM): 
 ![image](https://user-images.githubusercontent.com/40337213/149200827-f44df686-ce63-427f-bfa6-aa7e227c1e66.png)
 
-## Access - example for the user01, trining name = mydemoenvironment  : 
+## Access - example for the user01 with the training name = mydemoenvironment  : 
 
 Shell-in-the-bo xputty) => https://mydemoenvironment01.francecentral.cloudapp.azure.com/  
 easytravel classic  => http://mydemoenvironment01.francecentral.cloudapp.azure.com/  
