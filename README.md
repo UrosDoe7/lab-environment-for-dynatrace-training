@@ -31,6 +31,7 @@ Max 20 environments
 9) start env : VM started after installation           =N
 A) apply and deploy the VM - (Ctrl/c to quit)
 
+
 Input Selection (0, 1, 2, ..., 8, 9  or A):
 
 In case you select 8)full configuration, you will have this menu: 
