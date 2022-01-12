@@ -37,19 +37,19 @@ user01;mydemoenvironment01.francecentral.cloudapp.azure.com
 user02;mydemoenvironment02.francecentral.cloudapp.azure.com
 user03;mydemoenvironment03.francecentral.cloudapp.azure.com
 
-## Step 2 in case of if 8) full configuration = Y
+## Step 2 - if option 8_full configuration with OneAgent installed + Monaco = Y
 PARAMETER :
 0) Tenant                               =yyyy.jzq02463.live.dynatrace.com
 1) API Token                            =dt0c01.abcdefghij.abcdefghijklmn
 2) PaaS Token                           =dt0c01.abcdefghij.abcdefghijklmn
-3) List of emails                               =user1@user1.com user2@user2.com
+3) List of emails                       =user1@user1.com user2@user2.com (optionel)
 A) apply and deploy the VM - (Ctrl/c to quit)
 
 Selet A for starting the installation (env 5 minutes / VM): 
 ![image](https://user-images.githubusercontent.com/40337213/149200827-f44df686-ce63-427f-bfa6-aa7e227c1e66.png)
 
 
-# Clean the environment 
+## Clean the environment 
 At the end, use the script delete_ressourcegroup to clean your Azure environement. 
 ![image](https://user-images.githubusercontent.com/40337213/149200383-cca7dd1a-d18e-43d5-b64b-9559d6f07b04.png)
 
