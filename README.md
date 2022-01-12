@@ -18,31 +18,42 @@ Open your azure cli like described here :
       
 Max 20 environments
 
-0) config env : training name =dynatracelab<customer>  # Must be unique for the training and without special character 
-1) config env : password                               =xxxxxxxx 
-2) config env : value fisrt env                        =00 
-3) config env : nbr total env                          =2
-4) add env : windows VM to env                         =N  
-5) add env : easytravel installed                      =Y  
-6) add env : cron to stop Mongo at 11 H GMT            =Y  #optionnal, generate a problem at 11 GMT  
-7) stop Mongo : hour (GMT) of Mongo shutdown           =11 
-8) full configuration : OneAgent + run Monaco          =Y  #to deploy the full the OneAgent and the full monaco configuration. 
-   
+## Step 1
+CONFIGURATION :
+0) config env : training name                          =mydemoenvironment
+1) config env : password                               =xxxxxx
+2) config env : value fisrt env                        =01
+3) config env : nbr total env                          =3
+4) add env : windows VM to env                         =N
+5) add env : easytravel installed                      =Y
+6) add env : cron to stop Mongo at 11 H GMT            =Y
+7) stop Mongo : hour (GMT) of Mongo shutdown           =11
+8) full configuration : OneAgent + run Monaco          =Y
 9) start env : VM started after installation           =N
-A) apply and deploy the VM - (Ctrl/c to quit)
+A) apply and deploy the VM - (Ctrl/c to quit) =A
 
+## Result : 
+ENVIRONMENT : Linux
+user01;mydemoenvironment01.francecentral.cloudapp.azure.com
+user02;mydemoenvironment02.francecentral.cloudapp.azure.com
+user03;mydemoenvironment03.francecentral.cloudapp.azure.com
 
-Input Selection (0, 1, 2, ..., 8, 9  or A):
-
-In case you select 8)full configuration, you will have this menu: 
-
+## Step 2 in case of if 8) full configuration = Y
+PARAMETER :
 0) Tenant                               =yyyy.jzq02463.live.dynatrace.com
 1) API Token                            =dt0c01.abcdefghij.abcdefghijklmn
 2) PaaS Token                           =dt0c01.abcdefghij.abcdefghijklmn
 3) List of emails                               =user1@user1.com user2@user2.com
 A) apply and deploy the VM - (Ctrl/c to quit)
-   
 
+Selet A for starting : 
+![image](https://user-images.githubusercontent.com/40337213/149199948-72af6ca3-02c9-44c0-9a3e-072d158be674.png)
+
+
+
+# Clean the environment 
+At the end, use the script delete_ressourcegroup to clean your Azure environement. 
+![image](https://user-images.githubusercontent.com/40337213/149200383-cca7dd1a-d18e-43d5-b64b-9559d6f07b04.png)
 
    
 
