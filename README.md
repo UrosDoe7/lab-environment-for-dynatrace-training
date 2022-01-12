@@ -18,8 +18,8 @@ Open your azure cli like described here :
       
 
 0) config env : training name                          =dynatracelab<customer>  # Must be unique for the training and without special character  
-1) config env : password                               =xxxxxxxx
-2) config env : value fisrt env                        =00                      
+1) config env : password                               =xxxxxxxx  
+2) config env : value fisrt env                        =00 
 3) config env : nbr total env                          =2
 4) add env : windows VM to env                         =N  
 5) add env : easytravel installed                      =Y  
