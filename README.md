@@ -1,8 +1,4 @@
 # Lab environment for dynatrace training
-For the **beta version** which deploy full environment easytravel with OneAgent installation + configuration with Monaco go **[here](https://github.com/JLLormeau/lab_beta)**
-
-For the stable version stay here : 
-
 This script permits to deploy quickly several Ubuntu VM with Docker Engine on an Azure subscription. It's usefull for a workshop and Dynatrace Training. Several options are available to deploy and start automatically easytravel or to do the workshop on Kubernetes with Azure Vote App. 
 
 Open your azure subscription, https://portal.azure.com/ 
@@ -19,7 +15,6 @@ Open your azure cli like described here :
     wget https://github.com/dynatrace-oss/dynatrace-monitoring-as-code/releases/latest/download/monaco-linux-amd64;
     mv monaco-linux-amd64 monaco;chmod +x monaco
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
-    ls
       
 And define your configuration :
 
@@ -31,7 +26,10 @@ And define your configuration :
 5. add env : easytravel installed =Y
 6. add env : cron to stop Mongo at 15 H GMT =Y
 7. stop Mongo : hour (GMT) of Mongo shutdown =15
-8 start env : VM stared after installation =N
+8. kubernetes : script to deploy Azure Vote App on AKS =Y
+9. start env : VM stared after installation =N
+
+Max 20 environments.
 
 Max training environment = 20  
 For each environment : 
