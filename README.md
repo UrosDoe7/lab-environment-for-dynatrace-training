@@ -16,9 +16,9 @@ Open your azure cli like described here :
     mv monaco-linux-amd64 monaco;chmod +x monaco
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
       
-Max 20 environments.
+Max 20 environments
 
-0) config env : training name                          =dynatracelab<customer>  # Must be unique for the training and without special character 
+0) config env : training name =dynatracelab<customer>  # Must be unique for the training and without special character 
 1) config env : password                               =xxxxxxxx 
 2) config env : value fisrt env                        =00 
 3) config env : nbr total env                          =2
