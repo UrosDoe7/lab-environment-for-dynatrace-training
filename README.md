@@ -29,8 +29,9 @@ CONFIGURATION :
 6) add env : cron to stop Mongo at 11 H GMT            =Y
 7) stop Mongo : hour (GMT) of Mongo shutdown           =11
 8) full configuration : OneAgent + run Monaco          =Y
-9) start env : VM started after installation           =N
-A) apply and deploy the VM - (Ctrl/c to quit) =A
+9) start env : VM started after installation           =N  
+
+A) apply and deploy the VM - (Ctrl/c to quit) A
 
 ## Get the list of environment you will create : 
 ENVIRONMENT : Linux
