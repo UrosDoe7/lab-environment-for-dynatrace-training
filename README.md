@@ -16,51 +16,22 @@ Open your azure cli like described here :
     mv monaco-linux-amd64 monaco;chmod +x monaco
     ./azure-cli-deploy-vm-windows-and-linux-for-training-dynatrace.sh
       
-And define your configuration :
 
-0. config env : training name =dynatracelab2020
-1. config env : password =Dynatrace@2021
-2. config env : value fisrt env =00
-3. config env : nbr total env =2
-4. add env : windows VM to env =Y
-5. add env : easytravel installed =Y
-6. add env : cron to stop Mongo at 15 H GMT =Y
-7. stop Mongo : hour (GMT) of Mongo shutdown =15
-8. kubernetes : script to deploy Azure Vote App on AKS =Y
-9. start env : VM stared after installation =N
+0) config env : training name                          =dynatracelab<customer>  # Must be unique for the training and without special character  
+1) config env : password                               =xxxxxxxx
+2) config env : value fisrt env                        =00                      
+3) config env : nbr total env                          =2
+4) add env : windows VM to env                         =N  
+5) add env : easytravel installed                      =Y  
+6) add env : cron to stop Mongo at 11 H GMT            =Y  #optionnal, generate a problem at 11 GMT  
+7) stop Mongo : hour (GMT) of Mongo shutdown           =11 
+8) full configuration : OneAgent + run Monaco          =N  #to deploy the full the OneAgent and the full monaco configuration. 
+   
+9) start env : VM started after installation           =N
+A) apply and deploy the VM - (Ctrl/c to quit)
+
+Input Selection (0, 1, 2, ..., 8, 9  or A):
 
 Max 20 environments.
 
-Max training environment = 20  
-For each environment : 
-   - 1 VM Linux UBUNTU = Standard_D1_v2 (1 CPU; 3.5 GB RAM)  
-   - Option on the Linux VM 
-      * easytravel docker insalled and started  
-      * crontab to stop mongodb 20 minutes every day and generated problems  
-      * kubernetes : script to deploy Azure Vote App on AKS for the workshop Kubernetes (need a Service Principal for the authentication)   
-   - Option on the training environment
-      * 1 VM Windows 10 = Standard_B2s (2 CPU; 4GB RAM) for these workshop : LoadGen, Android and Plugin Python 
 
-With default configuration the script will deploy 2 environments with all options enabled:  
-user00;dynatracelab00.francecentral.cloudapp.azure.com;windynatracelab00.francecentral.cloudapp.azure.com;*****  
-user01;dynatracelab01.francecentral.cloudapp.azure.com;windynatracelab01.francecentral.cloudapp.azure.com;*****  
-
-- Linux,  direct access from a bowser (443)       : https://dynatracelab00.francecentral.cloudapp.azure.com  
-- (optional) EasytravelDocker,  installed and started  (80)  : http://dynatracelab00.francecentral.cloudapp.azure.com  
-- (optional) Windows,  access with mstsc (3389)   : windynatracelab00.francecentral.cloudapp.azure.com  
-
-By default, the VM are installed and stopped.  Start the VM when you are readey on your Azure portals :
-https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Compute%2FVirtualMachines
-
-By default, the crontab is configured to stop mongodb for 20 minutes at 15 H GMT:  
- - To show the cron, use this command :   sudo crontab -l  
- - To edit the cron, this command :       sudo crontab -e  
- - And to erase the cron, this one :      sudo crontab -r  
-
-At the end of the workshop, to delete the labs resource groups, execute the script which has been automaticaly generated locally on your Azure Cli bash /home/azureuser/lab-environment-for-dynatrace-training
-
-
-**To automatically deploy easytravel configuration on your tenant** :   
-Go to this lab with monaco for easytravel : https://github.com/JLLormeau/monaco-lab
-
-At the end of the workshop, to delete the labs resource groups on each AKS, execute the script which has been automaticaly generated locally on each VM on /home/dynatracelab_kubernetesaks/  
