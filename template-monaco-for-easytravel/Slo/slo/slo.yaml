@@ -1,8 +1,8 @@
 config:
 - Application-Apdexcategory: Application-Apdexcategory.json
 - ServiceAvailability-JourneyService: ServiceAvailability-JourneyService.json
-- ServicePerformance-JourneyService: ServicePerformance-JourneyService.json
-- Synthetic-ClickPath: Synthetic-ClickPath.json
+#- ServicePerformance-JourneyService: ServicePerformance-JourneyService.json
+#- Synthetic-ClickPath: Synthetic-ClickPath.json
 Application-Apdexcategory:
 - name: "{{.Env.Appname}} - Application - Apdex category"
 - appname: "{{.Env.Appname}}"

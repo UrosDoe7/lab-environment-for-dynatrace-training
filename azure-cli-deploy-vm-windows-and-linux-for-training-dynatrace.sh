@@ -1,6 +1,10 @@
 #!/bin/bash
 #design by JLLormeau Dynatrace
+# version beta
 
+. env.sh
+export NEW_CLI=1
+export EnableSynthetic=true
 TIME=`date +%Y%m%d%H%M%S`
 DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
 PASSWORD='Dynatrace@2021'
@@ -20,6 +24,7 @@ NBENV=2
 END_ENV=$(($END_ENV-$START_ENV))
 WINDOWS_ENV="N"
 EASYTRAVEL_ENV="Y"
+FULL_INSTALLATION="N"
 MONGO_STOP="Y"
 KUBE_SCRIPT="N"
 VM_STARTED="N"
@@ -69,8 +74,9 @@ do
         echo "5) add env : easytravel installed                      ="$EASYTRAVEL_ENV
         if [[ $EASYTRAVEL_ENV = [Y] ]]; then echo "6) add env : cron to stop Mongo at "$HOUR_MONGO_STOP" H GMT            ="$MONGO_STOP;fi
         if [[ $MONGO_STOP = [Y] && $EASYTRAVEL_ENV = [Y] ]]; then echo "7) stop Mongo : hour (GMT) of Mongo shutdown           ="$HOUR_MONGO_STOP; fi
-        echo "8) kubernetes : script to deploy Azure Vote App on AKS ="$KUBE_SCRIPT
+        if [[ $EASYTRAVEL_ENV = [Y] ]]; then echo "8) full configuration : OneAgent + run Monaco          ="$FULL_INSTALLATION;fi
         echo "9) start env : VM started after installation           ="$VM_STARTED
+	#echo "10) kubernetes : script to deploy Azure Vote App on AKS ="$KUBE_SCRIPT
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
         echo ""
         sleep 0.1
@@ -110,10 +116,13 @@ do
                 "7") value=-1; until [ $value -ge 0 -a  $value -lt 24 ]; do read  -p "7) stop Mongo : hour (GMT) of Mongo shutdown (restart auto 20 minutes after)   =" value; done
 					HOUR_MONGO_STOP=$value
                 ;;
-                "8") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =N"; else KUBE_SCRIPT="Y";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =Y"; fi
+                "8") if [ "$FULL_INSTALLATION" = "Y" ]; then FULL_INSTALLATION="N";echo "8) full configuration : OneAgent + run Monaco   =N"; else FULL_INSTALLATION="Y";echo "8) full configuration : OneAgent + run Monaco   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
                 "9") if [ "$VM_STARTED" = "Y" ]; then VM_STARTED="N";echo "9) start env : VM started after installation   =N"; else VM_STARTED="Y";echo "9) start env : VM started after installation   =Y"; fi
+					sleep 0.1;read  -p "Press any key to continue " pressanycase
+				;;
+                "10") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =N"; else KUBE_SCRIPT="Y";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
                 "A") APPLY="Y"
@@ -196,6 +205,67 @@ echo ""
 sleep 0.1
 read  -p "Press any key to continue " pressanycase
 
+if [[ $FULL_INSTALLATION = [Y] ]]
+then
+	APPLY="N"
+	while [ "$APPLY" !=  "Y" ]
+	do
+		echo
+		echo "PARAMETER : "
+		echo ""
+		echo "0) Tenant                         	="$MyTenant
+		echo "1) API Token                            ="$MyToken
+		echo "2) PaaS Token	                        ="$PaasToken
+		echo "3) List of emails		                ="$list_user
+		echo "A) apply and deploy the VM - (Ctrl/c to quit)"
+		echo ""
+		sleep 0.1
+		read  -p "Input Selection (0, 1, 2, 3  or A): " reponse
+
+		case "$reponse" in
+			"0") verif="ko"
+			      until [ $verif = "ok" ]; do read  -p "0) Tenant : <YYY>.live.dynatrace.com  or <domaine-name>/e/<tenant> :    " MyTenant2
+			       if [[ $MyTenant2 =~ ^[a-zA-Z]++[0-9]++\.live\.dynatrace\.com$ ]] || [[ $MyTenant2 =~ ^[a-zA-Z0-9\.-_]++\/e\/[a-zA-Z0-9-]++$ ]]  ;then
+				verif="ok";sed -i s/MyTenant="${MyTenant////\\/}"/MyTenant="${MyTenant2////\\/}"/g env.sh;. env.sh
+				else verif="ko"; echo "bad saas tenant address" ; value="ko";read pressanycase;
+			     fi;done
+			;;
+			"1") verif="ko"
+			      until [ $verif = "ok" ]; do read  -p "1) API Token : dt0c01.abcdefghij.abcdefghijklmn :    " MyToken2
+			       if [[ $MyToken2 =~ ^dt[a-z0-9]++\.[a-zA-Z0-9]++\.[a-zA-Z0-9]++ ]] ;then
+				verif="ok";sed -i s/MyToken=$MyToken/MyToken=$MyToken2/g env.sh;. env.sh
+				else verif="ko"; echo "bad API Token" ; value="ko";read pressanycase;
+			     fi;done
+			;;
+			"2") verif="ko"
+			      until [ $verif = "ok" ]; do read  -p "2) PaaS Token : dt0c01.abcdefghij.abcdefghijklmn :    " PaasToken2
+			       if [[ $PaasToken2 =~ ^dt[a-z0-9]++\.[a-zA-Z0-9]++\.[a-zA-Z0-9]++ ]] ;then
+				verif="ok";sed -i s/PaasToken=$PaasToken/PaasToken=$PaasToken2/g env.sh;. env.sh
+				else verif="ko"; echo "bad PaaS Token" ; value="ko";read pressanycase;
+			     fi;done
+			;;
+                        "3") verif="ko"; testemail="ok";
+                              until [ $verif = "ok" ]; do read  -p "3) list of email : user1@ser.com user2@user2.com :    " list_user2
+                               for i in ${list_user2// / } ; do
+                                        if [[ ! "$i" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$ ]]
+                                        then
+                                                echo "Email address $i is invalid."
+                                                testemail="ko"
+                                                break
+                                        fi
+                                if testemail="ok";then list_user=$list_user2;verif="ok"
+                                else verif="ko";echo "bad email format";read pressanycase;
+                             fi;done;done
+                        ;;
+			"A") APPLY="Y"
+					DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
+		esac
+	done
+else
+        echo 'ENVIRONMENT : Linux'
+        echo '#User;Env Linux;Password' >>  delete_ressourcegroup_$DOMAIN_NAME_$TIME.sh
+fi
+
 echo ""
 echo "##################################################################################################################################"
 echo "#### Once the VMs created, you have to start them from your Azure subscription :                                              ####"
@@ -258,6 +328,28 @@ do
                         then
                                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"20 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
                         fi
+			if [[ $FULL_INSTALLATION = [Y] ]]
+                        then
+				export MyTenant=$MyTenant
+				export PaasToken=$PaasToken
+                                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && wget  -O Dynatrace-OneAgent-Linux-latest.sh \"https://"$MyTenant"/api/v1/deployment/installer/agent/unix/default/latest?arch=x86&flavor=default\" --header=\"Authorization: Api-Token "$PaasToken"\" && sudo /bin/sh Dynatrace-OneAgent-Linux-latest.sh --set-host-group=easytravel"$X$i" --set-host-property=env=sandbox";
+                        fi				
+			if [[ $FULL_INSTALLATION = [Y] ]]
+                        then
+				export MyTenant=$MyTenant
+				export MyToken=$MyToken
+				export Appname="easytravel"$X$i
+				export Hostname=$RESOURCE_GROUP"."$LOCATION".cloudapp.azure.com"
+			        number_of_email=`echo $list_user | tr -cd '@' | wc -c`
+        			if [  $number_of_email -ge $(( $i + 1 )) ]
+        			then
+                			export Email=`echo $list_user | cut -d" " -f$(( $i + 1 ))`
+        			else
+                			export Email="user"$i"@easytravel.com"
+        			fi
+				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
+				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
+                        fi				
         fi
         ###Add script to deploi kubernetes AKS with your Azure Service Principal
         if [[ $KUBE_SCRIPT = [Y] ]]
