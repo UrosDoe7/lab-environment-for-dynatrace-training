@@ -39,7 +39,8 @@ user02;mydemoenvironment02.francecentral.cloudapp.azure.com
 user03;mydemoenvironment03.francecentral.cloudapp.azure.com
 
 ## Step 2 - if option 8_full configuration with OneAgent installed + Monaco = Y
-PARAMETER :
+PARAMETER :  
+
 0) Tenant                               =yyyy.jzq02463.live.dynatrace.com  
 1) API Token                            =dt0c01.abcdefghij.abcdefghijklmn  
 2) PaaS Token                           =dt0c01.abcdefghij.abcdefghijklmn  
