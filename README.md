@@ -58,7 +58,7 @@ easytravel classic  => http://mydemoenvironment01.francecentral.cloudapp.azure.c
 easytravel angular  => http://mydemoenvironment01.francecentral.cloudapp.azure.com:9079/  (no VPN !! - only with a direct access)  
 
 
-## Last step - Delete the ResourceGroup on your Azure subscription
+## Last step - Delete the ResourceGroups on your Azure subscription
 At the end, use the script delete_resourcegroup to clean your Azure environement. 
 ![image](https://user-images.githubusercontent.com/40337213/149200383-cca7dd1a-d18e-43d5-b64b-9559d6f07b04.png)
 
