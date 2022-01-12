@@ -18,7 +18,7 @@ Open your azure cli like described here :
       
 
 ## Step 1 - Max 20 environments
-CONFIGURATION :
+CONFIGURATION :  
 0) config env : training name                          =mydemoenvironment
 1) config env : password                               =xxxxxx
 2) config env : value fisrt env                        =01
