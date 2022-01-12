@@ -31,7 +31,7 @@ CONFIGURATION :
 9) start env : VM started after installation           =N
 A) apply and deploy the VM - (Ctrl/c to quit) =A
 
-## Result : 
+## Get the list of environment you will create : 
 ENVIRONMENT : Linux
 user01;mydemoenvironment01.francecentral.cloudapp.azure.com
 user02;mydemoenvironment02.francecentral.cloudapp.azure.com
