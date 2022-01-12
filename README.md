@@ -50,7 +50,7 @@ Selet A for starting the installation (env 5 minutes / VM):
 
 ## Access - example for the user01 with the training name = mydemoenvironment  : 
 
-Shell-in-the-bo xputty) => https://mydemoenvironment01.francecentral.cloudapp.azure.com/  
+Shell-in-the-box (putty) => https://mydemoenvironment01.francecentral.cloudapp.azure.com/  
 easytravel classic  => http://mydemoenvironment01.francecentral.cloudapp.azure.com/  
 easytravel angular  => http://mydemoenvironment01.francecentral.cloudapp.azure.com:9079/  (no VPN !! - only with a direct access)  
 
