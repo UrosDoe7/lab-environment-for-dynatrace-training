@@ -38,6 +38,7 @@ API_TAG='/api/config/v1/autoTags'
 API_SLO='/api/v2/slo'
 API_SYNT='/api/v1/synthetic/monitors'
 API_TOKEN='/api/v1/tokens'
+API_REQUESTNAMING='/api/config/v1/service/requestNaming'
 
 
 
@@ -288,8 +289,23 @@ def token_clean(TENANT,TOKEN):
         apilist = datastore['values']
         for entity in apilist:
             if not token.startswith(entity['id']) and not paastoken.startswith(entity['id']) and not entity['name'].startswith('donotdelete'):
-                print(entity['id'], entity['name'])
+                #print(entity['id'], entity['name'])
                 uri = TENANT + API_TOKEN + '/' + entity['id'] + '?Api-Token=' + TOKEN
+                print('delete ' +entity['name']+'  '+entity['id'])
+                delDynatraceAPI(uri, TOKEN)
+    return ()
+
+# request naming to clean
+def requestnaming_clean(TENANT,TOKEN):
+    print('clean request naming')
+    uri=TENANT + API_REQUESTNAMING + '?Api-Token=' +TOKEN
+    print(uri)
+    datastore = queryDynatraceAPI(uri, TOKEN)
+    #print(datastore)
+    if datastore != []:
+        apilist = datastore['values']
+        for entity in apilist:
+                uri = TENANT + API_REQUESTNAMING + '/' + entity['id'] + '?Api-Token=' + TOKEN
                 print('delete ' +entity['name']+'  '+entity['id'])
                 delDynatraceAPI(uri, TOKEN)
     return ()
@@ -297,12 +313,14 @@ def token_clean(TENANT,TOKEN):
 #Clean
 print(tenant)
 print()
-#dashboard_clean(tenant,token)
-#mz_clean(tenant,token)
-#mw_clean(tenant,token)
-#nz_clean(tenant,token)
-#tag_clean(tenant,token)
-#slo_clean(tenant,token)
-#synth_clean(tenant,token)
-#token_clean(tenant,token)
-#manque custom event for alert, mda
+dashboard_clean(tenant,token)
+mz_clean(tenant,token)
+mw_clean(tenant,token)
+nz_clean(tenant,token)
+tag_clean(tenant,token)
+slo_clean(tenant,token)
+synth_clean(tenant,token)
+token_clean(tenant,token)
+requestnaming_clean(tenant,token)
+
+#manque custom event for alert, mda, 
