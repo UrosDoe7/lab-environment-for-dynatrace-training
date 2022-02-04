@@ -37,7 +37,7 @@
    }
   ]
  },
- "suppressSyntheticMonitorsExecution": false,
+ "suppressSyntheticMonitorsExecution": true,
  "suppression": "DETECT_PROBLEMS_DONT_ALERT",
  "type": "PLANNED"
 }
