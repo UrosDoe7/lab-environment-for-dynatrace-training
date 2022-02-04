@@ -39,8 +39,8 @@ API_SLO='/api/v2/slo'
 API_SYNT='/api/v1/synthetic/monitors'
 API_TOKEN='/api/v1/tokens'
 API_REQUESTNAMING='/api/config/v1/service/requestNaming'
-
-
+API_REQUESTATTRIBUTE='/api/config/v1/service/requestAttributes'
+API_CUSTOMALERT='/api/config/v1/anomalyDetection/metricEvents'
 
 ##################################
 ## GENERIC functions
@@ -282,7 +282,7 @@ def synth_clean(TENANT,TOKEN):
 def token_clean(TENANT,TOKEN):
     print('clean token')
     uri=TENANT + API_TOKEN + '?Api-Token=' +TOKEN
-    print(uri)
+    #print(uri)
     datastore = queryDynatraceAPI(uri, TOKEN)
     #print(datastore)
     if datastore != []:
@@ -295,32 +295,55 @@ def token_clean(TENANT,TOKEN):
                 delDynatraceAPI(uri, TOKEN)
     return ()
 
-# request naming to clean
-def requestnaming_clean(TENANT,TOKEN):
-    print('clean request naming')
-    uri=TENANT + API_REQUESTNAMING + '?Api-Token=' +TOKEN
+
+# request attribute to clean
+def requestattribute_clean(TENANT,TOKEN):
+    print('clean request attribute')
+    uri=TENANT + API_REQUESTATTRIBUTE + '?Api-Token=' +TOKEN
+    #print(uri)
+    datastore = queryDynatraceAPI(uri, TOKEN)
+    #print(datastore)
+    if datastore != []:
+        apilist = datastore['values']
+        for entity in apilist:
+                uri = TENANT + API_REQUESTATTRIBUTE + '/' + entity['id'] + '?Api-Token=' + TOKEN
+                print('delete ' +entity['name']+'  '+entity['id'])
+                delDynatraceAPI(uri, TOKEN)
+    return ()
+
+
+# custom alert to clean
+def customevent_foralerting(TENANT,TOKEN):
+    print('clean custom alert')
+    uri=TENANT + API_CUSTOMALERT + '?Api-Token=' +TOKEN
     print(uri)
     datastore = queryDynatraceAPI(uri, TOKEN)
     #print(datastore)
     if datastore != []:
         apilist = datastore['values']
         for entity in apilist:
-                uri = TENANT + API_REQUESTNAMING + '/' + entity['id'] + '?Api-Token=' + TOKEN
-                print('delete ' +entity['name']+'  '+entity['id'])
-                delDynatraceAPI(uri, TOKEN)
+            if len(entity['id'].split(".")) == 1 :
+                    uri = TENANT + API_CUSTOMALERT + '/' + entity['id'] + '?Api-Token=' + TOKEN
+                    print('delete ' +entity['name']+'  '+entity['id'])
+                    delDynatraceAPI(uri, TOKEN)
+           
     return ()
+
 
 #Clean
 print(tenant)
 print()
-dashboard_clean(tenant,token)
-mz_clean(tenant,token)
-mw_clean(tenant,token)
-nz_clean(tenant,token)
-tag_clean(tenant,token)
-slo_clean(tenant,token)
-synth_clean(tenant,token)
-token_clean(tenant,token)
-requestnaming_clean(tenant,token)
+#dashboard_clean(tenant,token)
+#mz_clean(tenant,token)
+#mw_clean(tenant,token)
+#nz_clean(tenant,token)
+#tag_clean(tenant,token)
+#slo_clean(tenant,token)
+#synth_clean(tenant,token)
+#token_clean(tenant,token)
+#requestnaming_clean(tenant,token)
+#requestattribute_clean(tenant,token)
+customevent_foralerting(tenant,token)
+
 
 #manque custom event for alert, mda, 

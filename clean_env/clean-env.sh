@@ -2,7 +2,7 @@
 #design by JLLormeau Dynatrace
 # version beta
 
-. env.sh
+. ../env.sh
 DIR_MONACO="template-monaco-for-easytravel"
 max=2
 response=no
