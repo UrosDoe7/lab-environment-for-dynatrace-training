@@ -3,24 +3,22 @@
 # version beta
 
 . env.sh
-export NEW_CLI=1
-export EnableSynthetic=true
-TIME=`date +%Y%m%d%H%M%S`
-DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
+#export NEW_CLI=1
+#export EnableSynthetic=true
+#TIME=`date +%Y%m%d%H%M%S`
+#DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
 PASSWORD='Dynatrace@2022'
-#SIZE_LINUX='Standard_D1_v2' #1 CPU 3.5 GB
 SIZE_LINUX='Standard_B2ms' #2 CPU 8 GB
-#SIZE_LINUX='Standard_B2s' #2 CPU 4 GB
-SIZE_WINDOWS='Standard_B2s'   #2 CPU 4 GB
-LOCATION1='francecentral'
-LOCATION2='westeurope'
-LOCATION3='northeurope'
-LOCATION4='uksouth'
+SIZE_WINDOWS='Standard_B2ms'   #2 CPU 8 GB
+#LOCATION1='francecentral'
+#LOCATION2='westeurope'
+#LOCATION3='northeurope'
+#LOCATION4='uksouth'
 #LOCATION5='eastus' #Reserved for the kubernetes lab
 #LOCATION6='eastus2' #Reserved for the kubernetes lab
 APPLY="N"
-START_ENV=0
-NBENV=2
+#START_ENV=0
+#NBENV=2
 END_ENV=$(($END_ENV-$START_ENV))
 WINDOWS_ENV="N"
 EASYTRAVEL_ENV="Y"
