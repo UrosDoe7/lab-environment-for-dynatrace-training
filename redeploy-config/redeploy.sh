@@ -55,7 +55,8 @@ do
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
 	else
-			echo response=$response
+			echo user$X$i => response=$response
+			echo
 	fi
 	i=$(($i + 1))
 
