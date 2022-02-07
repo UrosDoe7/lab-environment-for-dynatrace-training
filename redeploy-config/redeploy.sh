@@ -6,11 +6,10 @@
 DIR_MONACO="template-monaco-for-easytravel"
 END_ENV=$(($NBENV-$START_ENV))
 response=no
-
-
 cd ..
 
-for (( i=$START_ENV; i <= $END_ENV; ++i ))
+
+i=$START_ENV; while [ $i -le $END_ENV ]; do
 do
         if (( $i < 5 ))
         then
@@ -33,27 +32,28 @@ do
                 LOCATION=$LOCATION4
         fi
 		
-		echo $i
-		echo MyTenant=$MyTenant
-		echo MyToken=$MyToken
-		echo Appname="easytravel"$X$i
-		echo Hostname=$DOMAIN_NAME_DEFAULT$X$i"."$LOCATION".cloudapp.azure.com"
-		number_of_email=`echo $list_user | tr -cd '@' | wc -c`
-        if [  $number_of_email -ge $(( $i + 1 )) ]
-			then
+	echo $i
+	echo MyTenant=$MyTenant
+	echo MyToken=$MyToken
+	echo Appname="easytravel"$X$i
+	echo Hostname=$DOMAIN_NAME_DEFAULT$X$i"."$LOCATION".cloudapp.azure.com"
+	number_of_email=`echo $list_user | tr -cd '@' | wc -c`
+        
+	if [  $number_of_email -ge $(( $i + 1 )) ]; then
                 export Email=`echo $list_user | cut -d" " -f$(( $i + 1 ))`
-        	else
+        else
                 export Email="user"$i"@easytravel.com"
-        	fi
-		echo Email=$Email
-		echo EnableSynthetic=$EnableSynthetic
-
-		read  -p "==> deploy config for user$X$I (yes|no):  " response
+        fi
+	echo Email=$Email
+	echo EnableSynthetic=$EnableSynthetic
+	read  -p "==> deploy config for user$X$I (yes|no):  " response
 	
-		if [ "$response" = "yes" ] || [ "$response" = "YES" ]; then
+	if [ "$response" = "yes" ] || [ "$response" = "YES" ]; then
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
-		else
+	else
 			echo response=$response
-		fi
+	fi
+	i=$(($i + 1))
+
 done
