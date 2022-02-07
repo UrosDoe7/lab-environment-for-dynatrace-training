@@ -252,8 +252,8 @@ then
 									break
 							fi
 					if testemail="ok";then 
-					    #list_user=$list_user2;verif="ok"
-					    sed -i s/list_user=.*$/list_user=\"$list_user2\"/g env.sh;. env.sh
+					    #list_user=$list_user2
+					    verif="ok"; sed -i s/list_user=.*$/list_user=\"$list_user2\"/g env.sh;. env.sh
 					else verif="ko";echo "bad email format";read pressanycase;
 				 fi;done;done
                         ;;
