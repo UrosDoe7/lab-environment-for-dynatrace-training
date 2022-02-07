@@ -37,7 +37,7 @@ do
 		echo MyTenant=$MyTenant
 		echo MyToken=$MyToken
 		echo Appname="easytravel"$X$i
-		echo Hostname=$RESOURCE_GROUP"."$LOCATION".cloudapp.azure.com"
+		echo Hostname=$DOMAIN_NAME_DEFAULT$X$i"."$LOCATION".cloudapp.azure.com"
 		number_of_email=`echo $list_user | tr -cd '@' | wc -c`
         if [  $number_of_email -ge $(( $i + 1 )) ]
 			then
