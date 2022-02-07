@@ -12,22 +12,22 @@ cd ..
 i=$START_ENV
 while [ $i -le $END_ENV ]
 do
-        if [ $i -lt 5 ]
+        if [ $i -lt 1 ]
         then
                 X='0' #from 00 to 04
                 LOCATION=$LOCATION1
         fi
-        if [ $i >= 5 ] && [$i < 10]
+        if [ $i -ge 1 ] && [ $i -lt 10 ]
         then
                 X='0' #from 05 to 09
                 LOCATION=$LOCATION2
         fi
-        if [ $i >= 10 ] &&(($i < 15))
+        if [ $i -ge 10 ] && [ $i -lt 15 ]
         then
                 X='' #from 10 to 14
                 LOCATION=$LOCATION3
         fi
-        if (( $i >= 15 ))&&(($i < 20))
+        if [ $i -ge 15 ] && [ $i -lt 20 ]
         then
                 X='' #from 10 to 20
                 LOCATION=$LOCATION4
