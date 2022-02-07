@@ -84,7 +84,7 @@ do
                 "0") verif="ko"
                       until [ $verif = "ok" ]; do read  -p "0) config env : training name with rule [a-z][a-z][a-z][a-z][a-z][a-z0-9]+$   " value
                        if [[ $value =~ ^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$ ]] &&  [[ `echo $value|cut -c -5` != "azure"  ]];then
-                        verif="ok";sed -i s/DOMAIN_NAME_DEFAULT=^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$/DOMAIN_NAME_DEFAULT=$value/g env.sh;. env.sh
+                        verif="ok";sed -i s/DOMAIN_NAME_DEFAULT=.*$/DOMAIN_NAME_DEFAULT=$value/g env.sh;. env.sh
                         else verif="ko";if  [[ `echo $value|cut -c -5` = "azure"  ]]; then echo "the VM name can't start with \"azure\" pattern" ; value="ko";read pressanycase;fi
                      fi;done
                 ;;
@@ -242,18 +242,20 @@ then
 				else verif="ko"; echo "bad PaaS Token" ; value="ko";read pressanycase;
 			     fi;done
 			;;
-                        "3") verif="ko"; testemail="ok";
-                              until [ $verif = "ok" ]; do read  -p "3) list of email : user1@ser.com user2@user2.com :    " list_user2
-                               for i in ${list_user2// / } ; do
-                                        if [[ ! "$i" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$ ]]
-                                        then
-                                                echo "Email address $i is invalid."
-                                                testemail="ko"
-                                                break
-                                        fi
-                                if testemail="ok";then list_user=$list_user2;verif="ok"
-                                else verif="ko";echo "bad email format";read pressanycase;
-                             fi;done;done
+			"3") verif="ko"; testemail="ok";
+				  until [ $verif = "ok" ]; do read  -p "3) list of email : user1@ser.com user2@user2.com :    " list_user2
+				   for i in ${list_user2// / } ; do
+							if [[ ! "$i" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$ ]]
+							then
+									echo "Email address $i is invalid."
+									testemail="ko"
+									break
+							fi
+					if testemail="ok";then 
+					    #list_user=$list_user2;verif="ok"
+					    sed -i s/list_user=.*$/list_user=\"$list_user2\"/g env.sh;. env.sh
+					else verif="ko";echo "bad email format";read pressanycase;
+				 fi;done;done
                         ;;
 			"A") APPLY="Y"
 					DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
