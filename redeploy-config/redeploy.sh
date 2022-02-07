@@ -33,8 +33,7 @@ do
                 LOCATION=$LOCATION4
         fi
 		
-	echo $i
-	echo $X
+	echo user=user$X$i
 	echo MyTenant=$MyTenant
 	echo MyToken=$MyToken
 	export Appname="easytravel"$X$i
