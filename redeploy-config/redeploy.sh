@@ -12,17 +12,17 @@ cd ..
 i=$START_ENV
 while [ $i -le $END_ENV ]
 do
-        if (( $i < 5 ))
+        if [ $i < 5 ]
         then
                 X='0' #from 00 to 04
                 LOCATION=$LOCATION1
         fi
-        if (( $i >= 5 ))&&(($i < 10))
+        if [ $i >= 5 ] && [$i < 10]
         then
                 X='0' #from 05 to 09
                 LOCATION=$LOCATION2
         fi
-        if (( $i >= 10 ))&&(($i < 15))
+        if [ $i >= 10 ] &&(($i < 15))
         then
                 X='' #from 10 to 14
                 LOCATION=$LOCATION3
@@ -34,6 +34,7 @@ do
         fi
 		
 	echo $i
+	echo $X
 	echo MyTenant=$MyTenant
 	echo MyToken=$MyToken
 	echo Appname="easytravel"$X$i
