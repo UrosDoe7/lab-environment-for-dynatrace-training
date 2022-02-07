@@ -4,7 +4,7 @@
 
 . ../env.sh
 DIR_MONACO="template-monaco-for-easytravel"
-END_ENV=$(($END_ENV-$START_ENV))
+END_ENV=$(($NBENV-$START_ENV))
 response=no
 
 
