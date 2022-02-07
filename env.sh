@@ -1,9 +1,10 @@
-export NEW_CLI=1
+export NEW_CLI=1 
 export MyTenant=yyyy.jzq02463.live.dynatrace.com
 export MyToken=dt0c01.abcdefghij.abcdefghijklmn
 export PaasToken=dt0c01.abcdefghij.abcdefghijklmn
 export list_user="user1@user1.com user2@user2.com"
 export EnableSynthetic=true
+export DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
 export TIME=`date +%Y%m%d%H%M%S`
 export PASSWORD='Dynatrace@2022'
 export SIZE_LINUX='Standard_B2ms' #2 CPU 8 GB
