@@ -10,7 +10,7 @@ response=no
 
 cd ..
 
-for i in {$START_ENV..$END_ENV}
+for (( i=$START_ENV; i <= $END_ENV; ++i ))
 do
         if (( $i < 5 ))
         then
@@ -35,7 +35,7 @@ do
 		
 		echo $i
 		echo MyTenant=$MyTenant
-		echo Token=$MyToken
+		echo MyToken=$MyToken
 		echo Appname="easytravel"$X$i
 		echo Hostname=$RESOURCE_GROUP"."$LOCATION".cloudapp.azure.com"
 		number_of_email=`echo $list_user | tr -cd '@' | wc -c`
