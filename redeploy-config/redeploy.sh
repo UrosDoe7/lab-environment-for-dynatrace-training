@@ -37,9 +37,10 @@ do
 	echo $X
 	echo MyTenant=$MyTenant
 	echo MyToken=$MyToken
-	echo Appname="easytravel"$X$i
-	export Appname
-	echo Hostname=$DOMAIN_NAME_DEFAULT$X$i"."$LOCATION".cloudapp.azure.com"
+	export Appname="easytravel"$X$i
+	echo Appname=$Appname
+	export Hostname=$DOMAIN_NAME_DEFAULT$X$i"."$LOCATION".cloudapp.azure.com"
+	echo Hostname=$Hostname
 	number_of_email=`echo $list_user | tr -cd '@' | wc -c`
         
 	if [  $number_of_email -ge $(( $i + 1 )) ]; then
@@ -51,7 +52,7 @@ do
 	echo EnableSynthetic=$EnableSynthetic
 	read  -p "==> deploy config for user$X$I (yes|no):  " response
 	
-	if [ "$response" = "yes" ] || [ "$response" = "YES" ]; then
+	if [ "$response" = "yes" ] || [ "$response" = "YES" ] || [ "$response" = "Y" ] || [ "$response" = "y" ]; then
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
 	else
