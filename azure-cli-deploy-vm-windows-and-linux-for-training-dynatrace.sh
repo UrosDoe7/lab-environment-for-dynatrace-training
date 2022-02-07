@@ -16,9 +16,9 @@
 #LOCATION4='uksouth'
 #LOCATION5='eastus' #Reserved for the kubernetes lab
 #LOCATION6='eastus2' #Reserved for the kubernetes lab
-APPLY="N"
 #START_ENV=0
 #NBENV=2
+APPLY="N"
 END_ENV=$(($END_ENV-$START_ENV))
 WINDOWS_ENV="N"
 EASYTRAVEL_ENV="Y"
