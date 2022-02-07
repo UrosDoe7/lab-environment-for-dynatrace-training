@@ -84,7 +84,7 @@ do
                 "0") verif="ko"
                       until [ $verif = "ok" ]; do read  -p "0) config env : training name with rule [a-z][a-z][a-z][a-z][a-z][a-z0-9]+$   " value
                        if [[ $value =~ ^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$ ]] &&  [[ `echo $value|cut -c -5` != "azure"  ]];then
-                        verif="ok";sed -i s/DOMAIN_NAME_DEFAULT=$DOMAIN_NAME_DEFAULT/DOMAIN_NAME_DEFAULT=$value/g env.sh;. env.sh
+                        verif="ok";sed -i s/DOMAIN_NAME_DEFAULT=^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$/DOMAIN_NAME_DEFAULT=$value/g env.sh;. env.sh
                         else verif="ko";if  [[ `echo $value|cut -c -5` = "azure"  ]]; then echo "the VM name can't start with \"azure\" pattern" ; value="ko";read pressanycase;fi
                      fi;done
                 ;;
