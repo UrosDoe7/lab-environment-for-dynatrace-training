@@ -9,7 +9,8 @@ response=no
 cd ..
 
 
-i=$START_ENV; while [ $i -le $END_ENV ]; do
+i=$START_ENV
+while [ $i -le $END_ENV ]
 do
         if (( $i < 5 ))
         then
