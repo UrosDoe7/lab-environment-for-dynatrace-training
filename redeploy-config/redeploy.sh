@@ -1,0 +1,59 @@
+#!/bin/bash
+#design by JLLormeau Dynatrace
+# version beta
+
+. ../env.sh
+DIR_MONACO="template-monaco-for-easytravel"
+END_ENV=$(($END_ENV-$START_ENV))
+response=no
+
+
+cd ..
+
+for i in {$START_ENV..$END_ENV}
+do
+        if (( $i < 5 ))
+        then
+                X='0' #from 00 to 04
+                LOCATION=$LOCATION1
+        fi
+        if (( $i >= 5 ))&&(($i < 10))
+        then
+                X='0' #from 05 to 09
+                LOCATION=$LOCATION2
+        fi
+        if (( $i >= 10 ))&&(($i < 15))
+        then
+                X='' #from 10 to 14
+                LOCATION=$LOCATION3
+        fi
+        if (( $i >= 15 ))&&(($i < 20))
+        then
+                X='' #from 10 to 20
+                LOCATION=$LOCATION4
+        fi
+		
+		echo $i
+		echo MyTenant=$MyTenant
+		echo Token=$MyToken
+		echo Appname="easytravel"$X$i
+		echo Hostname=$RESOURCE_GROUP"."$LOCATION".cloudapp.azure.com"
+		number_of_email=`echo $list_user | tr -cd '@' | wc -c`
+        if [  $number_of_email -ge $(( $i + 1 )) ]
+			then
+                export Email=`echo $list_user | cut -d" " -f$(( $i + 1 ))`
+        	else
+                export Email="user"$i"@easytravel.com"
+        	fi
+		echo Email=$Email
+		echo EnableSynthetic=$EnableSynthetic
+
+		read  -p "==> deploy config for user$X$I (yes|no):  " response
+	
+		if [ "$response" = "yes" ] || [ "$response" = "YES" ]; then
+			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
+			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
+		else
+			echo response=$response
+		fi
+done
