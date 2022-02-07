@@ -82,16 +82,16 @@ do
 
         case "$reponse" in
                 "0") verif="ko"
-                      until [ $verif = "ok" ]; do read  -p "0) config env : training name with rule [a-z][a-z][a-z][a-z][a-z][a-z0-9]+$   " DOMAIN_NAME_DEFAULT2
-                       if [[ $DOMAIN_NAME_DEFAULT2 =~ ^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$ ]] &&  [[ `echo $DOMAIN_NAME_DEFAULT2|cut -c -5` != "azure"  ]];then
-                        verif="ok";sed -i s/DOMAIN_NAME_DEFAULT=$DOMAIN_NAME_DEFAULT/DOMAIN_NAME_DEFAULT=$DOMAIN_NAME_DEFAULT2/g env.sh;. env.sh
-                        else verif="ko";if  [[ `echo $DOMAIN_NAME_DEFAULT2|cut -c -5` = "azure"  ]]; then echo "the VM name can't start with \"azure\" pattern" ; value="ko";read pressanycase;fi
+                      until [ $verif = "ok" ]; do read  -p "0) config env : training name with rule [a-z][a-z][a-z][a-z][a-z][a-z0-9]+$   " value
+                       if [[ $value =~ ^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$ ]] &&  [[ `echo $value|cut -c -5` != "azure"  ]];then
+                        verif="ok";sed -i s/DOMAIN_NAME_DEFAULT=$DOMAIN_NAME_DEFAULT/DOMAIN_NAME_DEFAULT=$value/g env.sh;. env.sh
+                        else verif="ko";if  [[ `echo $value|cut -c -5` = "azure"  ]]; then echo "the VM name can't start with \"azure\" pattern" ; value="ko";read pressanycase;fi
                      fi;done
                 ;;
                 "1") verif="ko"
-                      until [ $verif = "ok" ]; do read  -p "1) conf env : password with 12 characters mini and 1 lower case, 1 upper case, 1 number, and @ or &   " PASSWORD2
-                      if [[ ${#PASSWORD2} -ge 12 && "$PASSWORD2" ==  *[[:lower:]]*  && "$PASSWORD2" ==  *[[:upper:]]*  && "$PASSWORD2" == *[0-9]* && "$PASSWORD2" == *[\&\@]* ]];then
-                        verif="ok";sed -i s/PASSWORD=$PASSWORD/PASSWORD=$PASSWORD2/g env.sh;. env.sh
+                      until [ $verif = "ok" ]; do read  -p "1) conf env : password with 12 characters mini and 1 lower case, 1 upper case, 1 number, and @ or &   " value
+                      if [[ ${#value} -ge 12 && "$value" ==  *[[:lower:]]*  && "$value" ==  *[[:upper:]]*  && "$value" == *[0-9]* && "$value" == *[\&\@]* ]];then
+                        verif="ok";sed -i s/PASSWORD=$PASSWORD/PASSWORD=$value/g env.sh;. env.sh
                         else verif="ko";fi;done
                 ;;
                 "2") value=-1
