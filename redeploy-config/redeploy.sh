@@ -12,12 +12,12 @@ cd ..
 i=$START_ENV
 while [ $i -le $END_ENV ]
 do
-        if [ $i -lt 1 ]
+        if [ $i -lt 5 ]
         then
                 X='0' #from 00 to 04
                 LOCATION=$LOCATION1
         fi
-        if [ $i -ge 1 ] && [ $i -lt 10 ]
+        if [ $i -ge 5 ] && [ $i -lt 10 ]
         then
                 X='0' #from 05 to 09
                 LOCATION=$LOCATION2
@@ -38,6 +38,7 @@ do
 	echo MyTenant=$MyTenant
 	echo MyToken=$MyToken
 	echo Appname="easytravel"$X$i
+	export Appname
 	echo Hostname=$DOMAIN_NAME_DEFAULT$X$i"."$LOCATION".cloudapp.azure.com"
 	number_of_email=`echo $list_user | tr -cd '@' | wc -c`
         
