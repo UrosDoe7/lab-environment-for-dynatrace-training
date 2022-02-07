@@ -3,8 +3,8 @@
 # version beta
 
 . env.sh
-#export NEW_CLI=1
-#export EnableSynthetic=true
+#NEW_CLI=1
+#EnableSynthetic=true
 #TIME=`date +%Y%m%d%H%M%S`
 #DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
 #PASSWORD='Dynatrace@2022'
