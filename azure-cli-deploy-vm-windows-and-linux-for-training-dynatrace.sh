@@ -7,9 +7,9 @@
 #export EnableSynthetic=true
 #TIME=`date +%Y%m%d%H%M%S`
 #DOMAIN_NAME_DEFAULT='dynatracelab'$TIME
-PASSWORD='Dynatrace@2022'
-SIZE_LINUX='Standard_B2ms' #2 CPU 8 GB
-SIZE_WINDOWS='Standard_B2ms'   #2 CPU 8 GB
+#PASSWORD='Dynatrace@2022'
+#SIZE_LINUX='Standard_B2ms' #2 CPU 8 GB
+#SIZE_WINDOWS='Standard_B2ms'   #2 CPU 8 GB
 #LOCATION1='francecentral'
 #LOCATION2='westeurope'
 #LOCATION3='northeurope'
@@ -82,25 +82,25 @@ do
 
         case "$reponse" in
                 "0") verif="ko"
-                      until [ $verif = "ok" ]; do read  -p "0) config env : training name with rule [a-z][a-z][a-z][a-z][a-z][a-z0-9]+$   " DOMAIN_NAME_DEFAULT
-                       if [[ $DOMAIN_NAME_DEFAULT =~ ^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$ ]] &&  [[ `echo $DOMAIN_NAME_DEFAULT|cut -c -5` != "azure"  ]];then
-                        verif="ok"
-                        else verif="ko";if  [[ `echo $DOMAIN_NAME_DEFAULT|cut -c -5` = "azure"  ]]; then echo "the VM name can't start with \"azure\" pattern" ; value="ko";read pressanycase;fi
+                      until [ $verif = "ok" ]; do read  -p "0) config env : training name with rule [a-z][a-z][a-z][a-z][a-z][a-z0-9]+$   " DOMAIN_NAME_DEFAULT2
+                       if [[ $DOMAIN_NAME_DEFAULT2 =~ ^[a-z][a-z][a-z][a-z][a-z][a-z0-9]+$ ]] &&  [[ `echo $DOMAIN_NAME_DEFAULT2|cut -c -5` != "azure"  ]];then
+                        verif="ok";sed -i s/DOMAIN_NAME_DEFAULT=$DOMAIN_NAME_DEFAULT/DOMAIN_NAME_DEFAULT=$DOMAIN_NAME_DEFAULT2/g env.sh;. env.sh
+                        else verif="ko";if  [[ `echo $DOMAIN_NAME_DEFAULT2|cut -c -5` = "azure"  ]]; then echo "the VM name can't start with \"azure\" pattern" ; value="ko";read pressanycase;fi
                      fi;done
                 ;;
                 "1") verif="ko"
-                      until [ $verif = "ok" ]; do read  -p "1) conf env : password with 12 characters mini and 1 lower case, 1 upper case, 1 number, and @ or &   " PASSWORD
-                      if [[ ${#PASSWORD} -ge 12 && "$PASSWORD" ==  *[[:lower:]]*  && "$PASSWORD" ==  *[[:upper:]]*  && "$PASSWORD" == *[0-9]* && "$PASSWORD" == *[\&\@]* ]];then
-                        verif="ok"
+                      until [ $verif = "ok" ]; do read  -p "1) conf env : password with 12 characters mini and 1 lower case, 1 upper case, 1 number, and @ or &   " PASSWORD2
+                      if [[ ${#PASSWORD2} -ge 12 && "$PASSWORD2" ==  *[[:lower:]]*  && "$PASSWORD2" ==  *[[:upper:]]*  && "$PASSWORD2" == *[0-9]* && "$PASSWORD2" == *[\&\@]* ]];then
+                        verif="ok";sed -i s/PASSWORD=$PASSWORD/PASSWORD=$PASSWORD2/g env.sh;. env.sh
                         else verif="ko";fi;done
                 ;;
                 "2") value=-1
                      until [ $value -ge 0 -a  $value -le $((20-$NBENV)) ]; do read -p "2) config env : start value (between 0 & "$((20-$NBENV))")   " value;  done
-                   START_ENV=$value
+						sed -i s/START_ENV=$START_ENV/START_ENV=$value/g env.sh;. env.sh
                 ;;
                 "3") value=-1
                      until [ $value -gt 0 -a  $value -le $((20-$START_ENV)) ];do read -p "3) config env : nbr total env (maxi "$((20-$START_ENV))")   " value;  done
-                   NBENV=$value
+						sed -i s/NBENV=$NBENV/NBENV=$value/g env.sh;. env.sh
                 ;;
                 "4") if [ "$WINDOWS_ENV" = "Y" ]; then WINDOWS_ENV="N"; echo "4) add env : window VM to env   =N" ; else WINDOWS_ENV="Y"; echo "4) add env : window VM to env   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
