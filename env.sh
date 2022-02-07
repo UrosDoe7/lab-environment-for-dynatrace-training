@@ -23,4 +23,4 @@ export FULL_INSTALLATION="N"
 export MONGO_STOP="Y"
 export KUBE_SCRIPT="N"
 export VM_STARTED="N"
-export HOUR_MONGO_STOP="11"
+export HOUR_MONGO_STOP=11
