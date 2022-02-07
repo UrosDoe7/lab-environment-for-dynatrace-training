@@ -12,7 +12,7 @@ cd ..
 i=$START_ENV
 while [ $i -le $END_ENV ]
 do
-        if [[ $i -lt 5 ]]
+        if [ $i -lt 5 ]
         then
                 X='0' #from 00 to 04
                 LOCATION=$LOCATION1
