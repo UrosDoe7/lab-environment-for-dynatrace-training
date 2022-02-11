@@ -19,7 +19,7 @@ cd ..
 i=$START_ENV
 while [ $i -le $END_ENV ]
 	do
-		if [[ $i -lt 10 ]]; then 
+		if [ $i -lt 10 ]; then 
 			p=0
 		else
 			p=''	
