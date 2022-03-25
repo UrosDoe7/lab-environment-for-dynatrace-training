@@ -368,7 +368,7 @@ def custom_extension(TENANT,TOKEN):
 
 # custom k8s config to clean
 def custom_k8sconfig(TENANT,TOKEN):
-    print('clean custom extension')
+    print('clean k8s config')
     uri=TENANT + API_K8S_CREDENTIAL + '?Api-Token=' +TOKEN
     #print(uri)
     datastore = queryDynatraceAPI(uri, TOKEN)
