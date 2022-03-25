@@ -41,6 +41,8 @@ API_TOKEN='/api/v1/tokens'
 API_REQUESTNAMING='/api/config/v1/service/requestNaming'
 API_REQUESTATTRIBUTE='/api/config/v1/service/requestAttributes'
 API_CUSTOMALERT='/api/config/v1/anomalyDetection/metricEvents'
+API_EXTENSION='/api/config/v1/extensions'
+API_K8S_CREDENTIAL='/api/config/v1/kubernetes/credentials'
 
 ##################################
 ## GENERIC functions
@@ -346,6 +348,41 @@ def customevent_foralerting(TENANT,TOKEN):
     return ()
 
 
+# custom extension to clean
+def custom_extension(TENANT,TOKEN):
+    print('clean custom extension')
+    uri=TENANT + API_EXTENSION + '?Api-Token=' +TOKEN
+    #print(uri)
+    datastore = queryDynatraceAPI(uri, TOKEN)
+    #print(datastore)
+    if datastore != []:
+        apilist = datastore['extensions']
+        for entity in apilist:
+            if entity['id'].startswith('custom') and entity['type'] == 'JMX':
+                    uri = TENANT + API_EXTENSION + '/' + entity['id'] + '?Api-Token=' + TOKEN
+                    print('delete ' +entity['name']+'  '+entity['id'])
+                    delDynatraceAPI(uri, TOKEN)
+           
+    return ()
+
+
+# custom k8s config to clean
+def custom_k8sconfig(TENANT,TOKEN):
+    print('clean custom extension')
+    uri=TENANT + API_K8S_CREDENTIAL + '?Api-Token=' +TOKEN
+    #print(uri)
+    datastore = queryDynatraceAPI(uri, TOKEN)
+    #print(datastore)
+    if datastore != []:
+        apilist = datastore['values']
+        for entity in apilist:
+                    uri = TENANT + API_K8S_CREDENTIAL + '/' + entity['id'] + '?Api-Token=' + TOKEN
+                    print('delete ' +entity['name']+'  '+entity['id'])
+                    delDynatraceAPI(uri, TOKEN)
+           
+    return ()
+
+
 #Clean
 print(tenant)
 print()
@@ -360,6 +397,7 @@ token_clean(tenant,token)
 requestnaming_clean(tenant,token)
 requestattribute_clean(tenant,token)
 customevent_foralerting(tenant,token)
-
-
-#manque custom event for alert, mda, 
+custom_extension(tenant,token)
+custom_k8sconfig(tenant,token)
+    
+#manque  mda, logs config, logs event, availability process for mongo
