@@ -43,6 +43,7 @@ API_REQUESTATTRIBUTE='/api/config/v1/service/requestAttributes'
 API_CUSTOMALERT='/api/config/v1/anomalyDetection/metricEvents'
 API_EXTENSION='/api/config/v1/extensions'
 API_K8S_CREDENTIAL='/api/config/v1/kubernetes/credentials'
+API_CALC_METRIC='/api/config/v1/calculatedMetrics/service'
 
 ##################################
 ## GENERIC functions
@@ -383,6 +384,19 @@ def custom_k8sconfig(TENANT,TOKEN):
     return ()
 
 
+# custom calculated service metric to clean
+def custom_calcmetric(TENANT,TOKEN):
+    print('clean calculated service metric')
+    uri=TENANT + API_CALC_METRIC + '?Api-Token=' +TOKEN
+    #print(uri)
+    datastore = queryDynatraceAPI(uri, TOKEN)
+    #print(datastore)
+    if datastore != []:
+        apilist = datastore['values']
+        for entity in apilist:
+                    uri = TENANT + API_CALC_METRIC + '/' + entity['id'] + '?Api-Token=' + TOKEN
+                    print('delete ' +entity['name']+'  '+entity['id'])
+                    delDynatraceAPI(uri, TOKEN)
 #Clean
 print(tenant)
 print()
@@ -399,5 +413,6 @@ requestattribute_clean(tenant,token)
 customevent_foralerting(tenant,token)
 custom_extension(tenant,token)
 custom_k8sconfig(tenant,token)
+custom_calcmetric(tenant,token)
     
 #manque  mda, logs config, logs event, availability process for mongo
