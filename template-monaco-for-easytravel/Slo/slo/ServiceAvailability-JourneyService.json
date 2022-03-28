@@ -14,7 +14,7 @@
  "numeratorValue": 86967,
  "status": "SUCCESS",
  "target": 95,
- "timeframe": "-5m",
+ "timeframe": "-72h",
  "useRateMetric": false,
  "warning": 97.5
 }
