@@ -14,7 +14,7 @@
  "numeratorValue": 30484,
  "status": "FAILURE",
  "target": 95,
- "timeframe": "-1h",
+ "timeframe": "-1d",
  "useRateMetric": false,
  "warning": 98
 }
