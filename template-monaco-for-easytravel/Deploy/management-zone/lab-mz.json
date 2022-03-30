@@ -8,7 +8,7 @@
   },
   {
    "enabled": true,
-   "entitySelector": "type(APPLICATION),fromrelationships.calls(type(SERVICE),tag(app:{{.name}}))"
+   "entitySelector": "type(APPLICATION),fromrelationships.calls(type(SERVICE),tag(app:{{.name}})),not(entityName(My Web Application))"
   },
   {
    "enabled": true,
