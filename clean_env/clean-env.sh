@@ -4,8 +4,12 @@
 
 . ../env.sh
 DIR_MONACO="template-monaco-for-easytravel"
-END_ENV=$(($NBENV-$START_ENV))
-response=no
+if [ $i -lt 1 ]
+then
+	END_ENV=$(($NBENV - 1))
+else
+	END_ENV=$(($NBENV-$START_ENV))
+firesponse=no
 
 while [ "$response" !=  "$MyTenant"  ]
 	do
