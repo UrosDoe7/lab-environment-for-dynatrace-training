@@ -1,4 +1,4 @@
-#Design by JLL -  Dynatrace
+#Design by JLL - Dynatrace
 #########################################################################################################
 #import re
 import json
@@ -44,6 +44,7 @@ API_CUSTOMALERT='/api/config/v1/anomalyDetection/metricEvents'
 API_EXTENSION='/api/config/v1/extensions'
 API_K8S_CREDENTIAL='/api/config/v1/kubernetes/credentials'
 API_CALC_METRIC='/api/config/v1/calculatedMetrics/service'
+API_SYNTH_LOCATION='/api/v1/synthetic/locations'
 
 ##################################
 ## GENERIC functions
@@ -397,9 +398,28 @@ def custom_calcmetric(TENANT,TOKEN):
                     uri = TENANT + API_CALC_METRIC + '/' + entity['id'] + '?Api-Token=' + TOKEN
                     print('delete ' +entity['name']+'  '+entity['id'])
                     delDynatraceAPI(uri, TOKEN)
+
+
+# request synthetic location  to clean
+def synthloaction_clean(TENANT,TOKEN):
+    print('clean synthetic location')
+    uri=TENANT + API_SYNTH_LOCATION + '?Api-Token=' +TOKEN
+    print(uri)
+    datastore = queryDynatraceAPI(uri, TOKEN)
+    #print(datastore)
+    if datastore != []:
+        apilist = datastore['locations']
+        for entity in apilist:
+                if entity['type'] == "PRIVATE":
+                    uri = TENANT + API_SYNTH_LOCATION + '/' + entity['entityId'] + '?Api-Token=' + TOKEN
+                    print('delete ' +entity['name']+'  '+entity['entityId'])
+                    delDynatraceAPI(uri, TOKEN)
+    return ()
+
 #Clean
 print(tenant)
 print()
+
 dashboard_clean(tenant,token)
 mz_clean(tenant,token)
 mw_clean(tenant,token)
@@ -414,5 +434,6 @@ customevent_foralerting(tenant,token)
 custom_extension(tenant,token)
 custom_k8sconfig(tenant,token)
 custom_calcmetric(tenant,token)
+synthloaction_clean(tenant,token)
     
 #manque  mda, logs config, logs event, availability process for mongo
