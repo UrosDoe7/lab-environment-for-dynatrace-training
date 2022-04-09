@@ -5,7 +5,6 @@
     ],
     "clusterVersion": "1.238.121.20220406-200859"
   },
-  "id": "5ac5c836-f45f-498b-8be6-ea2f645b5788",
   "dashboardMetadata": {
 	"name": "{{.name}}",
 	"owner": "{{.owner}}",
