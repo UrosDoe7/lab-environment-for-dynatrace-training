@@ -4,7 +4,7 @@
 
 . ../env.sh
 DIR_MONACO="template-monaco-for-easytravel"
-if [ $i -lt 1 ]
+if [ $START_ENV -lt 1 ]
 then
 	END_ENV=$(($NBENV - 1))
 else
