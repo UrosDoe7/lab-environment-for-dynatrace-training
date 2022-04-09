@@ -90,7 +90,7 @@
   "injectionMode": "JAVASCRIPT_TAG",
   "javaScriptFrameworkSupport": {
    "activeXObject": false,
-   "angular": false,
+   "angular": true,
    "dojo": false,
    "extJS": false,
    "icefaces": true,
