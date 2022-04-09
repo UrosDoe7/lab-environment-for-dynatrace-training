@@ -54,7 +54,7 @@ do
         fi
 	echo Email=$Email
 	echo EnableSynthetic=$EnableSynthetic
-	read  -p "==> redeploy config for user$X$I (y|n):  " response
+	read  -p "==> redeploy config for user$X$i (y|n):  " response
 	
 	if [ "$response" = "yes" ] || [ "$response" = "YES" ] || [ "$response" = "Y" ] || [ "$response" = "y" ]; then
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
