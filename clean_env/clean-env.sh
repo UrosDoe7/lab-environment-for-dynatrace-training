@@ -9,7 +9,9 @@ then
 	END_ENV=$(($NBENV - 1))
 else
 	END_ENV=$(($NBENV-$START_ENV))
-firesponse=no
+fi
+
+response=no
 
 while [ "$response" !=  "$MyTenant"  ]
 	do
