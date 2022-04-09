@@ -37,7 +37,9 @@ do
                 X='' #from 10 to 20
                 LOCATION=$LOCATION4
         fi
-		
+	
+	echo ""
+	echo "#######################"
 	echo user=user$X$i
 	echo MyTenant=$MyTenant
 	echo MyToken=$MyToken
