@@ -45,6 +45,7 @@ API_EXTENSION='/api/config/v1/extensions'
 API_K8S_CREDENTIAL='/api/config/v1/kubernetes/credentials'
 API_CALC_METRIC='/api/config/v1/calculatedMetrics/service'
 API_SYNTH_LOCATION='/api/v1/synthetic/locations'
+API_WEB_APP='/api/config/v1/applications/web'
 
 ##################################
 ## GENERIC functions
@@ -404,7 +405,7 @@ def custom_calcmetric(TENANT,TOKEN):
 def synthloaction_clean(TENANT,TOKEN):
     print('clean synthetic location')
     uri=TENANT + API_SYNTH_LOCATION + '?Api-Token=' +TOKEN
-    print(uri)
+    #print(uri)
     datastore = queryDynatraceAPI(uri, TOKEN)
     #print(datastore)
     if datastore != []:
@@ -415,6 +416,23 @@ def synthloaction_clean(TENANT,TOKEN):
                     print('delete ' +entity['name']+'  '+entity['entityId'])
                     delDynatraceAPI(uri, TOKEN)
     return ()
+
+# request web app to clean
+def webapp_clean(TENANT,TOKEN):
+    print('clean web app')
+    uri=TENANT + API_WEB_APP + '?Api-Token=' +TOKEN
+    #print(uri)
+    datastore = queryDynatraceAPI(uri, TOKEN)
+    #print(datastore)
+    if datastore != []:
+        apilist = datastore['values']
+        for entity in apilist:
+                    uri = TENANT + API_WEB_APP + '/' + entity['id'] + '?Api-Token=' + TOKEN
+                    print('delete ' +entity['name']+'  '+entity['id'])
+                    delDynatraceAPI(uri, TOKEN)
+    return ()
+
+
 
 #Clean
 print(tenant)
@@ -435,5 +453,6 @@ custom_extension(tenant,token)
 custom_k8sconfig(tenant,token)
 custom_calcmetric(tenant,token)
 synthloaction_clean(tenant,token)
+webapp_clean(tenant,token)
     
 #manque  mda, logs config, logs event, availability process for mongo
