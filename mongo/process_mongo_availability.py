@@ -184,7 +184,7 @@ if arg not in ['enable', 'disable'] :
 
 else : 
     
-    list_pgavailability(tenant,token,+str(arg))
+    list_pgavailability(tenant,token,str(arg))
 
 
  
