@@ -4,7 +4,7 @@
 . ../env.sh
 
 
-while [ "$response" !=  "disable"  -o  "$response" !=  "enable"  ]
+while [ "$response" -ne  "disable"  -o  "$response" -ne "enable"  ]
 	do
 		read  -p "enable or disable " response
 	done
