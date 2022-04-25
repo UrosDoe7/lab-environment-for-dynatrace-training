@@ -150,7 +150,7 @@ def enable_pgavailability(tenant,token,pg_id):
         }
     result=putDynatraceAPI(uri, payload)
     #print(uri, payload)
-    print(dict_pg[pg_id] + ' >> enable process group availability = '+result[1])   
+    print(result[1])   
     return()
 
 
@@ -164,7 +164,7 @@ def disable_pgavailability(tenant,token,pg_id):
         }
     result=putDynatraceAPI(uri, payload)
     #print(uri, payload)
-    print(dict_pg[pg_id] + ' >> disable process group availability = '+result[1])   
+    print(result[1])   
     return()
 
 
