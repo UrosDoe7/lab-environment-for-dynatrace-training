@@ -9,4 +9,4 @@ while [ "$response" !=  "disable"  ] | [ "$response" !=  "enable"  ]
 		read  -p "enable or disable " response
 	done
 
-python _process_mongo_availability.py
+python process_mongo_availability.py $response
