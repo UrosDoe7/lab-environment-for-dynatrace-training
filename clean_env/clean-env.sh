@@ -19,7 +19,7 @@ while [ "$response" !=  "$MyTenant"  ]
 	done
 
 python clean-env.py
-
+python ../mongo/process_mongo_availability.py disable
 
 cd ..
 i=$START_ENV
@@ -34,3 +34,4 @@ while [ $i -le $END_ENV ]
 			echo `sed -i 's/Appname/easytravel'$p$i'/g' $DIR_MONACO/Delete/delete.yaml;./monaco deploy -e=environments.yaml -s=free_trial $DIR_MONACO/Delete;sed -i 's/easytravel'$p$i'/Appname/g' $DIR_MONACO/Delete/delete.yaml`
 	i=$(($i + 1))
 done
+
