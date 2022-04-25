@@ -345,7 +345,7 @@ do
         			then
                 			export Email=`echo $list_user | cut -d" " -f$(( $i + 1 ))`
         			else
-                			export Email="user"$i"@easytravel.com"
+                			export Email="userdynatrace"$X$i"@gmail.com"
         			fi
 				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
 				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
