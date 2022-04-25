@@ -52,7 +52,7 @@ do
 	if [  $number_of_email -ge $(( $i + 1 )) ]; then
                 export Email=`echo $list_user | cut -d" " -f$(( $i + 1 ))`
         else
-                export Email="user"$i"@easytravel.com"
+                export Email="userdynatrace"$i"@gmail.com"
         fi
 	echo Email=$Email
 	echo EnableSynthetic=$EnableSynthetic
