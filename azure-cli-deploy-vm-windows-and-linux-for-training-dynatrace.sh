@@ -285,7 +285,9 @@ then
 	echo 'create new genkey'
 	ssh-keygen -q -t rsa -N '' <<< $'\ny' >/dev/null 2>&1
 fi
-export RSAPUB=`cat ~/.ssh/id_rsa.pub`
+export RSAPUB1=`cat ~/.ssh/id_rsa.pub | cut -d ' ' -f 1`
+export RSAPUB2=`cat ~/.ssh/id_rsa.pub | cut -d ' ' -f 2`
+export RSAPUB3=`cat ~/.ssh/id_rsa.pub | cut -d ' ' -f 3`
 echo $RSAPUB
 
 for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
@@ -330,7 +332,7 @@ do
         ###install shellinabox to go to the linux env from a browser (port 443)
         az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "apt-get install shellinabox && sed -i 's/4200/443/g' /etc/default/shellinabox";
 	###install genkey
-	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home/user"$X$i"/.ssh && ls && echo TEST && echo "$RSAPUB" && echo TEST && pwd && echo "$RSAPUB" >> authorized_keys && cat authorized_keys && echo TOTO >> authorized_keys && cat authorized_keys";
+	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home/user"$X$i"/.ssh && ls && echo TEST && echo "$RSAPUB" && echo TEST && pwd && echo '"$RSAPUB1" "$RSAPUB2" "$RSAPUB3"'>> authorized_keys && cat authorized_keys && echo TOTO >> authorized_keys && cat authorized_keys";
 	
 	###Install EasyTravel
         if [[ $EASYTRAVEL_ENV = [Y] ]]
