@@ -330,7 +330,7 @@ do
         ###install shellinabox to go to the linux env from a browser (port 443)
         az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "apt-get install shellinabox && sed -i 's/4200/443/g' /etc/default/shellinabox";
 	###install genkey
-	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "echo "$RSAPUB" >> ~/.ssh/authorized_keys";
+	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "pwd && echo "$RSAPUB" >> .ssh/authorized_keys";
 	
 	###Install EasyTravel
         if [[ $EASYTRAVEL_ENV = [Y] ]]
