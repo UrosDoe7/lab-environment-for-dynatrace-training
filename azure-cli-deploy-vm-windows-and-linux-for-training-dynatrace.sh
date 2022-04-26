@@ -2,7 +2,7 @@
 #design by JLLormeau Dynatrace
 # version beta
 
-. env.sh
+. ./env.sh
 #NEW_CLI=1
 #EnableSynthetic=true
 #TIME=`date +%Y%m%d%H%M%S`
