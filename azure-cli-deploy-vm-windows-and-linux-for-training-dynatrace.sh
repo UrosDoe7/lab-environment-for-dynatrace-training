@@ -24,7 +24,7 @@ WINDOWS_ENV="N"
 EASYTRAVEL_ENV="Y"
 FULL_INSTALLATION="N"
 MONGO_STOP="Y"
-KUBE_SCRIPT="N"
+NEW_GENKEY="N"
 VM_STARTED="N"
 HOUR_MONGO_STOP="11"
 log=deploy-vm-windows-and-linux-for-training-dynatrace-$TIME.log
@@ -74,7 +74,7 @@ do
         if [[ $MONGO_STOP = [Y] && $EASYTRAVEL_ENV = [Y] ]]; then echo "7) stop Mongo : hour (GMT) of Mongo shutdown           ="$HOUR_MONGO_STOP; fi
         if [[ $EASYTRAVEL_ENV = [Y] ]]; then echo "8) full configuration : OneAgent + run Monaco          ="$FULL_INSTALLATION;fi
         echo "9) start env : VM started after installation           ="$VM_STARTED
-	#echo "10) kubernetes : script to deploy Azure Vote App on AKS ="$KUBE_SCRIPT
+	echo "10) ssh key with new genkey : 				="$NEW_GENKEY
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
         echo ""
         sleep 0.1
@@ -120,7 +120,7 @@ do
                 "9") if [ "$VM_STARTED" = "Y" ]; then VM_STARTED="N";echo "9) start env : VM started after installation   =N"; else VM_STARTED="Y";echo "9) start env : VM started after installation   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
-                "10") if [ "$KUBE_SCRIPT" = "Y" ]; then KUBE_SCRIPT="N";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =N"; else KUBE_SCRIPT="Y";echo "8) kubernetes : script to deploy Azure Vote App on AKS   =Y"; fi
+                "10") if [ "$NEW_GENKEY" = "Y" ]; then NEW_GENKEY="N";echo "10) ssh key with new genkey :   =N"; else NEW_GENKEY="Y";echo "10) ssh key with new genkey :   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
                 "A") APPLY="Y"
@@ -279,6 +279,15 @@ echo ""
 
 ###create VM
 echo 'START installation='`date +%Y%m%d%H%M%S`
+#create genkey
+if [[ $NEW_GENKEY = [Y] ]]
+then
+	echo 'create new genkey'
+	ssh-keygen -q -t rsa -N '' <<< $'\ny' >/dev/null 2>&1
+fi
+export RSAPUB=`cat ~/.ssh/id_rsa.pub`
+echo $RSAPUB
+
 for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
 do
         if (( $i < 5 ))
@@ -320,7 +329,10 @@ do
 
         ###install shellinabox to go to the linux env from a browser (port 443)
         az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "apt-get install shellinabox && sed -i 's/4200/443/g' /etc/default/shellinabox";
-        ###Install EasyTravel
+	###install genkey
+	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "echo "$RSAPUB" >> ~/.ssh/authorized_keys";
+	
+	###Install EasyTravel
         if [[ $EASYTRAVEL_ENV = [Y] ]]
         then
                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && sed -i 's/easytravel-www/easytravel"$X$i"-www/g' docker-compose.yml && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
@@ -350,11 +362,6 @@ do
 				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
 				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
                         fi				
-        fi
-        ###Add script to deploi kubernetes AKS with your Azure Service Principal
-        if [[ $KUBE_SCRIPT = [Y] ]]
-        then
-                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_kubernetesaks.git && sudo chmod 777 dynatracelab_kubernetesaks && cd dynatracelab_kubernetesaks && chmod +x deploy-aks-cluster-voting-app-with-service-principal.sh";
         fi
         ###stop VM Linux
         if [[ $VM_STARTED = [N] ]]
