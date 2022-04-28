@@ -26,6 +26,7 @@ FULL_INSTALLATION="N"
 MONGO_STOP="Y"
 NEW_GENKEY="N"
 VM_STARTED="N"
+SHORT_FORMAT="N"
 HOUR_MONGO_STOP="11"
 log=deploy-vm-windows-and-linux-for-training-dynatrace-$TIME.log
 n=0
@@ -75,6 +76,7 @@ do
         if [[ $EASYTRAVEL_ENV = [Y] ]]; then echo "8) full configuration : OneAgent + run Monaco          ="$FULL_INSTALLATION;fi
         echo "9) start env : VM started after installation           ="$VM_STARTED
 	echo "10) replace ssh key with new genkey : 			="$NEW_GENKEY
+	echo "11) short format scenario 			   ="$SHORT_FORMAT
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
         echo ""
         sleep 0.1
@@ -121,6 +123,9 @@ do
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
                 "10") if [ "$NEW_GENKEY" = "Y" ]; then NEW_GENKEY="N";echo "10) ssh key with new genkey :   =N"; else NEW_GENKEY="Y";echo "10) ssh key with new genkey :   =Y"; fi
+					sleep 0.1;read  -p "Press any key to continue " pressanycase
+				;;
+                "11") if [ "$SHORT_FORMAT" = "Y" ]; then SHORT_FORMAT="N";echo "11) short format scenario  :   =N"; else SHORT_FORMAT="Y";echo "11) short format scenario   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
                 "A") APPLY="Y"
@@ -337,7 +342,16 @@ do
 	###Install EasyTravel
         if [[ $EASYTRAVEL_ENV = [Y] ]]
         then
-                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && sed -i 's/easytravel-www/easytravel"$X$i"-www/g' docker-compose.yml && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
+                #az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && sed -i 's/easytravel-www/easytravel"$X$i"-www/g' docker-compose.yml && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
+	            if [[ $SHORT_FORMAT = [Y] ]]
+                    then
+                	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && sed -i 's/easytravel-www/easytravel"$X$i"-www/g' docker-compose.yml && chmod +x easytravel_run_scenario.sh && cp easytravel_run_scenario.sh /etc/init.d/easytravel_run_scenario.sh && update-rc.d easytravel_run_scenario.sh defaults";
+		    
+		    else		    
+                	az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && git clone https://github.com/JLLormeau/dynatracelab_easytraveld.git && sudo chmod 777 dynatracelab_easytraveld && cd dynatracelab_easytraveld && sed -i 's/easytravel-www/easytravel"$X$i"-www/g' docker-compose.yml && chmod +x start-stop-easytravel.sh && cp start-stop-easytravel.sh /etc/init.d/start-stop-easytravel.sh && update-rc.d start-stop-easytravel.sh defaults";
+		    fi
+            	
+			
                         if [[ $MONGO_STOP = [Y] ]]
                         then
                                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "service cron start && (crontab -l 2>/dev/null; echo \"0 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo >> /home/cron.log 2>&1\") | crontab  - && (crontab -l 2>/dev/null; echo \"20 "$HOUR_MONGO_STOP" * * * date >> /home/cron.log && /home/dynatracelab_easytraveld/start-stop-easytravel.sh restart >> /home/cron.log 2>&1\") | crontab -";
