@@ -7,10 +7,16 @@ response=0
 export END_ENV=$(($NBENV + $START_ENV))
 echo END_ENV=$TOTAL_ENV
 
-until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
+#until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
+#	do
+#		read  -p "\"1\" = stop mongo + restart 10 min later OR \"2\" = large memory leak + restart 10 min later  " response
+#	done
+
+until [ "$response" == "" ]
 	do
-		read  -p "\"1\" = stop mongo + restart 10 min later OR \"2\" = large memory leak + restart 10 min later  " response
+		read  -p "start|stop|restart|startloadgen|stoploadgen|restartmongo|stopmongo|status  " response
 	done
+
 
 i=$START_ENV
 while [ $i -le $END_ENV ]
@@ -20,19 +26,12 @@ do
 	then
 		X='0' #from 00 to 04
 		LOCATION=$LOCATION1      
-		if [ "$response" -eq "1" ]
-		then
-			echo "Stop mongo"
-			#ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo' &
-			echo 'Stop Mongo with ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' 
-			ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh status' &
-		elif [ "$response" -eq "2" ]
-		then
-			echo "Stop mongo"
-			#ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo' &
-			echo 'Stop Mongo with ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' 
-			ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh status' &			
-		fi
+	
+		echo "Stop mongo"
+		#ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo' &
+		echo 'Stop Mongo with ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' 
+		ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh '$value &
+
 	fi
 	if [ $i -ge 5 ] | [ $i -gt 10 ] 
 	then
