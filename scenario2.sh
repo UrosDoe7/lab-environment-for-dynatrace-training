@@ -2,13 +2,10 @@
 #design by JLLormeau Dynatrace
 # version beta
 
-cd .
-sh env.sh
-#. env.sh
 . ./env.sh
 response=0
-#export TOTAL_ENV=$(($NBENV + $START_ENV))
-echo $NBENV $START_ENV
+export TOTAL_ENV=$(($NBENV + $START_ENV))
+echo TOTAL_ENV=$TOTAL_ENV
 
 until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	do
