@@ -33,7 +33,7 @@ do
 		LOCATION=$LOCATION1      
 	
 		echo 'run ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' $response
-		ssh -tt -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh '$response &
+		ssh -tt -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com /home/dynatracelab_easytraveld/start-stop-easytravel.sh '$response &
 
 	fi
 	if [ $i -ge 5 ] | [ $i -gt 10 ] 
@@ -42,7 +42,7 @@ do
 		LOCATION=$LOCATION2
 		
 		echo 'run ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' $response
-		ssh -tt -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh '$response &
+		ssh -tt -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com /home/dynatracelab_easytraveld/start-stop-easytravel.sh '$response &
 
 
 	fi
@@ -52,7 +52,7 @@ do
 		LOCATION=$LOCATION3
 
 		echo 'run ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' $response
-		ssh -tt -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh '$response &
+		ssh -tt -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com /home/dynatracelab_easytraveld/start-stop-easytravel.sh '$response &
 
 	fi
 	if [ $i -ge 15 ] | [ $i -gt 20 ] 
@@ -61,7 +61,7 @@ do
 		LOCATION=$LOCATION4
 		
 		echo 'run ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' $response
-		ssh -tt -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh '$response &
+		ssh -tt -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com /home/dynatracelab_easytraveld/start-stop-easytravel.sh '$response &
 
 	fi     
 	i=$(($i + 1))
