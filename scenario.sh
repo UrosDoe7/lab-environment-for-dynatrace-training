@@ -12,23 +12,30 @@ until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 		read  -p "\"1\" = stop mongo + restart 10 min later OR \"2\" = large memory leak + restart 10 min later  " response
 	done
 
-if [ "$response" -eq "1" ]
 
-echo "Stop mongo"
 
 then
 
        #for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
-        for i in {0..3};
+        for i in {$START_ENV..$NBENV+$START_ENV};
         do
                 if (( $i < 5 ))
                 then
                         X='0' #from 00 to 04
                         LOCATION=$LOCATION1      
-                        #ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo' &
-                        echo 'Stop Mongo with ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' 
-                        ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh status' &
+                        if [ "$response" -eq "1" ]
 
+				echo "Stop mongo"
+				#ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo' &
+				echo 'Stop Mongo with ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' 
+				ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh status' &
+			elif [ "$response" -eq "1" ]
+				echo "Stop mongo"
+				#ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh restartmongo' &
+				echo 'Stop Mongo with ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' 
+				ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh status' &			
+			
+			fi
                 fi
                 if (( $i >= 5 ))&&(($i < 10))
                 then
@@ -57,6 +64,5 @@ then
                         echo 'Stop Mongo with ssh user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' 
                         ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh status' &
 
-                fi
-fi              
-done
+                fi              
+	done
