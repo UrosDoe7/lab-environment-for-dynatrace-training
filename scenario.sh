@@ -6,6 +6,7 @@
 response=0
 echo $START_ENV $NBENV $DOMAIN_NAME
 
+
 until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	do
 		read  -p "\"1\" = stop mongo + restart 10 min later OR \"2\" = large memory leak + restart 10 min later  " response
@@ -13,9 +14,12 @@ until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 
 if [ "$response" -eq "1" ]
 
+echo "Stop mongo"
+
 then
 
-        for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
+       #for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
+        for i in {0..3};
         do
                 if (( $i < 5 ))
                 then
