@@ -12,7 +12,7 @@ else
 fi
 
 
-while [[ $response != "restartmongo" && $response != "restartmongo2" ]]
+while [ $response != "restartmongo" ] && [ $response != "restartmongo2" ]
 	do
 		read  -p "start | stop | restart | startloadgen | stoploadgen | restartmongo | stopmongo | status | issue  " response
 	done
