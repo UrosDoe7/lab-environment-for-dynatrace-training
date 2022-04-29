@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #design by JLLormeau Dynatrace
 # version beta
 
@@ -13,8 +13,7 @@ until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	done
 
 #for ((i=$START_ENV;i<$TOTAL_ENV;++i));
-#for i in {$START_ENV..$(($NBENV+$START_ENV))};
-for i in {0..2};
+for i in {$START_ENV..$(($NBENV+$START_ENV))};
 do
 	echo $i
 	if (( $i < 5 ))
