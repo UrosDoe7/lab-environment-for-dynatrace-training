@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ksh
 #design by JLLormeau Dynatrace
 # version beta
 
