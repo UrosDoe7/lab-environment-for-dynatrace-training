@@ -12,11 +12,15 @@ else
 fi
 
 
-while [ $response != "restart" ] && [ $response != "restartmongo" ] && [ $response != "stopmongo" ] && [ $response != "issue" ] && [ $response != "status" ] && [ $response != "start" ] && [ $response != "stop" ]
+while [ $response != "stress" ] && [ $response != "restart" ] && [ $response != "restartmongo" ] && [ $response != "stopmongo" ] && [ $response != "issue" ] && [ $response != "status" ] && [ $response != "start" ] && [ $response != "stop" ]
 	do
-		read  -p "start | stop | restart | restartmongo | stopmongo | issue | status = " response
+		read  -p "start | stop | restart | restartmongo | stopmongo | issue | stress | status = " response
 	done
 
+if [ response == "stress" ]
+then
+	response="stress" $2
+fi
 
 i=$START_ENV
 while [ $i -le $END_ENV ]
