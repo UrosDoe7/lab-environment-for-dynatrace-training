@@ -4,11 +4,15 @@
 
 . ./env.sh
 response="no"
-export END_ENV=$(($NBENV + $START_ENV))
-echo END_ENV=$END_ENV
+if [ $START_ENV -lt 1 ]
+then
+	END_ENV=$(($NBENV - 1))
+else
+	END_ENV=$(($NBENV-$START_ENV))
+fi
 
 
-while [ $response != "restartmongo" ]
+while [[ $response != "restartmongo" && $response != "restartmongo2" ]]
 	do
 		read  -p "start | stop | restart | startloadgen | stoploadgen | restartmongo | stopmongo | status | issue  " response
 	done
