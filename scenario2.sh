@@ -12,7 +12,7 @@ while [ $response != "restartmongo" && $response != "issue" ]
 	do
 		read  -p "start | stop | restart | startloadgen | stoploadgen | restartmongo | stopmongo | status | issue  " response
 	done
-
+echo $response
 
 i=$START_ENV
 while [ $i -le $END_ENV ]
