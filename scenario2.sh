@@ -13,7 +13,7 @@ until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	done
 
 
-for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
+for ((i=0+$START_ENV; i<$TOTAL_ENV; ++i));
 #for i in {$START_ENV..$(($NBENV+$START_ENV))};
 do
 	echo $i
