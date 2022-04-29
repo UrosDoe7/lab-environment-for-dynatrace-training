@@ -4,8 +4,8 @@
 
 . ./env.sh
 response=0
-export TOTAL_ENV=$(($NBENV + $START_ENV))
-echo TOTAL_ENV=$TOTAL_ENV
+export END_ENV=$(($NBENV + $START_ENV))
+echo END_ENV=$TOTAL_ENV
 
 until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	do
