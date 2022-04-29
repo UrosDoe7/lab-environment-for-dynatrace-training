@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "step 1 start"
-sh remote-start-stop-easytravel.sh restart
+sh remote-start-stop-easytravel.sh start
 
 echo "sleep 2m"
 sleep 2m
