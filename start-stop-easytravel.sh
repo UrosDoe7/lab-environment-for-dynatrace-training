@@ -3,7 +3,7 @@
 # version beta
 
 . ./env.sh
-response="no"
+response=$1
 if [ $START_ENV -lt 1 ]
 then
 	END_ENV=$(($NBENV - 1))
