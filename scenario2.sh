@@ -3,7 +3,6 @@
 # version beta
 
 . ./env.sh
-response=0
 export END_ENV=$(($NBENV + $START_ENV))
 echo END_ENV=$TOTAL_ENV
 
@@ -12,7 +11,7 @@ echo END_ENV=$TOTAL_ENV
 #		read  -p "\"1\" = stop mongo + restart 10 min later OR \"2\" = large memory leak + restart 10 min later  " response
 #	done
 
-until [ "$response" == "" ]
+while [ "$response" == "" ]
 	do
 		read  -p "start|stop|restart|startloadgen|stoploadgen|restartmongo|stopmongo|status  " response
 	done
