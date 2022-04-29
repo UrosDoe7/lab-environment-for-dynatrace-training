@@ -5,7 +5,7 @@
 . ./env.sh
 response=0
 
-until [ "$response" = "1"  -o  "$response" = "2"  ]
+until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	do
 		read  -p "\"1\" = stop mongo + restart 10 min later OR \"2\" = large memory leak + restart 10 min later  " response
 	done
