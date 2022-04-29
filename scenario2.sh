@@ -16,7 +16,7 @@ i=$START_ENV
 while [ $i -le $END_ENV ]
 do
 	echo $i
-	if (( $i < 5 ))
+	if [ $i -lt 5 ]
 	then
 		X='0' #from 00 to 04
 		LOCATION=$LOCATION1      
@@ -34,7 +34,7 @@ do
 			ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh status' &			
 		fi
 	fi
-	if (( $i >= 5 ))&&(($i < 10))
+	if [ $i -ge 5 ] | [ $i -gt 10 ] 
 	then
 		X='0' #from 05 to 09
 		LOCATION=$LOCATION2
@@ -44,7 +44,7 @@ do
 
 
 	fi
-	if (( $i >= 10 ))&&(($i < 15))
+	if [ $i -ge 10 ] | [ $i -gt 15 ] 
 	then
 		X='' #from 10 to 14
 		LOCATION=$LOCATION3
@@ -53,7 +53,7 @@ do
 		ssh -oStrictHostKeyChecking=no 'user'$X$i'@'$DOMAIN_NAME$X$i'.'$LOCATION'.cloudapp.azure.com' '/home/dynatracelab_easytraveld/start-stop-easytravel.sh status' &        
 
 	fi
-	if (( $i >= 15 ))&&(($i < 20))
+	if [ $i -ge 15 ] | [ $i -gt 20 ] 
 	then
 		X='' #from 10 to 20
 		LOCATION=$LOCATION4
