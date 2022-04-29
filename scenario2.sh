@@ -1,4 +1,4 @@
-#!/usr/bin/env ksh
+#!/usr/bin/env bash
 #design by JLLormeau Dynatrace
 # version beta
 
@@ -13,8 +13,8 @@ until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	done
 
 
-#for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
-for i in {$START_ENV..$(($NBENV+$START_ENV))};
+for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
+#for i in {$START_ENV..$(($NBENV+$START_ENV))};
 do
 	echo $i
 	if (( $i < 5 ))
