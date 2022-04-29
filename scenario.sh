@@ -7,7 +7,7 @@ echo "sleep 2m"
 sleep 2m
 
 echo "sleep issue"
-sh remote-remote-start-stop-easytravel.sh issue 2>&1
+sh remote-start-stop-easytravel.sh issue 2>&1
 
 echo "sleep 5m"
 sleep 5m
