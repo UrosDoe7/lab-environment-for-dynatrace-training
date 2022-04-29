@@ -2,7 +2,7 @@
 #design by JLLormeau Dynatrace
 # version beta
 
-. env.sh
+. ./env.sh
 response=0
 echo $START_ENV $START_ENV
 
