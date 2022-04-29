@@ -6,15 +6,15 @@
 export END_ENV=$(($NBENV + $START_ENV))
 echo END_ENV=$TOTAL_ENV
 
-#until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
-#	do
-#		read  -p "\"1\" = stop mongo + restart 10 min later OR \"2\" = large memory leak + restart 10 min later  " response
-#	done
-
-while [ "$response" == "" ]
+until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	do
-		read  -p "start|stop|restart|startloadgen|stoploadgen|restartmongo|stopmongo|status  " response
+		read  -p "\"1\" = stop mongo + restart 10 min later OR \"2\" = large memory leak + restart 10 min later  " response
 	done
+
+#while [ "$response" == "" ]
+#	do
+#		read  -p "start|stop|restart|startloadgen|stoploadgen|restartmongo|stopmongo|status  " response
+#	done
 
 
 i=$START_ENV
