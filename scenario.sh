@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #design by JLLormeau Dynatrace
 # version beta
 
