@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash ./env
 #design by JLLormeau Dynatrace
 # version beta
 
