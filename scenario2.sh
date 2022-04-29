@@ -4,6 +4,8 @@
 
 cd .
 sh env.sh
+. env.sh
+. ./env.sh
 response=0
 #export TOTAL_ENV=$(($NBENV + $START_ENV))
 echo $NBENV $START_ENV
