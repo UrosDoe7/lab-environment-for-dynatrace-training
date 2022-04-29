@@ -19,7 +19,7 @@ while [ $response != "stress" ] && [ $response != "restart" ] && [ $response != 
 
 if [ $response = "stress" ]
 then
-	response="stress" $2 $3 $4 $5 $6 $7 $8 $9 $11 $12
+	response='stress '$2' '$3' '$4' '$5' '$6' '$7' '$8' '$9' '$11' '$12
 	echo $response
 fi
 
