@@ -4,7 +4,8 @@
 
 . ./env.sh
 response=0
-echo $START_ENV $NBENV $DOMAIN_NAME
+export TOTAL_ENV=$NBENV + $START_ENV
+echo TOTAL_ENV
 
 
 until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
