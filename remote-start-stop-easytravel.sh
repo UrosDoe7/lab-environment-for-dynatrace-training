@@ -17,7 +17,7 @@ while [ $response != "stress" ] && [ $response != "restart" ] && [ $response != 
 		read  -p "start | stop | restart | restartmongo | stopmongo | issue | stress | status = " response
 	done
 
-if [[ response = [stress] ]]
+if [ $response = "stress" ]
 then
 	response="stress" $2 $3 $4 $5 $6 $7 $8 $9 $11 $12
 	echo $response
