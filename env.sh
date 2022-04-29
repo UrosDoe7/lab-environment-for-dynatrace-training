@@ -6,6 +6,7 @@ export list_user="user00@demo.com user01@demo.com"
 export EnableSynthetic=false
 export TIME=`date +%Y%m%d%H%M%S`
 export DOMAIN_NAME_DEFAULT=dynatracelab$TIME
+export DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
 export PASSWORD=Dynatrace@2022
 export SIZE_LINUX=Standard_B2ms #2 CPU 8 GB
 export SIZE_WINDOWS=Standard_B2ms   #2 CPU 8 GB
