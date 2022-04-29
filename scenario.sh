@@ -4,7 +4,7 @@
 
 . ./env.sh
 response=0
-export TOTAL_ENV=$NBENV + $START_ENV
+export TOTAL_ENV=$(($NBENV + $START_ENV))
 echo TOTAL_ENV
 
 
