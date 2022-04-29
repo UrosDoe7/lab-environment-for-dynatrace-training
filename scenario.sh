@@ -1,4 +1,4 @@
-#!./env bash 
+#!/home/azureuser/lab-environment-for-dynatrace-training/env bash 
 #design by JLLormeau Dynatrace
 # version beta
 
