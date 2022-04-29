@@ -2,7 +2,7 @@
 #design by JLLormeau Dynatrace
 # version beta
 
-. ./env.sh
+. ../env.sh
 response=0
 export TOTAL_ENV=$(($NBENV + $START_ENV))
 echo TOTAL_ENV
