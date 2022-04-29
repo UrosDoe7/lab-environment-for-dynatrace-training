@@ -3,6 +3,7 @@
 # version beta
 
 . ./env.sh
+response=0
 export END_ENV=$(($NBENV + $START_ENV))
 echo END_ENV=$TOTAL_ENV
 
