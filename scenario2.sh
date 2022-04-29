@@ -3,13 +3,14 @@
 # version beta
 
 . ./env.sh
+response="no"
 export END_ENV=$(($NBENV + $START_ENV))
 echo END_ENV=$END_ENV
 
 
-while [[ "$response" == "" ]]
+while [[ "$response" != "restartmongo" && "$response" != "issue" ]]
 	do
-		read  -p "start|stop|restart|startloadgen|stoploadgen|restartmongo|stopmongo|status  " response
+		read  -p "start|stop|restart|startloadgen|stoploadgen|restartmongo|stopmongo|status|issue  " response
 	done
 
 
