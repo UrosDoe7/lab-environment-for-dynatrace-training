@@ -4,7 +4,7 @@
 
 . ./env.sh
 response=0
-echo $START_ENV $START_ENV
+echo $START_ENV $NBENV
 
 #until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 #	do
@@ -12,7 +12,7 @@ echo $START_ENV $START_ENV
 #	done
 
 
-for ((i=0+$START_ENV; i<$START_ENV+$START_ENV; ++i));
+for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
 do
         if (( $i < 5 ))
         then
