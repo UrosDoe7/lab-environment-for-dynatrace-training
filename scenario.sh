@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #design by JLLormeau Dynatrace
 # version beta
 
@@ -6,7 +6,6 @@
 response=0
 export TOTAL_ENV=$(($NBENV + $START_ENV))
 echo TOTAL_ENV
-
 
 until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 	do
