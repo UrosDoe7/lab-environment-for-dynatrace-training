@@ -8,9 +8,9 @@ export END_ENV=$(($NBENV + $START_ENV))
 echo END_ENV=$END_ENV
 
 
-until [ "$response" == "restartmongo" | "$response" == "issue" ]
+until [ "$response" == "restartmongo" || "$response" == "issue" ]
 	do
-		read  -p "start|stop|restart|startloadgen|stoploadgen|restartmongo|stopmongo|status|issue  " response
+		read  -p "start | stop | restart | startloadgen | stoploadgen | restartmongo | stopmongo | status | issue  " response
 	done
 
 
