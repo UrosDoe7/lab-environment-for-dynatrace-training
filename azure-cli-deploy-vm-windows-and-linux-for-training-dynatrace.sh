@@ -76,7 +76,7 @@ do
         if [[ $EASYTRAVEL_ENV = [Y] ]]; then echo "8) full configuration : OneAgent + run Monaco          ="$FULL_INSTALLATION;fi
         echo "9) start env : VM started after installation           ="$VM_STARTED
 	echo "10) replace ssh key with new genkey :                  ="$NEW_GENKEY
-	echo "11) short format scenario :                            ="$SHORT_FORMAT
+	#echo "11) short format scenario :                            ="$SHORT_FORMAT
         echo "A) apply and deploy the VM - (Ctrl/c to quit)"
         echo ""
         sleep 0.1
@@ -125,9 +125,9 @@ do
                 "10") if [ "$NEW_GENKEY" = "Y" ]; then NEW_GENKEY="N";echo "10) ssh key with new genkey :   =N"; else NEW_GENKEY="Y";echo "10) ssh key with new genkey :   =Y"; fi
 					sleep 0.1;read  -p "Press any key to continue " pressanycase
 				;;
-                "11") if [ "$SHORT_FORMAT" = "Y" ]; then SHORT_FORMAT="N";echo "11) short format scenario  :   =N"; else SHORT_FORMAT="Y";echo "11) short format scenario   =Y"; fi
-					sleep 0.1;read  -p "Press any key to continue " pressanycase
-				;;
+                #"11") if [ "$SHORT_FORMAT" = "Y" ]; then SHORT_FORMAT="N";echo "11) short format scenario  :   =N"; else SHORT_FORMAT="Y";echo "11) short format scenario   =Y"; fi
+		#			sleep 0.1;read  -p "Press any key to continue " pressanycase
+		#		;;
                 "A") APPLY="Y"
                                 DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
         esac
