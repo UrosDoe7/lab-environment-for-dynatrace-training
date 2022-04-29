@@ -2,8 +2,9 @@
 #design by JLLormeau Dynatrace
 # version beta
 
-. ./env.sh
+. env.sh
 response=0
+echo $START_ENV $START_ENV
 
 #until [ "$response" -eq "1"  -o  "$response" -eq "2"  ]
 #	do
@@ -11,7 +12,7 @@ response=0
 #	done
 
 
-for ((i=0+$START_ENV; i<$NBENV+$START_ENV; ++i));
+for ((i=0+$START_ENV; i<$START_ENV+$START_ENV; ++i));
 do
         if (( $i < 5 ))
         then
