@@ -365,6 +365,7 @@ do
 				export MyTenant=$MyTenant
 				export MyToken=$MyToken
 				export Appname="easytravel"$X$i
+				export MZ=$Appname
 				export Hostname=$RESOURCE_GROUP"."$LOCATION".cloudapp.azure.com"
 			        number_of_email=`echo $list_user | tr -cd '@' | wc -c`
         			if [  $number_of_email -ge $(( $i + 1 )) ]
@@ -374,7 +375,8 @@ do
                 			export Email="userdynatrace"$X$i"@gmail.com"
         			fi
 				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
-				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
+				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-step1
+				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-step2
                         fi				
         fi
         ###stop VM Linux
