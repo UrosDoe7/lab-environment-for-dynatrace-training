@@ -45,6 +45,7 @@ do
 	echo MyToken=$MyToken
 	export Appname="easytravel"$X$i
 	echo Appname=$Appname
+	export MZ=$Appname
 	export Hostname=$DOMAIN_NAME_DEFAULT$X$i"."$LOCATION".cloudapp.azure.com"
 	echo Hostname=$Hostname
 	number_of_email=`echo $list_user | tr -cd '@' | wc -c`
@@ -60,7 +61,8 @@ do
 	
 	if [ "$response" = "yes" ] || [ "$response" = "YES" ] || [ "$response" = "Y" ] || [ "$response" = "y" ]; then
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
-			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo
+			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-step1
+			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-step2
 	else
 			echo "user"$X$i" => response="$response
 			echo
