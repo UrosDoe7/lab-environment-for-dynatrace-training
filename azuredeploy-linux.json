@@ -61,6 +61,7 @@
   "variables": {
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
+    "extensionName": "",
     "OSDiskName": "osdiskfordockersimple",
     "nicName": "myVMNicD",
     "addressPrefix": "10.0.0.0/16",
