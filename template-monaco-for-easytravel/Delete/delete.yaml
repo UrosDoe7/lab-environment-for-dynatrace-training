@@ -16,7 +16,7 @@ delete:
  - "slo/Appname - Application - availability (http)"
  - "slo/Appname - Application - availability (browser)"
  - "slo/Appname - Infrastructure - cpu idle (host)"
- - "slo/Appname - Infrastructure - memory available (host)
+ - "slo/Appname - Infrastructure - memory available (host)"
  - "request-attributes/Appname-findJourneysByLocation"
  - "request-attributes/Appname-slo_perf"
  - "auto-tag/app"
@@ -25,4 +25,3 @@ delete:
  - "conditional-naming-processgroup/processgroup-naming"
  - "conditional-naming-service/service-naming-nginx"
  - "conditional-naming-service/service-naming"
- 
