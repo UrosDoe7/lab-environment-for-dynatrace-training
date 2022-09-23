@@ -9,6 +9,7 @@ export DOMAIN_NAME_DEFAULT=dynatracelab$TIME
 export DOMAIN_NAME=$DOMAIN_NAME_DEFAULT
 export PASSWORD=Dynatrace@2022
 export SIZE_LINUX=Standard_B2ms #2 CPU 8 GB
+#export SIZE_LINUX=Standard_B4ms #4CPU 16 GB
 export SIZE_WINDOWS=Standard_B2ms   #2 CPU 8 GB
 export LOCATION1=francecentral
 export LOCATION2=westeurope
