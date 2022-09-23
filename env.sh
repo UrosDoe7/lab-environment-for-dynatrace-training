@@ -1,7 +1,7 @@
 export NEW_CLI=1 
-export MyTenant=yyyy.jzq02463.live.dynatrace.com
+export MyTenant=jzq02463.live.dynatrace.com
 export MyToken=dt0c01.abcdefghij.abcdefghijklmn
-export PaasToken=dt0c01.abcdefghij.abcdefghijklmn
+export PaasToken=$MyToken
 export list_user="user00@demo.com user01@demo.com"
 export EnableSynthetic=false
 export TIME=`date +%Y%m%d%H%M%S`
