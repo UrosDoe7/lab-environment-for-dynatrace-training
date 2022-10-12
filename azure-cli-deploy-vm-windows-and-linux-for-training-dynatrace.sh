@@ -357,7 +357,7 @@ do
 			if [[ $FULL_INSTALLATION = [Y] ]]
                         then
 				export MyTenant=$MyTenant
-				export PaasToken=$PaasToken
+				export PaasToken=$MyToken
                                 az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && wget  -O Dynatrace-OneAgent-Linux-latest.sh \"https://"$MyTenant"/api/v1/deployment/installer/agent/unix/default/latest?arch=x86&flavor=default\" --header=\"Authorization: Api-Token "$PaasToken"\" && sudo /bin/sh Dynatrace-OneAgent-Linux-latest.sh --set-host-group=easytravel"$X$i" --set-host-property=env=sandbox";
                         fi				
 			if [[ $FULL_INSTALLATION = [Y] ]]
