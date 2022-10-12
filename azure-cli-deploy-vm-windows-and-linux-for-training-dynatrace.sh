@@ -358,8 +358,8 @@ do
                         then
 				export MyTenant=$MyTenant
 				export PaasToken=$PaasToken
-                                az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && sudo wget -O Dynatrace-OneAgent-Linux-latest.sh \"https://"$MyTenant"/api/v1/deployment/installer/agent/unix/default/latest?arch=x86&flavor=default\" --header=\"Authorization: Api-Token "$PaasToken"\" && sudo /bin/sh Dynatrace-OneAgent-Linux-latest.sh --set-host-group=easytravel"$X$i" --set-host-property=env=sandbox";
-                        fi				
+                                #az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && sudo wget -O Dynatrace-OneAgent-Linux-latest.sh \"https://"$MyTenant"/api/v1/deployment/installer/agent/unix/default/latest?arch=x86&flavor=default\" --header=\"Authorization: Api-Token "$PaasToken"\" && sudo /bin/sh Dynatrace-OneAgent-Linux-latest.sh --set-host-group=easytravel"$X$i" --set-host-property=env=sandbox";
+				az vm run-command invoke -g "$RESOURCE_GROUP" -n "$DOMAIN" --command-id RunShellScript --scripts "cd /home && wget  -O Dynatrace-OneAgent-Linux-1.249.227.sh \"https://jzq02463.live.dynatrace.com/api/v1/deployment/installer/agent/unix/default/latest?arch=x86&flavor=default\" --header=\"Authorization: Api-Token dt0c01.X7OH6LQSJH2YIZYZZH5UP3L3.37M2GDDQ7JWOOAUB6F4H2HJTXTAHRI4DYBTAZ57GAFZ4CFOFPYRM6G3WLS77PCS7\" && sudo /bin/sh Dynatrace-OneAgent-Linux-latest.sh --set-host-group=easytravel"$X$i" --set-host-property=env=sandbox";                        fi				
 			if [[ $FULL_INSTALLATION = [Y] ]]
                         then
 				export MyTenant=$MyTenant
