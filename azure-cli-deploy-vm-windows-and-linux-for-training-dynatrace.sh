@@ -227,7 +227,7 @@ then
 
 		case "$reponse" in
 			"0") verif="ko"
-			      until [ $verif = "ok" ]; do read  -p "0) Tenant : <YYY>.live.dynatrace.com  or <domaine-name>/e/<tenant> :    " MyTenant2
+			      until [ $verif = "ok" ]; do read  -p "0) Tenant : <YYY>.live.dynatrace.com  or <domaine-name>/e/<tenant> or <YYY>.sprint.dynatracelabs.com :    " MyTenant2
 			       if [[ $MyTenant2 =~ ^[a-zA-Z]++[0-9]++\.[a-zA-Z]++\.dynatrace\.com$ ]] ||  [[ $MyTenant2 =~ ^[a-zA-Z0-9\.-_]++\/e\/[a-zA-Z0-9-]++$ ]]  ;then
 				verif="ok";sed -i s/MyTenant="${MyTenant////\\/}"/MyTenant="${MyTenant2////\\/}"/g env.sh;. env.sh
 				else verif="ko"; echo "bad saas tenant address" ; value="ko";read pressanycase;
