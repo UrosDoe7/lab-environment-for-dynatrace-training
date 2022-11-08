@@ -375,8 +375,6 @@ do
                 			export Email="userdynatrace"$X$i"@gmail.com"
         			fi
 				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
-				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-step1
-				sleep 5
 				./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-step2
                         fi				
         fi
