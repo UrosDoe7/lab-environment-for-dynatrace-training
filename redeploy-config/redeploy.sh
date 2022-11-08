@@ -61,8 +61,7 @@ do
 	
 	if [ "$response" = "yes" ] || [ "$response" = "YES" ] || [ "$response" = "Y" ] || [ "$response" = "y" ]; then
 			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Deploy
-			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-step1
-			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-step2
+			./monaco deploy -e=environments.yaml template-monaco-for-easytravel/Slo/deploy-slo
 	else
 			echo "user"$X$i" => response="$response
 			echo
